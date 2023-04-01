@@ -92,6 +92,7 @@ export default class AudioStream extends mixins(
   forceSeek!: number
 
   get currentSong(): Song | null | undefined {
+    console.log(vxm.player.currentSong)
     return vxm.player.currentSong
   }
 
@@ -230,6 +231,7 @@ export default class AudioStream extends mixins(
    */
   @Watch('currentSong', { immediate: true })
   onSongChanged(newSong: Song | null | undefined) {
+    console.trace('song changed', newSong)
     if (newSong) this.loadAudio(newSong, false)
     else {
       this.unloadAudio()
@@ -351,13 +353,13 @@ export default class AudioStream extends mixins(
   }
 
   private setupSync() {
-    this.setSongSrcCallback = (src: string) => this.activePlayer && this.activePlayer.load(src)
+    this.setSongSrcCallback = (src: string) => console.log('trying to set song src', src)
     this.onSeekCallback = (time: number) => this.activePlayer && (this.activePlayer.currentTime = time)
   }
 
   private registerRoomListeners() {
-    // this.$root.$on('join-room', (data: string) => this.joinRoom(data))
-    // this.$root.$on('create-room', () => this.createRoom())
+    this.$root.$on('join-room', (data: string) => this.joinRoom(data))
+    this.$root.$on('create-room', () => this.createRoom())
   }
 
   private async onSongEnded() {
@@ -627,7 +629,7 @@ export default class AudioStream extends mixins(
   }
 
   get enableTrackControls() {
-    return this.isSyncing ? vxm.sync.queueOrder.length > 1 : vxm.player.queueOrder.length > 1
+    return vxm.player.queueOrder.length > 1
   }
 
   @Watch('enableTrackControls', { immediate: true, deep: false })
@@ -806,6 +808,7 @@ export default class AudioStream extends mixins(
 
     // Don't proceed if song has changed while we were fetching playback url and duration
     if (song._id !== this.currentSong?._id) {
+      console.log(song._id, this.currentSong)
       console.debug('Current song has changed, skipping request')
       return
     }

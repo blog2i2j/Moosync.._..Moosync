@@ -4064,6 +4064,11 @@ cliui@^8.0.1:
     strip-ansi "^6.0.1"
     wrap-ansi "^7.0.0"
 
+clone-class@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/clone-class/-/clone-class-1.0.3.tgz#5ba84a165878e11600f14e1fcf7e61265a576485"
+  integrity sha512-w61XkwjxiT3ZRKIO8ENg4btl4qScSUU9tjdcLrUO16d7uiKA9reJK4bBgZZT5iFII06E/WsV3rAyEnxq4njmOw==
+
 clone-deep@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/clone-deep/-/clone-deep-4.0.1.tgz#c19fd9bdbbf85942b4fd979c84dcf7d5f07c2387"
@@ -10678,6 +10683,11 @@ ts-loader@^9.2.5, ts-loader@^9.4.1, ts-loader@^9.4.2:
     enhanced-resolve "^5.0.0"
     micromatch "^4.0.0"
     semver "^7.3.4"
+
+ts-mixer@^6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/ts-mixer/-/ts-mixer-6.0.3.tgz#69bd50f406ff39daa369885b16c77a6194c7cae6"
+  integrity sha512-k43M7uCG1AkTyxgnmI5MPwKoUvS/bRvLvUb7+Pgpdlmok8AoqmUaZxUUw8zKM5B1lqZrt41GjYgnvAi0fppqgQ==
 
 ts-node@^10.9.1:
   version "10.9.1"

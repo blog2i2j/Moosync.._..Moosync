@@ -116,7 +116,6 @@ import draggable from 'vuedraggable'
 import { bus } from '@/mainWindow/main'
 import { EventBus } from '@/utils/main/ipc/constants'
 import SongDetailsCompact from '@/mainWindow/components/songView/components/SongDetailsCompact.vue'
-import { PeerMode } from '@/mainWindow/store/syncState'
 import CrossIcon from '@/icons/CrossIcon.vue'
 import JukeboxMixin from '@/utils/ui/mixins/JukeboxMixin'
 import PlayerControls from '@/utils/ui/mixins/PlayerControls'
@@ -137,19 +136,15 @@ export default class MusicInfo extends mixins(ImageLoader, ModelHelper, JukeboxM
   lyrics = ''
 
   public getSong(songId: string) {
-    return this.queueProvider.queueData[songId]
+    return vxm.player.queueData[songId]
   }
 
   get spotifyCanvas() {
     return vxm.themes.currentSpotifyCanvas
   }
 
-  get queueProvider() {
-    return vxm.sync.mode !== PeerMode.UNDEFINED ? vxm.sync : vxm.player
-  }
-
   get remoteCover() {
-    return vxm.sync.currentCover
+    return vxm.player.currentCover
   }
 
   get showPlayer() {
@@ -266,15 +261,15 @@ export default class MusicInfo extends mixins(ImageLoader, ModelHelper, JukeboxM
   }
 
   get currentIndex() {
-    return this.queueProvider.queueIndex
+    return vxm.player.queueIndex
   }
 
   set queueOrder(value: { id: string; songID: string }[]) {
-    this.queueProvider.setQueueOrder(value)
+    vxm.player.setQueueOrder(value)
   }
 
   get queueOrder() {
-    return this.queueProvider.queueOrder
+    return vxm.player.queueOrder
   }
 
   private forceDefaultImg = false
@@ -285,18 +280,18 @@ export default class MusicInfo extends mixins(ImageLoader, ModelHelper, JukeboxM
 
   get computedImg() {
     this.forceDefaultImg = false
-    return this.remoteCover ?? this.getImgSrc(this.getValidImageHigh(this.currentSong))
+    return this.remoteCover || this.getImgSrc(this.getValidImageHigh(this.currentSong))
   }
 
   clear() {
     if (this.queueOrder.length > 0) {
       if (this.queueOrder.length === 1) {
         this.queueOrder = []
-        this.queueProvider.queueIndex = -1
+        vxm.player.queueIndex = -1
         vxm.player.playerState = 'STOPPED'
       } else {
         this.queueOrder = [this.queueOrder[this.currentIndex]]
-        this.queueProvider.queueIndex = 0
+        vxm.player.queueIndex = 0
       }
     }
   }
@@ -304,7 +299,7 @@ export default class MusicInfo extends mixins(ImageLoader, ModelHelper, JukeboxM
   private parseQueueItems(): Song[] {
     const songs = []
     for (const i of this.queueOrder) {
-      songs.push(this.queueProvider.queueData[i.songID])
+      songs.push(vxm.player.queueData[i.songID])
     }
     return songs
   }
@@ -316,7 +311,7 @@ export default class MusicInfo extends mixins(ImageLoader, ModelHelper, JukeboxM
   private handleIndexChange(change: {
     moved: { element: { id: string; songID: string }; newIndex: number; oldIndex: number }
   }) {
-    this.queueProvider.setSongIndex({
+    vxm.player.setSongIndex({
       oldIndex: change.moved.oldIndex,
       newIndex: change.moved.newIndex,
       ignoreMove: true

@@ -1,7 +1,7 @@
 import { VuexModule } from './module'
 import Vuex from 'vuex'
 import { createProxy } from 'vuex-class-component'
-import { ProxyWatchers } from 'vuex-class-component/dist/interfaces'
+import { ProxyWatchers, VuexModuleConstructor } from 'vuex-class-component/dist/interfaces'
 
 const persist = [
   'player._volume',
@@ -23,13 +23,9 @@ export function getProxy<T extends typeof VuexModule>(
   store: InstanceType<typeof Vuex.Store<{ state: unknown }>>,
   cls: T
 ): ProxyWatchers & InstanceType<T> {
-  const clsExtended = cls as typeof VuexModule & {
-    prototype?: {
-      __namespacedPath__?: string
-    }
-  }
+  const clsExtended = cls
+  const namespace = (clsExtended as unknown as VuexModuleConstructor).prototype.__namespacedPath__
 
-  const namespace = clsExtended.prototype.__namespacedPath__
   const proxy = createProxy(store, cls)
 
   if (namespace) {

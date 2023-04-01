@@ -13,7 +13,6 @@ import { NotifierStore } from './notifications'
 import { PlayerStore } from './playerState'
 import { PlaylistStore } from '@/mainWindow/store/playlists'
 import { ProviderStore } from '@/mainWindow/store/providers'
-import { SyncStore } from '@/mainWindow/store/syncState'
 import { ThemeStore } from './themes'
 import Vue from 'vue'
 import Vuex from 'vuex'
@@ -28,7 +27,6 @@ export const store = new Vuex.Store({
   modules: {
     ...extractVuexModule(PlayerStore),
     ...extractVuexModule(PlaylistStore),
-    ...extractVuexModule(SyncStore),
     ...extractVuexModule(ProviderStore),
     ...extractVuexModule(NotifierStore),
     ...extractVuexModule(ThemeStore),
@@ -41,7 +39,6 @@ export const store = new Vuex.Store({
 export const vxm: {
   player: InstanceType<typeof PlayerStore> & ProxyWatchers
   playlist: InstanceType<typeof PlaylistStore> & ProxyWatchers
-  sync: InstanceType<typeof SyncStore> & ProxyWatchers
   providers: InstanceType<typeof ProviderStore> & ProxyWatchers
   notifier: InstanceType<typeof NotifierStore> & ProxyWatchers
   themes: InstanceType<typeof ThemeStore> & ProxyWatchers
@@ -49,7 +46,6 @@ export const vxm: {
 } = {
   player: getProxy(store, PlayerStore),
   playlist: getProxy(store, PlaylistStore),
-  sync: getProxy(store, SyncStore),
   providers: getProxy(store, ProviderStore),
   notifier: getProxy(store, NotifierStore),
   themes: getProxy(store, ThemeStore),

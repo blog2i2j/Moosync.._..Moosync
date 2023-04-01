@@ -21,7 +21,7 @@
       <template #header>
         <div class="d-flex w-100 mt-3 justify-content-between">
           <Toggle class="toggle" @click.native="toggleOpen()" />
-          <!-- <Rooms class="rooms-button" id="rooms" v-if="showRoomsButton" />
+          <Rooms class="rooms-button" id="rooms" v-if="showRoomsButton" />
           <b-popover
             v-if="showRoomsButton"
             :target="`rooms`"
@@ -41,16 +41,16 @@
                     aria-label="room id"
                   />
                   <button v-on:click="joinRoom">Join room</button>
-                  <h3>{{ roomID }}</h3>
+                  <h3 @click="copyRoomId">{{ roomID }}</h3>
                 </b-tab>
                 <b-tab title="Create">
                   <button v-on:click="createRoom">Create Room</button>
-                  <h3>{{ roomID }}</h3>
+                  <h3 @click="copyRoomId">{{ roomID }}</h3>
                 </b-tab>
               </b-tabs>
               <div></div>
             </div>
-          </b-popover> -->
+          </b-popover>
         </div>
       </template>
       <template #default>
@@ -66,9 +66,9 @@
 import Rooms from '@/icons/RoomsIcon.vue'
 import Toggle from '@/icons/ToggleIcon.vue'
 import Tabs from '@/mainWindow/components/sidebar/components/Tabs.vue'
-import { PeerMode } from '@/mainWindow/store/syncState'
 import { Component, Vue } from 'vue-property-decorator'
 import { vxm } from '@/mainWindow/store'
+import { PeerMode } from '@/mainWindow/store/playerState'
 
 @Component({
   components: {
@@ -83,7 +83,7 @@ export default class Sidebar extends Vue {
   hasFrame = false
 
   get roomID() {
-    return vxm.sync.roomID
+    return vxm.player.syncRoomID
   }
 
   get isOpen() {
@@ -113,11 +113,11 @@ export default class Sidebar extends Vue {
   }
 
   private setWatcher() {
-    vxm.sync.setMode(PeerMode.WATCHER)
+    vxm.player.setMode(PeerMode.WATCHER)
   }
 
   private setBroadcaster() {
-    vxm.sync.setMode(PeerMode.BROADCASTER)
+    vxm.player.setMode(PeerMode.BROADCASTER)
   }
 
   private joinRoom() {
@@ -126,6 +126,10 @@ export default class Sidebar extends Vue {
 
   private createRoom() {
     this.$root.$emit('create-room')
+  }
+
+  private copyRoomId() {
+    navigator.clipboard.writeText(this.roomID)
   }
 }
 </script>

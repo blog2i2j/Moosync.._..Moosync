@@ -9,8 +9,7 @@
 
 import { FragmentReceiver, FragmentSender } from './dataFragmenter'
 import { ManagerOptions, Socket, io } from 'socket.io-client'
-
-import { PeerMode } from '@/mainWindow/store/syncState'
+import { PeerMode } from '@/mainWindow/store/playerState'
 
 enum peerConnectionState {
   CONNECTED,
@@ -95,7 +94,7 @@ export class SyncHolder {
   private onReadyRequestedCallback?: () => void
   private onReadyEmittedCallback?: () => void
   private onQueueOrderChangeCallback?: (order: QueueOrder, index: number) => void
-  private onQueueDataChangeCallback?: (data: QueueData<RemoteSong>) => void
+  private onQueueDataChangeCallback?: (data: QueueData<Song>) => void
   private onRepeatChangeCallback?: (repeat: boolean) => void
   private playRequestedSongCallback?: (songIndex: number) => void
   private getCurrentSongIndex?: () => number
@@ -382,6 +381,7 @@ export class SyncHolder {
     })
 
     this.socketConnection?.on('requestedCover', (id: string, songID: string) => {
+      console.debug('cover was requested', id, songID)
       this.sendCoverBuffer(id, songID)
     })
   }
@@ -473,7 +473,7 @@ export class SyncHolder {
       this.onQueueOrderChangeCallback && this.onQueueOrderChangeCallback(order, index)
     })
 
-    this.socketConnection?.on('onQueueDataChange', (data: QueueData<RemoteSong>) => {
+    this.socketConnection?.on('onQueueDataChange', (data: QueueData<Song>) => {
       this.onQueueDataChangeCallback && this.onQueueDataChangeCallback(data)
     })
   }
@@ -484,6 +484,7 @@ export class SyncHolder {
    * @param songID id of song
    */
   public requestSong(id: string, songID: string) {
+    console.log('requesting song', songID, 'from', id)
     this.socketConnection?.emit('requestSong', id, songID)
   }
 
@@ -493,6 +494,7 @@ export class SyncHolder {
    * @param songID id of song to which track belongs to
    */
   public requestCover(id: string, songID: string) {
+    console.log('requesting cover for song', songID, 'from', id)
     this.socketConnection?.emit('requestCover', id, songID)
   }
 
@@ -500,7 +502,7 @@ export class SyncHolder {
     this.socketConnection?.emit('repeatChange', repeat)
   }
 
-  public emitQueueChange(order: QueueOrder, data: QueueData<RemoteSong>, index: number) {
+  public emitQueueChange(order: QueueOrder, data: QueueData<Song>, index: number) {
     this.socketConnection?.emit('queueChange', order, data, index)
   }
 
@@ -519,6 +521,7 @@ export class SyncHolder {
    * @param state
    */
   public emitPlayerState(state: PlayerState) {
+    console.log('emitting player state changed', state)
     this.socketConnection?.emit('playerStateChange', state)
   }
 

@@ -153,11 +153,11 @@ export default class MusicBar extends mixins(ImgLoader, JukeboxMixin) {
   }
 
   get currentSong() {
-    return vxm.sync.currentSong ?? vxm.player.currentSong
+    return vxm.player.currentSong
   }
 
   get remoteCover() {
-    return vxm.sync.currentCover
+    return vxm.player.currentCover
   }
 
   get playerState() {
@@ -165,7 +165,7 @@ export default class MusicBar extends mixins(ImgLoader, JukeboxMixin) {
   }
 
   get cover() {
-    return this.remoteCover ? this.remoteCover : this.getImgSrc(this.getValidImageLow(vxm.player.currentSong))
+    return this.remoteCover || this.getImgSrc(this.getValidImageLow(vxm.player.currentSong))
   }
 
   private toggleSlider(position: boolean) {

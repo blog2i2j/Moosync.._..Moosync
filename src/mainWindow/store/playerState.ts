@@ -14,17 +14,64 @@ import { v4 } from 'uuid'
 import Vue from 'vue'
 import { VolumePersistMode } from '../../utils/commonConstants'
 
-class Queue implements GenericQueue<Song> {
-  data: QueueData<Song> = {}
+class Queue<T extends Song> {
+  data: QueueData<T> = {}
   order: QueueOrder = []
   index = -1
+}
+
+export enum PeerMode {
+  WATCHER,
+  BROADCASTER,
+  UNDEFINED
 }
 
 export class PlayerStore extends VuexModule.With({ namespaced: 'player' }) {
   private state: PlayerState = 'PAUSED'
   public currentSong: Song | null | undefined | undefined = null
-  private songQueue = new Queue()
+
+  private songQueue = new Queue<Song>()
+
   private repeat = false
+
+  private songSenderMap: Record<string, string> = {}
+  syncMode: PeerMode = PeerMode.UNDEFINED
+  syncRoomID = ''
+  syncSocketID = ''
+  currentCover: string | undefined = undefined
+  currentFetchSong = ''
+
+  get socketID() {
+    return this.syncSocketID
+  }
+
+  set socketID(id: string) {
+    this.syncSocketID = id
+  }
+
+  @mutation
+  setMode(mode: PeerMode) {
+    // this.songQueue.data = {}
+    // this.songQueue.index = -1
+    // this.songQueue.order = []
+
+    this.syncMode = mode
+  }
+
+  @mutation
+  setRoom(id: string) {
+    this.syncRoomID = id
+  }
+
+  @mutation
+  setCover(cover: string | undefined) {
+    this.currentCover = cover
+  }
+
+  @mutation
+  setCurrentFetchSong(id: string) {
+    this.currentFetchSong = id
+  }
 
   public volumeMode: VolumePersistMode = VolumePersistMode.SINGLE
 
@@ -94,6 +141,7 @@ export class PlayerStore extends VuexModule.With({ namespaced: 'player' }) {
   }
 
   set queueIndex(value: number) {
+    console.log('setting queue index', value)
     this.songQueue.index = value
   }
 
@@ -130,6 +178,22 @@ export class PlayerStore extends VuexModule.With({ namespaced: 'player' }) {
     }
   }
 
+  @mutation
+  setSocketIdForSong({ songId, socketId }: { songId: string; socketId: string }) {
+    this.songSenderMap[songId] = socketId
+  }
+
+  @action
+  async socketIdForSong(songId: string) {
+    return this.songSenderMap[songId]
+  }
+
+  @mutation
+  setQueueData(data: QueueData<Song>) {
+    console.log('setting queue data', this.songQueue)
+    this.songQueue.data = data
+  }
+
   get queueTop(): Song | null | undefined {
     if (this.songQueue.index > -1 && this.songQueue.data) {
       const songID = this.songQueue.order[this.songQueue.index]
@@ -143,6 +207,7 @@ export class PlayerStore extends VuexModule.With({ namespaced: 'player' }) {
     for (const s of item) {
       if (s && !this.songQueue.data[s._id]) {
         this.songQueue.data[s._id] = s
+        console.log('adding to queue', item, this.songQueue)
       }
     }
   }
@@ -261,11 +326,6 @@ export class PlayerStore extends VuexModule.With({ namespaced: 'player' }) {
 
     this.songQueue.order.unshift(currentSong)
     this.songQueue.index = 0
-  }
-
-  @mutation
-  private setPlayerState(state: PlayerState) {
-    this.state = state
   }
 
   @mutation

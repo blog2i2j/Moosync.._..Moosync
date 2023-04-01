@@ -137,38 +137,6 @@ export function humanByteSize(size: number, bitrate = false): string {
   return size.toFixed(dp) + ' ' + units[u]
 }
 
-export function toRemoteSong(song: Song | null | undefined, connectionID: string): RemoteSong | undefined {
-  if (song) {
-    if ((song as RemoteSong).senderSocket) {
-      return song as RemoteSong
-    }
-
-    return {
-      ...song,
-      senderSocket: connectionID
-    }
-  }
-}
-
-export function stripSong(song?: RemoteSong): RemoteSong {
-  const tmp: RemoteSong = JSON.parse(JSON.stringify(song))
-  delete tmp.path
-  delete tmp.lyrics
-
-  if (tmp.album) {
-    // If the image is hosted somewhere then surely the client on the other end can load it... right?
-    if (!tmp.album?.album_coverPath_low?.startsWith('http')) delete tmp.album.album_coverPath_low
-
-    if (!tmp.album?.album_coverPath_high?.startsWith('http')) delete tmp.album.album_coverPath_high
-  }
-
-  if (!tmp.song_coverPath_low?.startsWith('http')) delete tmp.song_coverPath_low
-
-  if (!tmp.song_coverPath_high?.startsWith('http')) delete tmp.song_coverPath_high
-
-  return tmp
-}
-
 export function getErrorMessage(...args: unknown[]) {
   const ret = []
   for (const data of args) {

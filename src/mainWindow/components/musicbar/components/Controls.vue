@@ -74,7 +74,7 @@ export default class MusicBar extends mixins(PlayerControls, JukeboxMixin) {
   }
 
   get enableTrackControls() {
-    return this.isSyncing ? vxm.sync.queueOrder.length > 1 : vxm.player.queueOrder.length > 1
+    return vxm.player.queueOrder.length > 1
   }
 
   private nextSongWrapper() {
