@@ -4064,11 +4064,6 @@ cliui@^8.0.1:
     strip-ansi "^6.0.1"
     wrap-ansi "^7.0.0"
 
-clone-class@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/clone-class/-/clone-class-1.0.3.tgz#5ba84a165878e11600f14e1fcf7e61265a576485"
-  integrity sha512-w61XkwjxiT3ZRKIO8ENg4btl4qScSUU9tjdcLrUO16d7uiKA9reJK4bBgZZT5iFII06E/WsV3rAyEnxq4njmOw==
-
 clone-deep@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/clone-deep/-/clone-deep-4.0.1.tgz#c19fd9bdbbf85942b4fd979c84dcf7d5f07c2387"
