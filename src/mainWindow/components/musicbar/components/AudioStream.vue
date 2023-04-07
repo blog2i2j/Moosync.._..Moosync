@@ -152,7 +152,6 @@ export default class AudioStream extends mixins(
         return
       }
       await this.handleActivePlayerState(newState)
-      this.emitPlayerState(newState)
 
       await window.MprisUtils.updatePlaybackState(newState)
     }
@@ -231,7 +230,6 @@ export default class AudioStream extends mixins(
    */
   @Watch('currentSong', { immediate: true })
   onSongChanged(newSong: Song | null | undefined) {
-    console.trace('song changed', newSong)
     if (newSong) this.loadAudio(newSong, false)
     else {
       this.unloadAudio()
@@ -255,7 +253,6 @@ export default class AudioStream extends mixins(
   @Watch('forceSeek') onSeek(newValue: number) {
     if (this.activePlayer) {
       this.activePlayer.currentTime = newValue
-      if (this.isSyncing) this.remoteSeek(newValue)
     }
   }
 
@@ -264,7 +261,6 @@ export default class AudioStream extends mixins(
 
     this.playersInitialized = true
 
-    this.setupSync()
     this.registerListeners()
 
     if (this.currentSong) this.loadAudio(this.currentSong, true)
@@ -350,11 +346,6 @@ export default class AudioStream extends mixins(
       await player.initialize(this.dashPlayerDiv)
       return
     }
-  }
-
-  private setupSync() {
-    this.setSongSrcCallback = (src: string) => console.log('trying to set song src', src)
-    this.onSeekCallback = (time: number) => this.activePlayer && (this.activePlayer.currentTime = time)
   }
 
   private registerRoomListeners() {
@@ -845,8 +836,6 @@ export default class AudioStream extends mixins(
     }
 
     vxm.player.playAfterLoad = false
-
-    if (this.handleBroadcasterAudioLoad()) return
 
     this.handleFirstPlayback(loadedState)
 
