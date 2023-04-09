@@ -305,7 +305,7 @@ export class WindowHandler {
 
     if (isMainWindow) {
       if (!AppExitHandler._isQuitting && AppExitHandler._minimizeToTray) {
-        // await this.trayHandler.createTray()
+        await this.trayHandler.createTray()
         event.preventDefault()
         window.hide()
       } else {
@@ -608,9 +608,8 @@ class TrayHandler {
       } catch (e) {
         this._tray = new Tray(path.join(__static, process.platform === 'darwin' ? 'logo_osx.png' : 'logo.png'))
       }
+      this.setupContextMenu()
     }
-    this.setupListeners()
-    this.setupContextMenu()
   }
 
   private buildControlButtons(buttonState: PlayerButtons) {
@@ -711,15 +710,6 @@ class TrayHandler {
           }
         ])
       )
-    }
-  }
-
-  private setupListeners() {
-    if (this._tray) {
-      this._tray.on('double-click', () => {
-        WindowHandler.getWindow()?.show()
-        // this.destroy()
-      })
     }
   }
 
