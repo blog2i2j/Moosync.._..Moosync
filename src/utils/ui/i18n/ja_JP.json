@@ -48,7 +48,7 @@
   "contextMenu": {
     "sort": {
       "title": "タイトル",
-      "album": "アルバム",
+      "album": "アルバム (トラック番号)",
       "artist": "アーティスト",
       "genre": "ジャンル",
       "date_added": "追加日",
@@ -81,8 +81,8 @@
       "showHidden": "非表示の曲を表示",
       "hideHidden": "非表示の曲を非表示",
       "openInBrowser": "ブラウザで開く",
-      "gotoAlbum": "Goto album ({title})",
-      "gotoArtists": "Goto artists"
+      "gotoAlbum": "アルバムを開く({title})",
+      "gotoArtists": "アーティストを開く"
     },
     "moreInfo": "詳細情報",
     "incorrectPlayback": "不正確な曲ですか？"
