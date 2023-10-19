@@ -1,6 +1,6 @@
 ﻿$ErrorActionPreference = 'Stop';
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url64 = 'https://github.com/Moosync/Moosync/releases/download/v10.0.0/Moosync-10.0.0-win-x64.exe'
+$url64 = 'https://github.com/Moosync/Moosync/releases/download/v10.1.2/Moosync-10.1.2-win-x64.exe'
 
 $packageArgs = @{
   packageName    = $env:ChocolateyPackageName
@@ -10,7 +10,7 @@ $packageArgs = @{
 
   softwareName   = 'Moosync*'
 
-  checksum64     = '59073a8b650f5553fe63606298ad180d3d5ee8a787a72d46836112e2cf41b95c'
+  checksum64     = '02f4eb018e92ea4aded9d5547a00f4a43a5cb66362b9c12f285c643434d56eb1'
   checksumType64 = 'sha256'
 
   validExitCodes = @(0, 3010, 1641)

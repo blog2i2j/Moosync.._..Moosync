@@ -102,8 +102,6 @@ export enum WindowEvents {
 
   GOT_EXTRA_ARGS = 'gotExtraArgs',
 
-  AUTOMATE_SPOTIFY = 'automateSpotify',
-
   RESTART_APP = 'restartApp',
 
   UPDATE_ZOOM = 'updateZoom',

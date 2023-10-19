@@ -1,8 +1,9 @@
-import { prefixLogger } from '../../logger/utils'
-import { migrations } from '../migrations'
-import { isEmpty } from '@/utils/common'
 import DB, { BetterSqlite3Helper } from 'better-sqlite3-helper'
 import log, { getLogger, levels } from 'loglevel'
+
+import { isEmpty } from '@/utils/common'
+import { migrations } from '../migrations'
+import { prefixLogger } from '../../logger/utils'
 import { v1 } from 'uuid'
 
 export class DBUtils {
@@ -27,7 +28,7 @@ export class DBUtils {
     }
 
     if (process.env.DEBUG_LOGGING) {
-      options['verbose'] = (...args: unknown[]) => this.logger.debug('Executing query', ...args)
+      options.verbose = (...args: unknown[]) => this.logger.debug('Executing query', ...args)
     }
 
     this.db = DB(options)

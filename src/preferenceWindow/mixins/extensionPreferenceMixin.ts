@@ -103,18 +103,18 @@ export class ExtensionPreferenceMixin<T> extends Vue {
       } else {
         window.PreferenceUtils.saveSelective(
           convertProxy(this.prefKey),
-          convertProxy(this.value),
+          convertProxy(this.value, true),
           convertProxy(this.isExtension),
         )
       }
 
       if (this.isExtension)
         window.ExtensionUtils.sendEvent({
-          data: [{ key: this.prefKey.replace(`${this.packageName}.`, ''), value: convertProxy(this.value) }],
+          data: [{ key: this.prefKey.replace(`${this.packageName}.`, ''), value: convertProxy(this.value, true) }],
           type: 'preferenceChanged',
           packageName: this.packageName,
         })
-      else window.PreferenceUtils.notifyPreferenceChanged(convertProxy(this.prefKey), convertProxy(this.value))
+      else window.PreferenceUtils.notifyPreferenceChanged(convertProxy(this.prefKey), convertProxy(this.value, true))
 
       this.onValueChange?.(this.value)
     }

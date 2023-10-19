@@ -1,8 +1,8 @@
-import { loadTheme } from './preferences'
-import { isThemeDetails } from '@/utils/common'
 import AdmZip from 'adm-zip'
 import { app } from 'electron'
 import { promises as fsP } from 'fs'
+import { isThemeDetails } from '@/utils/common'
+import { loadTheme } from './preferences'
 import path from 'path'
 
 export class ThemePacker {
@@ -45,7 +45,7 @@ export class ThemePacker {
     const themeDetails = await this.validateTheme(extractDir)
     if (themeDetails) {
       const themeDir = path.join(app.getPath('appData'), app.getName(), 'themes', themeDetails.id)
-      await fsP.rm(themeDir, { recursive: true })
+      await fsP.rm(themeDir, { recursive: true, force: true })
       await fsP.mkdir(themeDir, { recursive: true })
       await fsP.cp(extractDir, themeDir, {
         recursive: true,

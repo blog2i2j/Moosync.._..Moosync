@@ -370,27 +370,27 @@ export default class App extends mixins(ThemeHandler, PlayerControls, KeyHandler
   private listenExtensionRequests() {
     window.ExtensionUtils.listenRequests((data) => {
       if (data.type === 'get-current-song') {
-        window.ExtensionUtils.replyToRequest({ ...data, data: vxm.player.currentSong })
+        window.ExtensionUtils.replyToRequest(convertProxy({ ...data, data: vxm.player.currentSong }, true))
         return
       }
 
       if (data.type === 'get-volume') {
-        window.ExtensionUtils.replyToRequest({ ...data, data: vxm.player.volume })
+        window.ExtensionUtils.replyToRequest(convertProxy({ ...data, data: vxm.player.volume }, true))
         return
       }
 
       if (data.type === 'get-time') {
-        window.ExtensionUtils.replyToRequest({ ...data, data: vxm.player.currentTime })
+        window.ExtensionUtils.replyToRequest(convertProxy({ ...data, data: vxm.player.currentTime }, true))
         return
       }
 
       if (data.type === 'get-queue') {
-        window.ExtensionUtils.replyToRequest({ ...data, data: vxm.player.queue })
+        window.ExtensionUtils.replyToRequest(convertProxy({ ...data, data: vxm.player.queue }, true))
         return
       }
 
       if (data.type === 'get-player-state') {
-        window.ExtensionUtils.replyToRequest({ ...data, data: vxm.player.playerState })
+        window.ExtensionUtils.replyToRequest(convertProxy({ ...data, data: vxm.player.playerState }, true))
       }
 
       if (data.type === 'play') {

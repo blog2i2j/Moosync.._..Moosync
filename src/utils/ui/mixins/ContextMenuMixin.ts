@@ -7,17 +7,18 @@
  *  See LICENSE in the project root for license information.
  */
 
-import JukeboxMixin from './JukeboxMixin'
-import ProviderMixin from './ProviderMixin'
-import { bus } from '@/mainWindow/main'
-import { vxm } from '@/mainWindow/store'
-import { EventBus } from '@/utils/main/ipc/constants'
-import PlayerControls from '@/utils/ui/mixins/PlayerControls'
-import RemoteSong from '@/utils/ui/mixins/remoteSongMixin'
 import { Component } from 'vue-facing-decorator'
+import { EventBus } from '@/utils/main/ipc/constants'
+import JukeboxMixin from './JukeboxMixin'
+import PlayerControls from '@/utils/ui/mixins/PlayerControls'
+import ProviderMixin from './ProviderMixin'
+import RemoteSong from '@/utils/ui/mixins/remoteSongMixin'
+import RouterPushes from './RouterPushes'
+import { bus } from '@/mainWindow/main'
+import { convertProxy } from '../common'
 import { mixins } from 'vue-facing-decorator'
 import { toast } from 'vue3-toastify'
-import { convertProxy } from '../common'
+import { vxm } from '@/mainWindow/store'
 
 export type MenuItem = {
   label?: string
@@ -26,7 +27,13 @@ export type MenuItem = {
 }
 
 @Component
-export default class ContextMenuMixin extends mixins(PlayerControls, RemoteSong, JukeboxMixin, ProviderMixin) {
+export default class ContextMenuMixin extends mixins(
+  PlayerControls,
+  RemoteSong,
+  JukeboxMixin,
+  ProviderMixin,
+  RouterPushes,
+) {
   get playlists() {
     return vxm.playlist.playlists
   }
@@ -53,7 +60,7 @@ export default class ContextMenuMixin extends mixins(PlayerControls, RemoteSong,
     if (type === 'album') {
       ret.push({
         type: 'track_no',
-        asc: true,
+        asc: currentSort?.type === type && !currentSort.asc,
       })
     }
 
@@ -206,6 +213,32 @@ export default class ContextMenuMixin extends mixins(PlayerControls, RemoteSong,
     else toast(`No URL found for ${song.title}`, { type: 'error' })
   }
 
+  private addGotoAlbumArtist(item: Song) {
+    const items: MenuItem[] = []
+    const album = item?.album
+    if (album) {
+      items.push({
+        label: this.$t('contextMenu.song.gotoAlbum', { title: album.album_name ?? '' }),
+        onClick: () => this.gotoAlbum(album),
+      })
+    }
+
+    const artists = item?.artists
+    if (artists?.length) {
+      const artistItems: MenuItem[] = artists.map((val) => ({
+        label: val.artist_name,
+        onClick: () => this.gotoArtist(val),
+      }))
+
+      items.push({
+        label: this.$t('contextMenu.song.gotoArtists'),
+        children: artistItems,
+      })
+    }
+
+    return items
+  }
+
   private async getSongContextMenu(
     exclude: string | undefined,
     refreshCallback?: () => void,
@@ -290,12 +323,15 @@ export default class ContextMenuMixin extends mixins(PlayerControls, RemoteSong,
       })
     }
 
+    item[0] && items.push(...this.addGotoAlbumArtist(item[0]))
+
     items.push({
       label: this.$t('contextMenu.moreInfo'),
       onClick: () => {
         bus.emit(EventBus.SHOW_SONG_INFO_MODAL, item[0])
       },
     })
+
     return items
   }
 
@@ -378,13 +414,6 @@ export default class ContextMenuMixin extends mixins(PlayerControls, RemoteSong,
       ...this.getSongSortByMenu(sort),
     ]
 
-    items.push({
-      label: this.$t('contextMenu.moreInfo'),
-      onClick: () => {
-        bus.emit(EventBus.SHOW_SONG_INFO_MODAL, item)
-      },
-    })
-
     if (isRemote) {
       items.push({
         label: this.$t('contextMenu.song.add'),
@@ -409,6 +438,8 @@ export default class ContextMenuMixin extends mixins(PlayerControls, RemoteSong,
       })
     }
 
+    items.push(...this.addGotoAlbumArtist(item))
+
     if (item.type === 'YOUTUBE' || item.type === 'SPOTIFY') {
       items.push({
         label: this.$t('contextMenu.incorrectPlayback'),
@@ -417,6 +448,14 @@ export default class ContextMenuMixin extends mixins(PlayerControls, RemoteSong,
         },
       })
     }
+
+    items.push({
+      label: this.$t('contextMenu.moreInfo'),
+      onClick: () => {
+        bus.emit(EventBus.SHOW_SONG_INFO_MODAL, item)
+      },
+    })
+
     return items
   }
 
@@ -436,6 +475,46 @@ export default class ContextMenuMixin extends mixins(PlayerControls, RemoteSong,
 
   private getAlbumContextMenu(album: Album) {
     const items = [this.getEntityInfoMenu(album)]
+    return items
+  }
+
+  private getCurrentSongContextMenu(song: Song, isRemote?: boolean) {
+    const items: MenuItem[] = [
+      {
+        label: this.$t('contextMenu.playlist.add'),
+        children: this.populatePlaylistMenu([song]),
+      },
+      {
+        label: this.$t('contextMenu.song.openInBrowser'),
+        onClick: () => this.openInBrowser(song),
+      },
+    ]
+
+    items.push(...this.addGotoAlbumArtist(song))
+
+    if (isRemote) {
+      items.push({
+        label: this.$t('contextMenu.song.add', 1),
+        onClick: () => this.addSongsToLibrary(song),
+      })
+    }
+
+    if (song.type === 'YOUTUBE' || song.type === 'SPOTIFY') {
+      items.push({
+        label: this.$t('contextMenu.incorrectPlayback'),
+        onClick: () => {
+          bus.emit(EventBus.SHOW_INCORRECT_PLAYBACK_MODAL, song)
+        },
+      })
+    }
+
+    items.push({
+      label: this.$t('contextMenu.moreInfo'),
+      onClick: () => {
+        bus.emit(EventBus.SHOW_SONG_INFO_MODAL, song)
+      },
+    })
+
     return items
   }
 
@@ -496,6 +575,10 @@ export default class ContextMenuMixin extends mixins(PlayerControls, RemoteSong,
           options.args.isRemote,
           ...options.args.songs,
         )
+        break
+      case 'CURRENT_SONG':
+        items = this.getCurrentSongContextMenu(options.args.song, options.args.isRemote)
+        break
     }
 
     items.push(...(await this.getExtensionItems(options.type, this.getExtensionArgs(options))))
@@ -511,6 +594,7 @@ export default class ContextMenuMixin extends mixins(PlayerControls, RemoteSong,
     'PLAYLIST',
     'PLAYLIST_CONTENT',
     'QUEUE_ITEM',
+    'CURRENT_SONG',
   ]
 
   private getExtensionArgs(args: ContextMenuArgs): ExtensionContextMenuHandlerArgs<ContextMenuTypes> {
@@ -522,6 +606,7 @@ export default class ContextMenuMixin extends mixins(PlayerControls, RemoteSong,
       case 'PLAYLIST':
         return args.args.playlist
       case 'QUEUE_ITEM':
+      case 'CURRENT_SONG':
         return args.args.song
       case 'SONGS':
         return args.args.songs

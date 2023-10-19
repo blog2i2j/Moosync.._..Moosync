@@ -7,10 +7,11 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { CacheHandler } from './cacheFile'
-import { escapeRegExp } from '@/utils/common'
-import { app } from 'electron'
 import * as ytMusic from 'node-youtube-music'
+
+import { CacheHandler } from './cacheFile'
+import { app } from 'electron'
+import { escapeRegExp } from '@/utils/common'
 import path from 'path'
 import ytdl from 'ytdl-core'
 import ytpl from 'ytpl'
@@ -173,8 +174,9 @@ export class YTScraper extends CacheHandler {
   private parseYoutubeMusicPlaylist(...playlist: ytMusic.PlaylistPreview[]): Playlist[] {
     const playlists: Playlist[] = []
     for (const a of playlist) {
+      const parsedPlaylistId = a.playlistId?.startsWith('VL') ? a.playlistId.substring(2) : a.playlistId
       playlists.push({
-        playlist_id: `youtube-author:${a.playlistId}`,
+        playlist_id: `youtube-playlist:${parsedPlaylistId}`,
         playlist_name: a.title ?? '',
         playlist_coverPath: a.thumbnailUrl,
       })
@@ -514,6 +516,7 @@ export class YTScraper extends CacheHandler {
         songs = await ytpl.continueReq(page)
       }
     } catch (e) {
+      console.error(e)
       return { songs: [] }
     }
 

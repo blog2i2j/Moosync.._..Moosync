@@ -6,21 +6,11 @@
   
   See LICENSE in the project root for license information.
 -->
-
 <template>
-  <b-row no-gutters class="w-100" align-v="center">
+  <b-row no-gutters class="w-100" align-v="center" @contextmenu="$emit('contextmenu', $event)">
     <b-col cols="auto">
-      <b-img
-        fluid
-        ref="cover"
-        class="coverimg"
-        v-if="imgSrc && !forceEmptyImg"
-        :src="imgSrc"
-        alt="cover art"
-        @error="handlerImageError($event, handleError)"
-        @dragstart="dragFile"
-        referrerPolicy="no-referrer"
-      />
+      <b-img fluid ref="cover" class="coverimg" v-if="imgSrc && !forceEmptyImg" :src="imgSrc" alt="cover art"
+        @error="handlerImageError($event, handleError)" @dragstart="dragFile" referrerPolicy="no-referrer" />
       <SongDefault v-else class="coverimg" />
     </b-col>
     <b-col class="text-truncate">
@@ -30,57 +20,28 @@
             {{ title }}
           </div>
 
-          <YoutubeIcon
-            v-if="iconType === 'YOUTUBE'"
-            :color="'#E62017'"
-            :filled="true"
-            :dropShadow="true"
-            class="provider-icon"
-          />
-          <SpotifyIcon
-            v-if="iconType === 'SPOTIFY'"
-            :color="'#1ED760'"
-            :filled="true"
-            :dropShadow="true"
-            class="provider-icon"
-          />
+          <YoutubeIcon v-if="iconType === 'YOUTUBE'" :color="'#E62017'" :filled="true" :dropShadow="true"
+            class="provider-icon" />
+          <SpotifyIcon v-if="iconType === 'SPOTIFY'" :color="'#1ED760'" :filled="true" :dropShadow="true"
+            class="provider-icon" />
 
-          <inline-svg
-            class="provider-icon"
-            v-if="iconURL && iconType === 'URL' && iconURL.endsWith('svg')"
-            :src="iconURL"
-          />
-          <img
-            referrerPolicy="no-referrer"
-            v-if="iconURL && iconType === 'URL' && !iconURL.endsWith('svg')"
-            :src="iconURL"
-            alt="provider icon"
-            class="provider-icon"
-          />
+          <inline-svg class="provider-icon" v-if="iconURL && iconType === 'URL' && iconURL.endsWith('svg')"
+            :src="iconURL" />
+          <img referrerPolicy="no-referrer" v-if="iconURL && iconType === 'URL' && !iconURL.endsWith('svg')"
+            :src="iconURL" alt="provider icon" class="provider-icon" />
         </b-col>
       </b-row>
       <b-row no-gutters>
         <b-col class="d-flex">
-          <div
-            v-for="(artist, index) of artists"
-            :key="index"
-            :title="artist.artist_name"
-            class="text song-subtitle text-truncate"
-            :class="index !== 0 ? 'ml-1' : ''"
-            @click="onSubtitleClick(artist)"
-          >
+          <div v-for="(artist, index) of artists" :key="index" :title="artist.artist_name"
+            class="text song-subtitle text-truncate" :class="index !== 0 ? 'ml-1' : ''" @click="onSubtitleClick(artist)">
             {{ artist.artist_name }}{{ index !== artists.length - 1 ? ',' : '' }}
           </div>
         </b-col>
       </b-row>
 
-      <b-popover
-        id="clipboard-popover"
-        :show.sync="showPopover"
-        target="musicbar-title"
-        triggers="click blur"
-        placement="top"
-      >
+      <b-popover id="clipboard-popover" :show.sync="showPopover" target="musicbar-title" triggers="click blur"
+        placement="top">
         Copied!
       </b-popover>
     </b-col>
@@ -105,7 +66,8 @@ import YoutubeIcon from '../../../../icons/YoutubeIcon.vue'
     Timestamp,
     SpotifyIcon,
     YoutubeIcon
-  }
+  },
+  emits: ['contextmenu']
 })
 export default class MusicBar extends mixins(ImageLoader, ErrorHandler, FileMixin, RouterPushes) {
   @Prop({ default: '-' })
@@ -115,19 +77,19 @@ export default class MusicBar extends mixins(ImageLoader, ErrorHandler, FileMixi
   artists!: Artists[]
 
   @Prop({ default: '' })
-  private imgSrc!: string
+  imgSrc!: string
 
-  private showPopover = false
+  showPopover = false
 
-  private forceEmptyImg = false
-
-  @Prop({ default: '' })
-  private iconType!: string
+  forceEmptyImg = false
 
   @Prop({ default: '' })
-  private iconURL!: string
+  iconType!: string
 
-  private onTitleClick() {
+  @Prop({ default: '' })
+  iconURL!: string
+
+  onTitleClick() {
     let str = this.artists.map((val) => val.artist_name).join(', ')
     if (str) {
       str += ' - '
@@ -138,11 +100,11 @@ export default class MusicBar extends mixins(ImageLoader, ErrorHandler, FileMixi
     setTimeout(() => (this.showPopover = false), 1500)
   }
 
-  private async onSubtitleClick(artist: Artists) {
+  async onSubtitleClick(artist: Artists) {
     this.gotoArtist(artist)
   }
 
-  private handleError() {
+  handleError() {
     this.forceEmptyImg = true
   }
 

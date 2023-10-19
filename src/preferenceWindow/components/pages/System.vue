@@ -8,7 +8,7 @@
 -->
 
 <template>
-  <div class="w-100 h-100" :key="refreshPage">
+  <div class="w-100 h-100" :key="refreshPage.toString()">
     <b-container fluid>
       <b-row no-gutters class="w-100">
         <div class="path-selector w-100">
@@ -248,8 +248,6 @@
             key="spotify.client_id"
             :tooltip="$t('settings.system.spotify.client_id_tooltip')"
             @tooltipClick="openSpotifyHelp"
-            :onValueFetch="onSpotifySecretsFetch"
-            :onValueChange="onSpotifySecretsFetch"
           />
           <EditText
             :isExtension="false"
@@ -257,17 +255,7 @@
             :title="$t('settings.system.spotify.client_secret')"
             key="spotify.client_secret"
             @tooltipClick="openSpotifyHelp"
-            :onValueFetch="onSpotifySecretsFetch"
-            :onValueChange="onSpotifySecretsFetch"
           />
-
-          <b-row v-if="showSpotifyButton">
-            <b-col cols="auto">
-              <b-button class="create-button" @click="showSpotifyAutomateDisclaimer">{{
-                $t('settings.system.spotify.autoFetchButton')
-              }}</b-button>
-            </b-col>
-          </b-row>
 
           <EditText
             v-if="!youtubeEnvExists"
@@ -317,29 +305,6 @@
         </div>
       </b-row>
     </b-container>
-    <b-modal no-close-on-backdrop centered size="md" id="spotify-automate-modal" hide-footer hide-header>
-      <b-container class="response-container">
-        <b-row no-gutters class="d-flex">
-          <b-col class="title" cols="auto">{{ $t('settings.system.spotify.autoFetchPreTitle') }}</b-col>
-          <b-col class="title ml-2" cols="auto" :style="{ color: '#1ED760' }">Spotify</b-col>
-          <b-col class="title ml-2" cols="auto">{{ $t('settings.system.spotify.autoFetchTitle') }}</b-col>
-        </b-row>
-        <b-row>
-          <b-col class="mt-4 waiting">{{ $t('settings.system.spotify.autoFetchDisclaimer') }}</b-col>
-        </b-row>
-        <b-row>
-          <b-col class="d-flex justify-content-center">
-            <div
-              @click="openSpotifyAutomation"
-              class="start-button button-grow mt-4 d-flex justify-content-center align-items-center"
-            >
-              {{ $t('settings.system.spotify.openWindow') }}
-            </div>
-          </b-col>
-        </b-row>
-      </b-container>
-      <CrossIcon @click="closeSpotifyAutomateModal" class="close-icon button-grow" />
-    </b-modal>
 
     <b-modal no-close-on-backdrop centered size="md" id="clear-preferences-modal" hide-footer hide-header>
       <b-container class="response-container">
@@ -400,23 +365,22 @@ import { VolumePersistMode } from '../../../utils/commonConstants'
   }
 })
 export default class System extends Vue {
-  private showSpotifyButton = false
-  private showRestartButton = false
-  private showInvidiousField = false
-  private showYoutubeField = false
-  private showPipedField = false
-  private showJukeboxField = false
-  private showSpotifyUserPass = false
-  private showVolumeMapField = false
+  showRestartButton = false
+  showInvidiousField = false
+  showYoutubeField = false
+  showPipedField = false
+  showJukeboxField = false
+  showSpotifyUserPass = false
+  showVolumeMapField = false
 
-  private invidiousInstances: string[] = []
-  private invidiousDetails = ''
+  invidiousInstances: string[] = []
+  invidiousDetails = ''
 
-  private pipedInstances: string[] = []
+  pipedInstances: string[] = []
 
-  private extensions: ExtensionDetails[] = []
+  extensions: ExtensionDetails[] = []
 
-  private async onInvidiousInstanceChange() {
+  async onInvidiousInstanceChange() {
     try {
       const resp = await window.SearchUtils.requestInvidious(
         InvidiousApiResources.STATS,
@@ -434,7 +398,7 @@ export default class System extends Vue {
     }
   }
 
-  private get languageDropdown() {
+  get languageDropdown() {
     const items = new Intl.DisplayNames(['en'], {
       type: 'language'
     })
@@ -449,14 +413,14 @@ export default class System extends Vue {
     return languages
   }
 
-  private onLanguageChanged(key: Checkbox[]) {
+  onLanguageChanged(key: Checkbox[]) {
     const active = key.find((val) => val.enabled) ?? this.languageDropdown[0]
     console.debug('changing locale to', active.key)
     this.$i18n.locale = active.key
     window.ThemeUtils.setLanguage(active.key)
   }
 
-  private async fetchInvidiousInstances() {
+  async fetchInvidiousInstances() {
     const resp: InvidiousInstances = await (await fetch('https://api.invidious.io/instances.json')).json()
     for (const instance of resp) {
       if (typeof instance[1] === 'object' && instance[1].api && instance[1].type === 'https') {
@@ -465,7 +429,7 @@ export default class System extends Vue {
     }
   }
 
-  private async fetchPipedInstances() {
+  async fetchPipedInstances() {
     const resp = await (
       await fetch('https://raw.githubusercontent.com/wiki/TeamPiped/Piped-Frontend/Instances.md')
     ).text()
@@ -485,8 +449,8 @@ export default class System extends Vue {
       .filter((instance) => instance?.length ?? 0 > 0) as string[]
   }
 
-  private defaultSystemSettings: SystemSettings[] = []
-  private defaultYoutubeAlts: Checkbox[] = []
+  defaultSystemSettings: SystemSettings[] = []
+  defaultYoutubeAlts: Checkbox[] = []
 
   get spotifyCheckboxValues(): Checkbox[] {
     return [
@@ -513,7 +477,7 @@ export default class System extends Vue {
     ]
   }
 
-  private onSpotifyValueFetch(value: Checkbox[]) {
+  onSpotifyValueFetch(value: Checkbox[]) {
     this.showSpotifyUserPass = value.find((val) => val.key === 'use_librespot')?.enabled ?? false
   }
 
@@ -527,7 +491,7 @@ export default class System extends Vue {
     ]
   }
 
-  private onVolumePersistValueChange(value: Checkbox[]) {
+  onVolumePersistValueChange(value: Checkbox[]) {
     const active = value.find((val) => val.enabled)
 
     this.showVolumeMapField = false
@@ -783,11 +747,11 @@ export default class System extends Vue {
     return ret
   }
 
-  private openSpotifyHelp() {
+  openSpotifyHelp() {
     window.WindowUtils.openExternal('https://moosync.app/wiki/integrations#enabling-spotify-integration')
   }
 
-  private openYoutubeHelp() {
+  openYoutubeHelp() {
     window.WindowUtils.openExternal('https://moosync.app/wiki/integrations#enabling-youtube-integration')
   }
 
@@ -795,13 +759,13 @@ export default class System extends Vue {
     this.$bvModal.hide('spotify-automate-modal')
   }
 
-  private onSystemPrefFetch(value: SystemSettings[]) {
+  onSystemPrefFetch(value: SystemSettings[]) {
     this.defaultSystemSettings = JSON.parse(JSON.stringify(value))
     this.showJukeboxField =
       this.defaultSystemSettings.find((val) => val.key === this.enableJukeboxMode.key)?.enabled ?? false
   }
 
-  private onSystemPrefChange(value: SystemSettings[]) {
+  onSystemPrefChange(value: SystemSettings[]) {
     if (Array.isArray(value)) {
       for (let i = 0; i < value.length; i++) {
         if (value[i].key === this.hardwareAcceleration.key) {
@@ -820,7 +784,7 @@ export default class System extends Vue {
     }
   }
 
-  private onYoutubeAlternativesChanged(value: Checkbox[]) {
+  onYoutubeAlternativesChanged(value: Checkbox[]) {
     if (Array.isArray(value)) {
       this.showYoutubeField = value.find((val) => val.key === 'use_youtube')?.enabled ?? false
       this.showInvidiousField = value.find((val) => val.key === 'use_invidious')?.enabled ?? false
@@ -837,45 +801,27 @@ export default class System extends Vue {
     }
   }
 
-  private onYoutubeAlternativesFetched(value: Checkbox[]) {
+  onYoutubeAlternativesFetched(value: Checkbox[]) {
     this.defaultYoutubeAlts = JSON.parse(JSON.stringify(value))
     this.showYoutubeField = value.find((val) => val.key === 'use_youtube')?.enabled ?? false
     this.showInvidiousField = value.find((val) => val.key === 'use_invidious')?.enabled ?? false
     this.showPipedField = value.find((val) => val.key === 'use_piped')?.enabled ?? false
   }
 
-  private async restartApp() {
+  async restartApp() {
     await window.WindowUtils.restartApp()
   }
 
-  private onSpotifySecretsFetch(value: string) {
-    if (!value) {
-      this.showSpotifyButton = true
-    } else {
-      this.showSpotifyButton = false
-    }
-  }
-
-  private showSpotifyAutomateDisclaimer() {
+  showSpotifyAutomateDisclaimer() {
     this.$bvModal.show('spotify-automate-modal')
   }
 
-  private async openSpotifyAutomation() {
-    const data = await window.WindowUtils.automateSpotify()
-    this.closeSpotifyAutomateModal()
-
-    if (data) {
-      window.PreferenceUtils.saveSelective('spotify.client_id', data.clientID, false)
-      window.PreferenceUtils.saveSelective('spotify.client_secret', data.clientSecret, false)
-    }
-  }
-
-  private async onZoomUpdate() {
+  async onZoomUpdate() {
     await window.WindowUtils.updateZoom()
   }
 
-  private refreshPage = false
-  private showClearPreferencesDisclaimer() {
+  refreshPage = false
+  showClearPreferencesDisclaimer() {
     this.$bvModal.show('clear-preferences-modal')
   }
 
@@ -884,11 +830,11 @@ export default class System extends Vue {
     await this.restartApp()
   }
 
-  private closeClearPreferencesModal() {
+  closeClearPreferencesModal() {
     this.$bvModal.hide('clear-preferences-modal')
   }
 
-  private async fetchExtensions() {
+  async fetchExtensions() {
     this.extensions = await window.ExtensionUtils.getAllExtensions()
   }
 

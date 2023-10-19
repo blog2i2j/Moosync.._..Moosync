@@ -38,7 +38,7 @@ export class TokenRequestHandlerWClientSecret extends BaseTokenRequestHandler {
   ): Promise<TokenResponse> {
     // Force client-secret in token fetch request
     const reqStrMap = request.toStringMap()
-    reqStrMap['client_secret'] = this.clientSecret
+    reqStrMap.client_secret = this.clientSecret
 
     const tokenResponse = this.requestor.xhr<TokenResponseJson | TokenErrorJson>({
       url: configuration.tokenEndpoint,

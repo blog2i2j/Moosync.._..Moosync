@@ -5,7 +5,9 @@
     }
   ],
   "settings": {
-    "eslint.validate": ["vue"],
+    "eslint.validate": [
+      "vue"
+    ],
     "editor.tabSize": 2,
     "cSpell.words": [
       "Adwaita",
@@ -120,7 +122,7 @@
     "editor.formatOnPaste": true,
     "typescript.tsdk": "node_modules/typescript/lib",
     "[vue]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
+      "editor.defaultFormatter": "Vue.volar"
     },
     "[typescript]": {
       "editor.defaultFormatter": "rome.rome"
@@ -233,6 +235,8 @@
     }
   },
   "extensions": {
-    "recommendations": ["rome.rome"]
+    "recommendations": [
+      "rome.rome"
+    ]
   }
 }

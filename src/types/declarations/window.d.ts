@@ -248,7 +248,6 @@ interface windowUtils {
   mainWindowHasMounted: () => Promise<void>
   isWindowMaximized: (isMainWindow: boolean) => Promise<boolean>
   dragFile: (path: string) => void
-  automateSpotify: () => Promise<{ clientID: string; clientSecret: string } | undefined>
   restartApp: () => Promise<void>
   updateZoom: () => Promise<void>
   getPlatform: () => Promise<typeof process.platform>

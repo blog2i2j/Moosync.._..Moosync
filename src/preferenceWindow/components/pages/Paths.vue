@@ -13,77 +13,39 @@
       <b-row no-gutters class="w-100">
         <div class="path-selector w-100">
           <b-container fluid>
-            <b-row no-gutters v-if="totalValue != 0">
+            <b-row no-gutters v-if="scanStatus !== 0">
               <b-col>
-                <b-progress class="progress-container mb-4" :max="totalValue">
-                  <b-progress-bar class="progress-bar" :value="currentValue" animated />
+                <b-progress class="progress-container mb-4" :max="totalValue || 1">
+                  <b-progress-bar class="progress-bar" :value="currentValue || 1" animated />
                 </b-progress>
               </b-col>
               <b-col cols="auto" class="ml-3">
-                {{ Math.min((currentValue / totalValue) * 100, 100).toPrecision(2) }}%
+                {{ Math.round(Math.min((currentValue || 1 / totalValue || 1) * 100, 100)) }}%
               </b-col>
             </b-row>
           </b-container>
 
-          <DirectoryGroup
-            :title="$t('settings.paths.songDirectories')"
-            :tooltip="$t('settings.paths.songDirectories_tooltip')"
-            :defaultValue="[]"
-            key="musicPaths"
-            @refresh="forceRescan"
-            :enableCheckbox="false"
-            :showRefreshIcon="true"
-          />
+          <DirectoryGroup :title="$t('settings.paths.songDirectories')"
+            :tooltip="$t('settings.paths.songDirectories_tooltip')" :defaultValue="[]" key="musicPaths"
+            @refresh="forceRescan" :enableCheckbox="false" :showRefreshIcon="true" />
 
-          <DirectoryGroup
-            :title="$t('settings.paths.songDirectories_exclude')"
-            :tooltip="$t('settings.paths.songDirectories_exclude_tooltip')"
-            :defaultValue="[]"
-            key="exclude_musicPaths"
-            class="mt-2"
-            :enableCheckbox="false"
-            :showRefreshIcon="false"
-          />
+          <DirectoryGroup :title="$t('settings.paths.songDirectories_exclude')"
+            :tooltip="$t('settings.paths.songDirectories_exclude_tooltip')" :defaultValue="[]" key="exclude_musicPaths"
+            class="mt-2" :enableCheckbox="false" :showRefreshIcon="false" />
 
-          <EditText
-            :title="$t('settings.paths.scan_threads')"
-            :tooltip="$t('settings.paths.scan_threads_tooltip')"
-            class="mt-2"
-            key="scan_threads"
-            type="number"
-            :defaultValue="scanThreads"
-          />
+          <EditText :title="$t('settings.paths.scan_threads')" :tooltip="$t('settings.paths.scan_threads_tooltip')"
+            class="mt-2" key="scan_threads" type="number" :defaultValue="scanThreads" />
 
-          <EditText
-            :title="$t('settings.paths.splitter')"
-            :tooltip="$t('settings.paths.splitter_tooltip')"
-            class="mt-2"
-            key="scan_splitter"
-            :defaultValue="splitterRegex"
-          />
+          <EditText :title="$t('settings.paths.splitter')" :tooltip="$t('settings.paths.splitter_tooltip')" class="mt-2"
+            key="scan_splitter" :defaultValue="splitterRegex" />
 
-          <EditText
-            :title="$t('settings.paths.scan_interval')"
-            :tooltip="$t('settings.paths.scan_interval_tooltip')"
-            class="mt-2"
-            type="number"
-            key="scan_interval"
-            :onValueChange="onScanIntervalChange"
-            :defaultValue="30"
-          />
+          <EditText :title="$t('settings.paths.scan_interval')" :tooltip="$t('settings.paths.scan_interval_tooltip')"
+            class="mt-2" type="number" key="scan_interval" :onValueChange="onScanIntervalChange" :defaultValue="30" />
 
-          <FilePicker
-            :title="$t('settings.paths.artworkPath')"
-            :tooltip="$t('settings.paths.artworkPath_tooltip')"
-            key="artworkPath"
-            class="mt-5"
-          />
-          <FilePicker
-            :title="$t('settings.paths.thumbnailPath')"
-            :tooltip="$t('settings.paths.thumbnailPath_tooltip')"
-            key="thumbnailPath"
-            class="mt-5"
-          />
+          <FilePicker :title="$t('settings.paths.artworkPath')" :tooltip="$t('settings.paths.artworkPath_tooltip')"
+            key="artworkPath" class="mt-5" />
+          <FilePicker :title="$t('settings.paths.thumbnailPath')" :tooltip="$t('settings.paths.thumbnailPath_tooltip')"
+            key="thumbnailPath" class="mt-5" />
         </div>
       </b-row>
     </b-container>
@@ -96,6 +58,7 @@ import { Vue } from 'vue-facing-decorator'
 import FilePicker from '../FilePicker.vue'
 import DirectoryGroup from '../DirectoryGroup.vue'
 import EditText from '../EditText.vue'
+import { ScanStatus } from '@/utils/commonConstants'
 
 @Component({
   components: {
@@ -107,6 +70,7 @@ import EditText from '../EditText.vue'
 export default class Paths extends Vue {
   currentValue = 0
   totalValue = 0
+  scanStatus: ScanStatus = ScanStatus.UNDEFINED
 
   cpuCount = 0
 
@@ -117,6 +81,7 @@ export default class Paths extends Vue {
   setProgress(progress: Progress) {
     this.currentValue = progress.current
     this.totalValue = progress.total
+    this.scanStatus = progress.status
   }
 
   private openWiki() {

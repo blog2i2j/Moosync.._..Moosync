@@ -527,6 +527,7 @@ type ContextMenuTypes =
   | 'QUEUE_ITEM'
   | 'ARTIST'
   | 'ALBUM'
+  | 'CURRENT_SONG'
 
 type ExtensionContextMenuHandlerArgs<T extends ContextMenuTypes> = T extends 'SONGS'
   ? Song[]
@@ -540,6 +541,8 @@ type ExtensionContextMenuHandlerArgs<T extends ContextMenuTypes> = T extends 'SO
   ? Artists
   : T extends 'ALBUM'
   ? Album
+  : T extends 'CURRENT_SONG'
+  ? Song
   : undefined
 
 type AccountDetails = {

@@ -11,6 +11,7 @@ import { FragmentReceiver, FragmentSender } from './dataFragmenter'
 import { ManagerOptions, Socket, io } from 'socket.io-client'
 
 import { PeerMode } from '@/mainWindow/store/syncState'
+import { RepeatState } from '@/utils/commonConstants'
 
 enum peerConnectionState {
   CONNECTED = 0,
@@ -96,7 +97,7 @@ export class SyncHolder {
   private onReadyEmittedCallback?: () => void
   private onQueueOrderChangeCallback?: (order: QueueOrder, index: number) => void
   private onQueueDataChangeCallback?: (data: QueueData<RemoteSong>) => void
-  private onRepeatChangeCallback?: (repeat: boolean) => void
+  private onRepeatChangeCallback?: (repeat: RepeatState) => void
   private playRequestedSongCallback?: (songIndex: number) => void
   private getCurrentSongIndex?: () => number
   private getLocalSongCallback?: (songID: string) => Promise<ArrayBuffer | null>
@@ -455,7 +456,7 @@ export class SyncHolder {
       this.onPlayerStateChangeCallback?.(state)
     })
 
-    this.socketConnection?.on('onRepeatChange', (repeat: boolean) => {
+    this.socketConnection?.on('onRepeatChange', (repeat: RepeatState) => {
       this.onRepeatChangeCallback?.(repeat)
     })
   }
@@ -497,7 +498,7 @@ export class SyncHolder {
     this.socketConnection?.emit('requestCover', id, songID)
   }
 
-  public emitRepeat(repeat: boolean) {
+  public emitRepeat(repeat: RepeatState) {
     this.socketConnection?.emit('repeatChange', repeat)
   }
 

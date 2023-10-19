@@ -108,11 +108,19 @@ export default class SinglePlaylistView extends mixins(ContextMenuMixin, Provide
     return !!(this.isYoutube || this.isSpotify || this.isExtension)
   }
 
-  private async refresh() {
+  private async clearAndFetch() {
     this.clearSongList()
     this.clearNextPageTokens()
 
     await this.fetchSongList()
+  }
+
+  private async refresh() {
+    for (const [key, checked] of Object.entries(this.activeProviders)) {
+      if (checked) {
+        await this.onProviderChanged({key, checked})
+      }
+    }
   }
 
   async created() {
@@ -127,6 +135,7 @@ export default class SinglePlaylistView extends mixins(ContextMenuMixin, Provide
       })
 
     this.generator = (provider, nextPageToken) => {
+      console.log(this.playlist)
       if (this.playlist) {
         return provider.getPlaylistContent(
           provider.sanitizeId(this.playlist.playlist_id, 'PLAYLIST'),
@@ -153,13 +162,14 @@ export default class SinglePlaylistView extends mixins(ContextMenuMixin, Provide
   mounted() {
     this.enableRefresh()
     this.listenGlobalRefresh()
-    this.refresh()
+    this.clearAndFetch()
   }
 
   private listenGlobalRefresh() {
-    bus.on(EventBus.REFRESH_PAGE, () => {
+    bus.on(EventBus.REFRESH_PAGE, async () => {
       this.invalidateCache = true
-      this.refresh()
+      await this.clearAndFetch()
+      await this.refresh()
     })
   }
 

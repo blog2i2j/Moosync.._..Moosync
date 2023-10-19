@@ -7,13 +7,15 @@
  *  See LICENSE in the project root for license information.
  */
 
+import { Component, mixins } from 'vue-facing-decorator'
+
+import ImgLoader from '@/utils/ui/mixins/ImageLoader'
+import ModelHelper from '@/utils/ui/mixins/ModelHelper'
+import { PeerMode } from '@/mainWindow/store/syncState'
+import { RepeatState } from '@/utils/commonConstants'
 import { SyncHolder } from '../sync/syncHandler'
 import { bus } from '@/mainWindow/main'
 import { vxm } from '@/mainWindow/store'
-import { PeerMode } from '@/mainWindow/store/syncState'
-import ImgLoader from '@/utils/ui/mixins/ImageLoader'
-import ModelHelper from '@/utils/ui/mixins/ModelHelper'
-import { Component, mixins } from 'vue-facing-decorator'
 
 @Component
 export default class SyncMixin extends mixins(ModelHelper, ImgLoader) {
@@ -276,7 +278,7 @@ export default class SyncMixin extends mixins(ModelHelper, ImgLoader) {
 
   private isRemoteRepeatChange = false
 
-  private triggerRepeatChange(repeat: boolean) {
+  private triggerRepeatChange(repeat: RepeatState) {
     if (!this.isRemoteRepeatChange) {
       this.peerHolder.emitRepeat(repeat)
     } else {
@@ -284,7 +286,7 @@ export default class SyncMixin extends mixins(ModelHelper, ImgLoader) {
     }
   }
 
-  private handleRepeat(repeat: boolean) {
+  private handleRepeat(repeat: RepeatState) {
     this.isRemoteRepeatChange = true
     vxm.player.Repeat = repeat
   }

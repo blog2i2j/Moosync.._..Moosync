@@ -91,6 +91,13 @@ type ContextMenuArgs =
         playlistId: string
       }
     }
+  | {
+      type: 'CURRENT_SONG'
+      args: {
+        song: Song
+        isRemote?: boolean
+      }
+    }
 
 type SongSortOptions = {
   type: 'title' | 'date_added' | 'playCount' | 'album' | 'artist' | 'albumartist' | 'genre' | 'track_no'

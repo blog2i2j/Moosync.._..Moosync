@@ -11,22 +11,21 @@
 
 import 'threads/register'
 
-import { WindowHandler, _windowHandler, setIsQuitting } from './utils/main/windowManager'
 import { BrowserWindow, app, protocol, session } from 'electron'
-import { resolve } from 'path'
+import { WindowHandler, _windowHandler, setIsQuitting } from './utils/main/windowManager'
+import { getExtensionHostChannel, registerIpcChannels } from '@/utils/main/ipc'
+import { loadPreferences, setInitialPreferences, shouldWatchFileChanges } from './utils/main/db/preferences'
+import { migrateThemes, setupDefaultThemes, setupSystemThemes } from './utils/main/themes/preferences'
+import { setupScanTask, setupScrapeTask } from '@/utils/main/scheduler/index'
 
 import { createFavoritesPlaylist } from './utils/main/db'
-import { loadPreferences, setInitialPreferences, shouldWatchFileChanges } from './utils/main/db/preferences'
+import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
+import { exit } from 'process'
 import { loadSelectiveArrayPreference } from './utils/main/db/preferences'
 import { logger } from './utils/main/logger/index'
-import { migrateThemes, setupDefaultThemes, setupSystemThemes } from './utils/main/themes/preferences'
-import { getExtensionHostChannel, registerIpcChannels } from '@/utils/main/ipc'
 import { oauthHandler } from '@/utils/main/oauth/handler'
-import { setupScanTask, setupScrapeTask } from '@/utils/main/scheduler/index'
+import { resolve } from 'path'
 import { setupUpdateCheckTask } from '@/utils/main/scheduler/index'
-import { exit } from 'process'
-import pie from 'puppeteer-in-electron'
-import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 
 if (process.defaultApp) {
   if (process.argv.length >= 2) {
@@ -58,7 +57,6 @@ if (isDevelopment) {
 
 overrideConsole()
 _windowHandler.setHardwareAcceleration()
-pie.initialize(app)
 
 process.on('uncaughtException', (err) => {
   console.error(err)

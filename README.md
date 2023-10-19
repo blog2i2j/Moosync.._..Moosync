@@ -25,6 +25,7 @@
 - Available on Windows and Linux and MacOS
 
 ## Links
+
 [Official website](https://moosync.app) |
 [Downloads](#releases) |
 [Discord](https://discord.gg/HsbqbRune3)
@@ -36,7 +37,8 @@ You may download the latest release from [Official website](https://moosync.app)
 
 ### Windows (Chocolatey)
 
-If you use [Chocolatey](https://community.chocolatey.org/packages/moosync), Moosync can be installed using 
+If you use [Chocolatey](https://community.chocolatey.org/packages/moosync), Moosync can be installed using
+
 ```bash
 choco install moosync
 ```
@@ -46,6 +48,7 @@ Otherwise you may download the latest installer from [Releases](https://github.c
 ### Ubuntu / Debian (3rd party repo)
 
 You can install Moosync through our hosted [APT repo]([/Moosync/ppa](https://github.com/Moosync/ppa))
+
 ```bash
 bash <(wget -O- https://raw.githubusercontent.com/Moosync/Moosync/main/setup_ppa.sh)
 ```
@@ -53,6 +56,7 @@ bash <(wget -O- https://raw.githubusercontent.com/Moosync/Moosync/main/setup_ppa
 ### Fedora
 
 Moosync can be found on [Fedora COPR](https://copr.fedorainfracloud.org/coprs/ovenoboyo/Moosync/). You can install it using [dnf](https://docs.fedoraproject.org/en-US/quick-docs/dnf/)
+
 ```bash
 dnf copr enable ovenoboyo/Moosync
 dnf install moosync
@@ -70,6 +74,7 @@ yay -S moosync
 
 Moosync can be found on [FlatHub](https://flathub.org/apps/details/app.moosync.moosync) as ```app.moosync.moosync```.
 You may install it by
+
 ```bash
 flatpak install flathub app.moosync.moosync
 ```
@@ -77,6 +82,7 @@ flatpak install flathub app.moosync.moosync
 ### Snap Store
 
 You can get Moosync from [Snap store](https://snapcraft.io/moosync).
+
 ```
 sudo snap install moosync
 ```
@@ -86,7 +92,6 @@ sudo snap install moosync
 Checkout the [Official Wiki](https://moosync.app/wiki/) on [moosync.app](https://moosync.app/wiki/) or on [GitHub](https://github.com/Moosync/Moosync/wiki).  
   
 For any further questions you may join us on [Discord](https://discord.gg/HsbqbRune3)
-
 
 ## Screenshots
 
@@ -125,3 +130,15 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## Donations
+
+| Cryptocurrency | Address |
+| --- | --- |
+| Bitcoin (BTC) | bc1qhcywctcy4exkcdd726d2lxkwaluqwgym0ynf9j |
+| Ethereum (ETH)| 0x0AFaCe6031e2fBe54D2fBF493310C0f5C3Cef677 |
+| Dogecoin (DOGE) | bc1qhcywctcy4exkcdd726d2lxkwaluqwgym0ynf9j |
+| Litecoin (LTC) | LLkim24N5yduBbXiFaLMbUeUwmyZ9VUQt7 |
+| Polygon (MATIC) | 0x0AFaCe6031e2fBe54D2fBF493310C0f5C3Cef677 |
+| Tether USD (USDT) | 0x0AFaCe6031e2fBe54D2fBF493310C0f5C3Cef677 |
+| USD coin (USDC) | 0x0AFaCe6031e2fBe54D2fBF493310C0f5C3Cef677 |

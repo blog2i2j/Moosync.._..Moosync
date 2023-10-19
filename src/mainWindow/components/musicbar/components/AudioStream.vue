@@ -66,6 +66,7 @@ import { bus } from '@/mainWindow/main'
 import { EventBus } from '@/utils/main/ipc/constants'
 import { nextTick } from 'vue'
 import { convertProxy } from '@/utils/ui/common'
+import { RepeatState } from '../../../../utils/commonConstants';
 
 @Component({
   emits: ['onTimeUpdate']
@@ -92,9 +93,6 @@ export default class AudioStream extends mixins(
 
   @Prop({ default: '' })
   roomID!: string
-
-  @Prop({ default: 0 })
-  forceSeek!: number
 
   get currentSong(): Song | null | undefined {
     return vxm.player.currentSong
@@ -279,10 +277,13 @@ export default class AudioStream extends mixins(
   /**
    * Method triggered when user seeks on timeline and forceSeek prop changes
    */
-  @Watch('forceSeek') onSeek(newValue: number) {
-    if (this.activePlayer) {
-      this.activePlayer.currentTime = newValue
-      if (this.isSyncing) this.remoteSeek(newValue)
+  onSeek(newValue?: number) {
+    if (typeof newValue === 'number') {
+      if (this.activePlayer) {
+        this.activePlayer.currentTime = newValue
+        if (this.isSyncing) this.remoteSeek(newValue)
+        vxm.player.forceSeek = undefined
+      }
     }
   }
 
@@ -400,9 +401,14 @@ export default class AudioStream extends mixins(
   private async onSongEnded() {
     vxm.player.playAfterLoad = true
     this.lastLoadedSong = undefined
-    if (this.repeat && this.currentSong) {
+    if (this.repeat !== RepeatState.DISABLED && this.currentSong) {
       // Re load entire audio instead of setting current time to 0
       this.loadAudio(this.currentSong, false)
+
+      if (this.repeat === RepeatState.ONCE) {
+        this.repeat = RepeatState.DISABLED
+      }
+
     } else {
       vxm.player.currentSong = undefined
       await this.nextSong()
@@ -595,6 +601,7 @@ export default class AudioStream extends mixins(
     this.registerMediaControlListener()
 
     vxm.player.$watch('playerState', this.onPlayerStateChanged, { immediate: true, deep: false })
+    vxm.player.$watch('forceSeek', this.onSeek)
 
     bus.on(EventBus.FORCE_LOAD_SONG, () => {
       if (this.currentSong) {
@@ -899,9 +906,12 @@ export default class AudioStream extends mixins(
   private unloadAudio() {
     console.debug('Unloading audio')
     this.activePlayer?.stop()
+    window.MprisUtils.updateSongInfo({})
   }
 
   private async handleActivePlayerState(newState: PlayerState) {
+    if (!this.currentSong) return
+
     try {
       switch (newState) {
         case 'PLAYING':
@@ -924,14 +934,17 @@ export default class AudioStream extends mixins(
 h3 {
   margin: 40px 0 0;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }

@@ -9,8 +9,10 @@
 
 import { Component, Vue } from 'vue-facing-decorator'
 
+import { v4 } from 'uuid'
+
 @Component
-export default class PlayerControls extends Vue {
+export default class RouterPushes extends Vue {
   public gotoAlbum(album: Album, defaultProviders?: string[]) {
     try {
       this.$router.push({

@@ -13,52 +13,28 @@
     <b-row no-gutters>
       <b-col class="h-100">
         <b-row no-gutters class="metadata mb-3">
-          <b-input
-            v-model="title"
-            class="theme-title"
-            maxlength="20"
-            :placeholder="$t('settings.themes.newTheme.name')"
-          />
-          <b-input
-            v-model="author"
-            class="theme-title"
-            maxlength="20"
-            :placeholder="$t('settings.themes.newTheme.author')"
-          />
+          <b-input v-model="title" class="theme-title" maxlength="20"
+            :placeholder="$t('settings.themes.newTheme.name')" />
+          <b-input v-model="author" class="theme-title" maxlength="20"
+            :placeholder="$t('settings.themes.newTheme.author')" />
         </b-row>
         <b-row no-gutters>
           <b-col cols="6" class="preview-col">
             <b-row no-gutters class="preview mb-5">
-              <ThemeComponentClassic
-                class="h-100"
-                :colors="customTheme"
-                :id="getRandomID()"
-                @colorClick="toggleColorPicker"
-              />
+              <ThemeComponentClassic class="h-100" :colors="customTheme" :id="getRandomID()"
+                @colorClick="toggleColorPicker" />
             </b-row>
             <b-row no-gutters class="preview">
-              <ThemeComponentCompact
-                class="h-100"
-                :colors="customTheme"
-                :id="getRandomID()"
-                @colorClick="toggleColorPicker"
-              />
+              <ThemeComponentCompact class="h-100" :colors="customTheme" :id="getRandomID()"
+                @colorClick="toggleColorPicker" />
             </b-row>
           </b-col>
           <b-col cols="auto" class="color-col ml-5">
-            <PreferenceHeader
-              :title="$t('settings.themes.newTheme.colors')"
-              :tooltip="$t('settings.themes.newTheme.colors_tooltip')"
-            />
+            <PreferenceHeader :title="$t('settings.themes.newTheme.colors')"
+              :tooltip="$t('settings.themes.newTheme.colors_tooltip')" />
             <table>
-              <ColorPicker
-                v-for="item in themeKeys"
-                :key="item"
-                :ref="item"
-                :defColor="customTheme[item]"
-                :title="getThemeTitle(item)"
-                @colorChange="(color: string) => onColorChange(item, color)"
-              />
+              <ColorPicker v-for="item in themeKeys" :key="item" :ref="item" :defColor="customTheme[item]"
+                :title="getThemeTitle(item)" @colorChange="(color: string) => onColorChange(item, color)" />
             </table>
           </b-col>
         </b-row>
@@ -68,23 +44,12 @@
             <b-col cols="auto" align-self="center" class="ml-4 folder-icon">
               <FolderIcon @click="openFileBrowser" />
             </b-col>
-            <b-col
-              :id="popoverTarget"
-              cols="auto"
-              align-self="center"
-              :title="customTheme.customCSS"
-              class="ml-3 justify-content-start"
-              @click="copy"
-            >
+            <b-col :id="popoverTarget" cols="auto" align-self="center" :title="customTheme.customCSS"
+              class="ml-3 justify-content-start" @click="copy">
               <div class="item-text text-truncate">{{ customTheme.customCSS }}</div>
             </b-col>
-            <b-popover
-              id="clipboard-popover"
-              :show.sync="showPopover"
-              :target="popoverTarget"
-              triggers="click blur"
-              placement="top"
-            >
+            <b-popover id="clipboard-popover" :show.sync="showPopover" :target="popoverTarget" triggers="click blur"
+              placement="top">
               Copied!
             </b-popover>
           </b-row>
@@ -163,7 +128,7 @@ export default class NewTheme extends Vue {
 
   toggleColorPicker(type: ThemeKey) {
     // eslint-disable-next-line @typescript-eslint/no-extra-semi
-    ;(this.$refs[type] as ColorPicker[])[0]?.toggleColorPicker()
+    ; (this.$refs[type] as ColorPicker[])[0]?.toggleColorPicker()
   }
 
   onColorChange(attr: ThemeKey, color: string) {
@@ -190,7 +155,7 @@ export default class NewTheme extends Vue {
   }
 
   async saveTheme() {
-    await window.ThemeUtils.saveTheme(convertProxy(this.generateThemeMetadata()))
+    await window.ThemeUtils.saveTheme(convertProxy(this.generateThemeMetadata(), true))
     const currentTheme = await window.ThemeUtils.getActiveTheme()
     if (currentTheme.id === this.currentThemeID) {
       await window.ThemeUtils.setActiveTheme(this.currentThemeID)
@@ -224,7 +189,7 @@ export default class NewTheme extends Vue {
 
   async created() {
     this.parseClipboard()
-    this.currentThemeID = this.$route.params['currentTheme']?.toString()
+    this.currentThemeID = this.$route.query['currentTheme']?.toString() ?? ''
     if (this.currentThemeID) {
       const theme = await window.ThemeUtils.getTheme(this.currentThemeID)
       if (theme) {
@@ -317,4 +282,20 @@ export default class NewTheme extends Vue {
 .folder-icon
   &:hover
     cursor: pointer
+
+.vacp-color-picker
+  background-color: var(--secondary)
+  color: var(--textPrimary)
+
+.vacp-copy-button, .vacp-format-switch-button
+    background-color: var(--primary)
+
+.vacp-icon
+  path
+    fill: var(--textPrimary)
+
+.vacp-color-input
+  background-color: var(--primary)
+  border: var(--vacp-border-width) solid var(--textSecondary)
+
 </style>

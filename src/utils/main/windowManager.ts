@@ -33,8 +33,6 @@ import { nativeTheme } from 'electron'
 import { access, readFile } from 'fs/promises'
 import { ButtonEnum, PlayerButtons } from 'media-controller'
 import path from 'path'
-import puppeteer from 'puppeteer-core'
-import pie from 'puppeteer-in-electron'
 import { Readable } from 'stream'
 
 export class WindowHandler {
@@ -442,94 +440,6 @@ export class WindowHandler {
   public closeWindow(isMainWindow = true) {
     const window = WindowHandler.getWindow(isMainWindow)
     window && !window?.isDestroyed() && window.close()
-  }
-
-  public async automateSpotifyAppCreation() {
-    const browser = await pie.connect(app, puppeteer)
-
-    const window = new BrowserWindow()
-    const url = 'https://developer.spotify.com/dashboard/login'
-    await window.loadURL(url)
-
-    try {
-      const page = await pie.getPage(browser, window)
-
-      if (await page.$('button[data-ng-click="login()"]')) {
-        await page.click('button[data-ng-click="login()"]')
-
-        const loginPage = await (await browser.waitForTarget((target) => target.opener() === page.target())).page()
-        if (loginPage) {
-          await new Promise((resolve) => loginPage.on('close', resolve))
-        }
-
-        await page.waitForNavigation()
-        await new Promise((resolve) => setTimeout(resolve, 500))
-      }
-
-      const acceptTerms = await page.$('input[value="Accept the Terms"]')
-      if (acceptTerms) {
-        await (await page.$('span[class="control-indicator"]'))?.evaluate((b) => (b as HTMLElement).click())
-        await (await page.$('input[value="Accept the Terms"]'))?.evaluate((b) => (b as HTMLElement).click())
-        await page.waitForNavigation()
-      }
-
-      await page.waitForSelector('button[ng-click="flowStart()"]')
-      await page.click('button[ng-click="flowStart()"]')
-      await page.waitForSelector('input[data-ng-model="name"]', { visible: true })
-
-      await page.focus('input[data-ng-model="name"]')
-      await page.type('input[data-ng-model="name"]', 'Moosync')
-      await page.focus('textarea[data-ng-model="description"]')
-      await page.type('textarea[data-ng-model="description"]', 'A simple music player')
-      await (await page.$('span[class="control-indicator"]'))?.evaluate((b) => (b as HTMLElement).click())
-
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      await (await page.$('button[type="submit"]'))?.evaluate((b) => (b as HTMLElement).click())
-      await page.waitForNavigation()
-
-      await page.waitForSelector('button[ng-show="!showClientSecret"]')
-      await (await page.$('button[ng-show="!showClientSecret"]'))?.evaluate((b) => (b as HTMLElement).click())
-
-      await page.waitForSelector('div[ng-show="showClientSecret"] > code', { visible: true })
-      await new Promise((resolve) => setTimeout(resolve, 500))
-
-      const clientID = await (await page.$('.client-credential > code'))?.evaluate((el) => el.innerHTML)
-      const clientSecret = await (
-        await page.$('div[ng-show="showClientSecret"] > code')
-      )?.evaluate((el) => el.innerHTML)
-
-      await (await page.$('button[data-target="#settings-modal"]'))?.evaluate((b) => (b as HTMLElement).click())
-      await page.waitForSelector('div[id="settings-modal"]', { visible: true })
-      await new Promise((resolve) => setTimeout(resolve, 500))
-
-      await page.focus('input[id="newRedirectUri"]')
-      await page.type('input[id="newRedirectUri"]', 'https://moosync.app/spotify')
-      await page.click('button[id="addRedirectUri"]')
-      await new Promise((resolve) => setTimeout(resolve, 500))
-
-      await page.focus('input[id="newRedirectUri"]')
-      await page.type('input[id="newRedirectUri"]', 'http://localhost')
-      await page.click('button[id="addRedirectUri"]')
-      await new Promise((resolve) => setTimeout(resolve, 500))
-
-      await page.focus('input[id="newRedirectUri"]')
-      await page.type('input[id="newRedirectUri"]', 'http://localhost:8080')
-      await page.click('button[id="addRedirectUri"]')
-      await new Promise((resolve) => setTimeout(resolve, 500))
-
-      await new Promise((resolve) => setTimeout(resolve, 300))
-      await (await page.$('button[ng-click="update(application)"]'))?.evaluate((b) => (b as HTMLElement).click())
-
-      browser.disconnect()
-      window.close()
-
-      return { clientID, clientSecret }
-    } catch (e) {
-      console.error(e)
-    }
-
-    browser.disconnect()
-    window.close()
   }
 }
 

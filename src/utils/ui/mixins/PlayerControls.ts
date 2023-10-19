@@ -8,12 +8,12 @@
  */
 
 import { Component, Vue } from 'vue-facing-decorator'
+import { RepeatState, VolumePersistMode } from '@/utils/commonConstants'
 
-import { Player } from '../players/player'
-import { vxm } from '@/mainWindow/store'
 import { PeerMode } from '@/mainWindow/store/syncState'
-import { VolumePersistMode } from '@/utils/commonConstants'
+import { Player } from '../players/player'
 import { toast } from 'vue3-toastify'
+import { vxm } from '@/mainWindow/store'
 
 const maxp = 100
 
@@ -134,12 +134,22 @@ export default class PlayerControls extends Vue {
     return vxm.player.Repeat
   }
 
-  set repeat(val: boolean) {
+  set repeat(val: RepeatState) {
     vxm.player.Repeat = val
   }
 
   public toggleRepeat() {
-    this.repeat = !this.repeat
+    switch (this.repeat) {
+      case RepeatState.ONCE:
+        this.repeat = RepeatState.ALWAYS
+        break
+      case RepeatState.ALWAYS:
+        this.repeat = RepeatState.DISABLED
+        break
+      default:
+        this.repeat = RepeatState.ONCE
+        break
+    }
   }
 
   private oldVolume = 50

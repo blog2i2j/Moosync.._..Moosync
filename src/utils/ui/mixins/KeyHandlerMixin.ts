@@ -7,11 +7,13 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { bus } from '@/mainWindow/main'
-import { HotkeyEvents, defaultKeybinds } from '@/utils/commonConstants'
-import PlayerControls from '@/utils/ui/mixins/PlayerControls'
+import { HotkeyEvents, RepeatState, defaultKeybinds } from '@/utils/commonConstants'
+
 import { Component } from 'vue-facing-decorator'
+import PlayerControls from '@/utils/ui/mixins/PlayerControls'
+import { bus } from '@/mainWindow/main'
 import { mixins } from 'vue-facing-decorator'
+import { vxm } from '@/mainWindow/store'
 
 @Component
 export default class KeyHandlerMixin extends mixins(PlayerControls) {
@@ -31,7 +33,6 @@ export default class KeyHandlerMixin extends mixins(PlayerControls) {
 
   private onlyRequiredKeysPressed(requiredKeys: string[]) {
     const pressedKeys = Object.keys(this.pressedKeys)
-
     for (const val of requiredKeys) {
       if (!pressedKeys.includes(val)) {
         return false
@@ -74,10 +75,10 @@ export default class KeyHandlerMixin extends mixins(PlayerControls) {
         this.unmute()
         break
       case HotkeyEvents.REPEAT_ACTIVE:
-        this.repeat = true
+        this.repeat = RepeatState.ALWAYS
         break
       case HotkeyEvents.REPEAT_INACTIVE:
-        this.repeat = false
+        this.repeat = RepeatState.DISABLED
         break
       case HotkeyEvents.REPEAT_TOGGLE:
         this.toggleRepeat()
@@ -105,6 +106,26 @@ export default class KeyHandlerMixin extends mixins(PlayerControls) {
       case HotkeyEvents.FULLSCREEN:
         window.WindowUtils.toggleFullscreen(true)
         break
+      case HotkeyEvents.NEXT_SONG:
+        this.nextSong()
+        break
+      case HotkeyEvents.PREV_SONG:
+        this.prevSong()
+        break
+      case HotkeyEvents.SEEK_BACKWARDS:
+        vxm.player.forceSeek = vxm.player.currentTime - 5
+        break
+      case HotkeyEvents.SEEK_FORWARD:
+        vxm.player.forceSeek = vxm.player.currentTime + 5
+        break
+      default: {
+        const duration = vxm.player.currentSong?.duration
+        if (duration && (action >= 22 || action <= 31)) {
+          const seekPercent = action % 22
+          const seekTime = ((seekPercent * 10) / 100) * duration
+          vxm.player.forceSeek = seekTime
+        }
+      }
     }
   }
 

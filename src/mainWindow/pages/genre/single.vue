@@ -14,14 +14,8 @@
 </route>
 <template>
   <div class="w-100 h-100">
-    <SongView
-      :defaultDetails="defaultDetails"
-      :songList="songList"
-      :detailsButtonGroup="buttonGroups"
-      @onRowContext="getSongMenu($event, arguments[1], undefined)"
-      @playAll="playGenre"
-      @addToQueue="addGenreToQueue"
-    />
+    <SongView :defaultDetails="defaultDetails" :songList="songList" :detailsButtonGroup="buttonGroups"
+      @onRowContext="getSongMenu($event, arguments[1], undefined)" @playAll="playGenre" @addToQueue="addGenreToQueue" />
   </div>
 </template>
 
@@ -33,6 +27,7 @@ import { mixins } from 'vue-facing-decorator'
 import ContextMenuMixin from '@/utils/ui/mixins/ContextMenuMixin'
 import { arrayDiff, getRandomFromArray } from '@/utils/common'
 import { vxm } from '@/mainWindow/store'
+import { convertProxy } from '../../../utils/ui/common';
 
 @Component({
   components: {
@@ -79,7 +74,7 @@ export default class SingleAlbumView extends mixins(ContextMenuMixin) {
       genre: {
         genre_id: this.$route.query.id as string
       },
-      sortBy: vxm.themes.songSortBy
+      sortBy: convertProxy(vxm.themes.songSortBy)
     })
   }
 

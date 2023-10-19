@@ -28,6 +28,20 @@ export enum HotkeyEvents {
   DEVTOOLS_TOGGLE = 15,
   HELP = 16,
   FULLSCREEN = 17,
+  NEXT_SONG = 18,
+  PREV_SONG = 19,
+  SEEK_FORWARD = 20,
+  SEEK_BACKWARDS = 21,
+  SEEK_0 = 22,
+  SEEK_1 = 23,
+  SEEK_2 = 24,
+  SEEK_3 = 25,
+  SEEK_4 = 26,
+  SEEK_5 = 27,
+  SEEK_6 = 28,
+  SEEK_7 = 29,
+  SEEK_8 = 30,
+  SEEK_9 = 31,
 }
 
 export const HotKeyEventsExtras: Record<HotkeyEvents, { title: string }> = {
@@ -85,6 +99,48 @@ export const HotKeyEventsExtras: Record<HotkeyEvents, { title: string }> = {
   [HotkeyEvents.FULLSCREEN]: {
     title: 'Fullscreen',
   },
+  [HotkeyEvents.NEXT_SONG]: {
+    title: 'Skip song',
+  },
+  [HotkeyEvents.PREV_SONG]: {
+    title: 'Prev song',
+  },
+  [HotkeyEvents.SEEK_FORWARD]: {
+    title: 'Seek 5s forward',
+  },
+  [HotkeyEvents.SEEK_BACKWARDS]: {
+    title: 'Seek 5s backwards',
+  },
+  [HotkeyEvents.SEEK_0]: {
+    title: 'Seek to 0%',
+  },
+  [HotkeyEvents.SEEK_1]: {
+    title: 'Seek to 10%',
+  },
+  [HotkeyEvents.SEEK_2]: {
+    title: 'Seek to 20%',
+  },
+  [HotkeyEvents.SEEK_3]: {
+    title: 'Seek to 30%',
+  },
+  [HotkeyEvents.SEEK_4]: {
+    title: 'Seek to 40%',
+  },
+  [HotkeyEvents.SEEK_5]: {
+    title: 'Seek to 50%',
+  },
+  [HotkeyEvents.SEEK_6]: {
+    title: 'Seek to 60%',
+  },
+  [HotkeyEvents.SEEK_7]: {
+    title: 'Seek to 70%',
+  },
+  [HotkeyEvents.SEEK_8]: {
+    title: 'Seek to 80%',
+  },
+  [HotkeyEvents.SEEK_9]: {
+    title: 'Seek to 90%',
+  },
 }
 
 export const defaultKeybinds: HotkeyPair[] = [
@@ -128,6 +184,14 @@ export const defaultKeybinds: HotkeyPair[] = [
     key: [['Escape']],
     value: HotkeyEvents.QUEUE_CLOSE,
   },
+  {
+    key: [['ArrowRight']],
+    value: HotkeyEvents.SEEK_FORWARD,
+  },
+  {
+    key: [['ArrowLeft']],
+    value: HotkeyEvents.SEEK_BACKWARDS,
+  },
 ]
 
 export enum ProviderScopes {
@@ -156,4 +220,10 @@ export enum ScanStatus {
   UNDEFINED = 0,
   SCANNING = 1,
   QUEUED = 2,
+}
+
+export enum RepeatState {
+  DISABLED = 0,
+  ONCE = 1,
+  ALWAYS = 2,
 }

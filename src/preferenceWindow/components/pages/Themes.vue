@@ -12,70 +12,44 @@
     <ContextMenu ref="contextMenu" v-click-outside="hideContextMenu" :menu-items="menu" />
     <b-container fluid>
       <b-row>
-        <PreferenceHeader
-          :title="$t('settings.themes.songView')"
-          :tooltip="$t('settings.themes.songView_tooltip')"
-          class="mb-3"
-        />
+        <PreferenceHeader :title="$t('settings.themes.songView')" :tooltip="$t('settings.themes.songView_tooltip')"
+          class="mb-3" />
       </b-row>
       <b-row no-gutters class="w-100"> </b-row>
       <b-row no-gutters class="w-100">
         <b-col cols="5" xl="3" class="p-2">
           <div class="theme-component-container">
-            <ThemeComponentClassic
-              @click="setSongView('classic')"
-              :selected="isSongView('classic')"
-              :id="getRandomID()"
-              :colors="currentTheme"
-            />
+            <ThemeComponentClassic @click="setSongView('classic')" :selected="isSongView('classic')" :id="getRandomID()"
+              :colors="currentTheme" />
             {{ $t('settings.themes.songView_classic') }}
           </div>
         </b-col>
         <b-col cols="5" xl="3" class="p-2">
           <div class="theme-component-container">
-            <ThemeComponentCompact
-              @click="setSongView('compact')"
-              :selected="isSongView('compact')"
-              :id="getRandomID()"
-              :colors="currentTheme"
-            />
+            <ThemeComponentCompact @click="setSongView('compact')" :selected="isSongView('compact')" :id="getRandomID()"
+              :colors="currentTheme" />
             {{ $t('settings.themes.songView_compact') }}
           </div>
         </b-col>
       </b-row>
       <b-row>
-        <PreferenceHeader
-          :title="$t('settings.themes.themes')"
-          :tooltip="$t('settings.themes.themes_tooltip')"
-          class="mt-5 mb-3"
-        />
+        <PreferenceHeader :title="$t('settings.themes.themes')" :tooltip="$t('settings.themes.themes_tooltip')"
+          class="mt-5 mb-3" />
       </b-row>
       <b-row no-gutters class="w-100"> </b-row>
       <b-row no-gutters class="w-100">
         <b-col cols="5" xl="3" class="p-2">
           <div class="theme-component-container">
-            <component
-              :is="themesComponent"
-              @click="setTheme('default')"
-              @contextmenu="themeMenu($event, defaultTheme)"
-              :selected="isThemeActive('default')"
-              :id="getRandomID()"
-              :colors="defaultTheme.theme"
-            />
+            <component :is="themesComponent" @click="setTheme('default')" @contextmenu="themeMenu($event, defaultTheme)"
+              :selected="isThemeActive('default')" :id="getRandomID()" :colors="defaultTheme.theme" />
             <div class="title">{{ $t('settings.themes.themes_default') }}</div>
             <div class="author">Moosync</div>
           </div>
         </b-col>
         <b-col cols="5" xl="3" class="p-2" v-for="(value, key) in allThemes" :key="key">
           <div class="theme-component-container">
-            <component
-              :is="themesComponent"
-              @click="setTheme(value.id)"
-              :selected="isThemeActive(value.id)"
-              :id="value.id"
-              @contextmenu="themeMenu($event, value)"
-              :colors="value.theme"
-            />
+            <component :is="themesComponent" @click="setTheme(value.id)" :selected="isThemeActive(value.id)"
+              :id="value.id" @contextmenu="themeMenu($event, value)" :colors="value.theme" />
             <div class="title">{{ value.name }}</div>
             <div class="author">
               {{ value.author }}
@@ -118,6 +92,7 @@ import CreatePlaylistIcon from '@/icons/CreatePlaylistIcon.vue'
 import ImportThemeIcon from '@/icons/ImportThemeIcon.vue'
 import { bus } from '@/preferenceWindow/main'
 import { MenuItem } from '../../../utils/ui/mixins/ContextMenuMixin'
+import { ContextMenuInstance } from '@imengyu/vue3-context-menu'
 
 @Component({
   components: {
@@ -164,7 +139,7 @@ export default class Themes extends Vue {
   private editTheme(theme: ThemeDetails) {
     this.$router.push({
       name: 'new_theme',
-      params: {
+      query: {
         currentTheme: theme.id
       }
     })
@@ -172,7 +147,9 @@ export default class Themes extends Vue {
 
   themeToRemove: ThemeDetails | null = null
 
-  themeMenu(event: Event, theme: ThemeDetails) {
+  private contextMenu: ContextMenuInstance | undefined
+
+  themeMenu(event: MouseEvent, theme: ThemeDetails) {
     this.menu = []
     if (theme.id !== 'system_default' && theme.id !== 'default') {
       this.themeToRemove = theme
@@ -203,11 +180,17 @@ export default class Themes extends Vue {
         }
       })
     }
-    // ;(this.$refs['contextMenu']).open(event)
+
+    this.contextMenu = this.$contextmenu({
+      x: event.x,
+      y: event.y,
+      customClass: 'context-menu',
+      items: this.menu,
+    })
   }
 
   hideContextMenu() {
-    // ;(this.$refs['contextMenu'] as ContextMenuComponent).close()
+    this.contextMenu?.closeMenu()
   }
 
   async removeTheme() {

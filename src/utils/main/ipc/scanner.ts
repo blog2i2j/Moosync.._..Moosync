@@ -8,19 +8,17 @@
  */
 
 import { IpcEvents, ScannerEvents } from './constants'
-
-import { getSongDB } from '@/utils/main/db/index'
 import { IpcMainEvent, app } from 'electron'
-import fs from 'fs'
-import os from 'os'
-
+import type { Playlist as ScanPlaylist, Song as ScanSong, SongWithLen } from 'scanner-native'
 import { getCombinedMusicPaths, loadPreferences, loadSelectivePreference } from '../db/preferences'
-import { setupScanTask } from '../scheduler'
-import { WindowHandler } from '../windowManager'
-import path from 'path'
 
 import { MetadataFetcher } from '../fetchers/metadata'
-import type { Playlist as ScanPlaylist, Song as ScanSong, SongWithLen } from 'scanner-native'
+import { WindowHandler } from '../windowManager'
+import fs from 'fs'
+import { getSongDB } from '@/utils/main/db/index'
+import os from 'os'
+import path from 'path'
+import { setupScanTask } from '../scheduler'
 import { v4 } from 'uuid'
 
 enum ScanStatus {
@@ -184,6 +182,8 @@ export class ScannerChannel implements IpcChannelInterface {
               } else {
                 lastValue.songs.push(this.parseScannedSong(res.song))
               }
+            } else {
+              console.error(err)
             }
           },
           (err, res) => {
@@ -193,6 +193,8 @@ export class ScannerChannel implements IpcChannelInterface {
               } else {
                 lastValue.playlists.push(this.parseScannedPlaylist(res))
               }
+            } else {
+              console.error(err)
             }
           },
           () =>

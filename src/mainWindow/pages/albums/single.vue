@@ -14,19 +14,10 @@
 </route>
 <template>
   <div class="w-100 h-100">
-    <SongView
-      :defaultDetails="defaultDetails"
-      :songList="filteredSongList"
-      :detailsButtonGroup="buttonGroups"
-      :isRemote="isRemote"
-      :isLoading="isLoading"
-      @playAll="playAlbum"
-      @addToQueue="addAlbumToQueue"
-      @addToLibrary="addToLibrary"
-      @onOptionalProviderChanged="onProviderChanged"
-      :optionalProviders="albumSongProviders"
-      @playRandom="playRandom"
-    />
+    <SongView :defaultDetails="defaultDetails" :songList="filteredSongList" :detailsButtonGroup="buttonGroups"
+      :isRemote="isRemote" :isLoading="isLoading" @playAll="playAlbum" @addToQueue="addAlbumToQueue"
+      @addToLibrary="addToLibrary" @onOptionalProviderChanged="onProviderChanged" :optionalProviders="albumSongProviders"
+      @playRandom="playRandom" />
   </div>
 </template>
 
@@ -119,6 +110,18 @@ export default class SingleAlbumView extends mixins(ContextMenuMixin, PlayerCont
   @Watch('$route.query.id')
   private async onAlbumChange() {
     const promises: Promise<void>[] = []
+
+    if (!this.$route.query.id && this.$route.query.name) {
+      const id = ((await window.SearchUtils.searchEntityByOptions({
+        album: {
+          album_name: this.$route.query.name.toString()
+        }
+      }))?.[0] as Album)?.album_id
+
+      if (id)
+        this.$route.query.id = id
+    }
+
     if (typeof this.$route.query.id === 'string') {
       this.album = null
       this.clearNextPageTokens()

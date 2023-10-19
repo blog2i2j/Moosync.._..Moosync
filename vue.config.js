@@ -111,6 +111,7 @@ module.exports = {
         icon: './build/icons/512x512.png',
         mac: {
           icon: './build/icons/icon.icns',
+          category: 'public.app-category.music',
         },
         win: {
           verifyUpdateCodeSignature: false,
@@ -119,6 +120,7 @@ module.exports = {
         linux: {
           icon: './build/icons/',
           target: ['AppImage', 'deb', 'tar.gz', 'pacman', 'rpm'],
+          category: 'Audio',
         },
         nsis: {
           oneClick: false,

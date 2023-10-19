@@ -7,12 +7,12 @@
  *  See LICENSE in the project root for license information.
  */
 
+import { RepeatState, VolumePersistMode } from '../../utils/commonConstants'
 import { action, mutation } from 'vuex-class-component'
 
-import { VolumePersistMode } from '../../utils/commonConstants'
 import { VuexModule } from './module'
-import { v4 } from 'uuid'
 import { convertProxy } from '@/utils/ui/common'
+import { v4 } from 'uuid'
 
 class Queue implements GenericQueue<Song> {
   data: QueueData<Song> = {}
@@ -24,7 +24,7 @@ export class PlayerStore extends VuexModule.With({ namespaced: 'player' }) {
   private state: PlayerState = 'PAUSED'
   public currentSong: Song | null | undefined | undefined = null
   private songQueue = new Queue()
-  private repeat = false
+  private repeat: RepeatState = RepeatState.DISABLED
 
   public volumeMode: VolumePersistMode = VolumePersistMode.SINGLE
 
@@ -81,7 +81,7 @@ export class PlayerStore extends VuexModule.With({ namespaced: 'player' }) {
     return this.repeat
   }
 
-  set Repeat(repeat: boolean) {
+  set Repeat(repeat: RepeatState) {
     this.repeat = repeat
   }
 
@@ -96,6 +96,8 @@ export class PlayerStore extends VuexModule.With({ namespaced: 'player' }) {
   set queueIndex(value: number) {
     this.songQueue.index = value
   }
+
+  forceSeek: number | undefined = undefined
 
   @mutation
   setQueueDataSong(song: Song) {
