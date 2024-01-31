@@ -204,7 +204,12 @@ module.exports = {
             releaseType: 'draft',
           },
         ],
-        files: ['**/*', '!node_modules/librespot-node/native/target/*', '!node_modules/scanner-native/target/*'],
+        files: [
+          '**/*',
+          '!node_modules/librespot-node/native/target/*',
+          '!node_modules/scanner-native/target/*',
+          '!node_modules/rodio-audio-backend/target/*',
+        ],
         asarUnpack: [
           '*.worker.js',
           'sandbox.js',
