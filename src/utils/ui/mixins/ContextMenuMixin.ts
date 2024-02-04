@@ -7,18 +7,18 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { Component } from 'vue-facing-decorator'
-import { EventBus } from '@/utils/main/ipc/constants'
-import JukeboxMixin from './JukeboxMixin'
-import PlayerControls from '@/utils/ui/mixins/PlayerControls'
-import ProviderMixin from './ProviderMixin'
-import RemoteSong from '@/utils/ui/mixins/remoteSongMixin'
-import RouterPushes from './RouterPushes'
 import { bus } from '@/mainWindow/main'
-import { convertProxy } from '../common'
+import { vxm } from '@/mainWindow/store'
+import { EventBus } from '@/utils/main/ipc/constants'
+import PlayerControls from '@/utils/ui/mixins/PlayerControls'
+import RemoteSong from '@/utils/ui/mixins/remoteSongMixin'
+import { Component } from 'vue-facing-decorator'
 import { mixins } from 'vue-facing-decorator'
 import { toast } from 'vue3-toastify'
-import { vxm } from '@/mainWindow/store'
+import { convertProxy } from '../common'
+import JukeboxMixin from './JukeboxMixin'
+import ProviderMixin from './ProviderMixin'
+import RouterPushes from './RouterPushes'
 
 export type MenuItem = {
   label?: string

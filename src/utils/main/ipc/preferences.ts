@@ -7,9 +7,17 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { EventBus, IpcEvents, PreferenceEvents } from './constants'
-import { WindowHandler, _windowHandler } from '../windowManager'
 import { app, ipcMain } from 'electron'
+import { mkdir, rm, writeFile } from 'fs/promises'
+import {
+  loadSelectiveArrayPreference,
+  loadSelectivePreference,
+  onPreferenceChanged,
+  removeSelectivePreference,
+  resetPrefsToDefault,
+  saveSelectivePreference,
+  setPreferenceListenKey,
+} from '../db/preferences'
 import {
   getActiveTheme,
   getSongView,
@@ -21,21 +29,13 @@ import {
   setSongView,
   transformCSS,
 } from '../themes/preferences'
-import {
-  loadSelectiveArrayPreference,
-  loadSelectivePreference,
-  onPreferenceChanged,
-  removeSelectivePreference,
-  resetPrefsToDefault,
-  saveSelectivePreference,
-  setPreferenceListenKey,
-} from '../db/preferences'
-import { mkdir, rm, writeFile } from 'fs/promises'
+import { WindowHandler, _windowHandler } from '../windowManager'
+import { EventBus, IpcEvents, PreferenceEvents } from './constants'
 
-import { ThemePacker } from '../themes/packer'
 import { promises as fsP } from 'fs'
 import path from 'path/posix'
 import { v1 } from 'uuid'
+import { ThemePacker } from '../themes/packer'
 
 export class PreferenceChannel implements IpcChannelInterface {
   name = IpcEvents.PREFERENCES

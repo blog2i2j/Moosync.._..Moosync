@@ -9,13 +9,13 @@ const manifest = require('./package.json')
 
 const archElectronConfig = {}
 
-if (fs.existsSync('/usr/lib/electron') && fs.existsSync('/usr/lib/electron/version')) {
-  archElectronConfig.electronDist = '/usr/lib/electron'
-  archElectronConfig.electronVersion = fs
-    .readFileSync('/usr/lib/electron/version', { encoding: 'utf-8' })
-    .replace('v', '')
-    .trim()
-}
+// if (fs.existsSync('/usr/lib/electron') && fs.existsSync('/usr/lib/electron/version')) {
+//   archElectronConfig.electronDist = '/usr/lib/electron'
+//   archElectronConfig.electronVersion = fs
+//     .readFileSync('/usr/lib/electron/version', { encoding: 'utf-8' })
+//     .replace('v', '')
+//     .trim()
+// }
 
 const RendererSecrets = {}
 const MainSecrets = {}

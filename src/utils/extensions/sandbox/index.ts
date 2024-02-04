@@ -7,7 +7,6 @@
  *  See LICENSE in the project root for license information.
  */
 
-import log, { LogLevelDesc } from 'loglevel'
 import {
   mainRequests,
   mainRequestsKeys,
@@ -15,6 +14,7 @@ import {
   providerFetchRequests,
 } from '@/utils/extensions/constants'
 import { prefixLogger, setLogLevel } from '@/utils/main/logger/utils'
+import log, { LogLevelDesc } from 'loglevel'
 
 import { ExtensionHandler } from '@/utils/extensions/sandbox/extensionHandler'
 

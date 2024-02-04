@@ -1,6 +1,6 @@
-import { sleep } from '../common'
 import { Serializable } from 'child_process'
 import { ConstructorConfig, PlayerEvent, PlayerEventTypes, SpotifyPlayerSpirc, Token, TokenScope } from 'librespot-node'
+import { sleep } from '../common'
 
 class SpotifyPlayerProcess {
   private player: SpotifyPlayerSpirc | undefined

@@ -7,13 +7,13 @@
  *  See LICENSE in the project root for license information.
  */
 
+import { ReverseFileReader } from 'file-reader-reverse'
+import { Tail } from 'tail'
 import { getExtensionHostChannel } from '.'
 import { rendererLogger } from '../logger'
 import { getLogPath, setLogLevel } from '../logger/utils'
 import { WindowHandler } from '../windowManager'
 import { IpcEvents, LoggerEvents } from './constants'
-import { ReverseFileReader } from 'file-reader-reverse'
-import { Tail } from 'tail'
 
 export class LoggerChannel implements IpcChannelInterface {
   name = IpcEvents.LOGGER

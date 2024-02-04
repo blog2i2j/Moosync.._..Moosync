@@ -1,6 +1,6 @@
-import { Player } from './player'
 import { vxm } from '@/mainWindow/store'
 import { PlayerEvent, PlayerEventTypes } from 'librespot-node'
+import { Player } from './player'
 
 export class SpotifyPlayer extends Player {
   private listenerMap: Partial<Record<PlayerEventTypes, { listener: unknown; channel: string }>> = {}

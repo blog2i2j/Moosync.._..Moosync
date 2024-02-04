@@ -1,5 +1,5 @@
-import { Player } from './player'
 import { RodioEvents } from '@/utils/main/ipc/constants'
+import { Player } from './player'
 
 export class RodioPlayer extends Player {
   private _volume = 1

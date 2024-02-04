@@ -7,17 +7,17 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { getSongDB } from '../db/index'
-import { WindowHandler } from '../windowManager'
-import { ExtensionHostEvents, IpcEvents } from './constants'
-import { MainHostIPCHandler } from '@/utils/extensions'
-import { app } from 'electron'
 import { createWriteStream } from 'fs'
 import { IncomingMessage } from 'http'
 import https from 'https'
-import { LogLevelDesc } from 'loglevel'
 import path from 'path'
+import { MainHostIPCHandler } from '@/utils/extensions'
+import { app } from 'electron'
+import { LogLevelDesc } from 'loglevel'
 import { v1 } from 'uuid'
+import { getSongDB } from '../db/index'
+import { WindowHandler } from '../windowManager'
+import { ExtensionHostEvents, IpcEvents } from './constants'
 
 export class ExtensionHostChannel implements IpcChannelInterface {
   name = IpcEvents.EXTENSION_HOST

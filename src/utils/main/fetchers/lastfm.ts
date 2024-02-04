@@ -7,9 +7,9 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { CacheHandler } from './cacheFile'
-import { app } from 'electron'
 import path from 'path'
+import { app } from 'electron'
+import { CacheHandler } from './cacheFile'
 
 export class LastFMScraper extends CacheHandler {
   constructor() {

@@ -9,17 +9,17 @@
 
 import { AuthFlow, AuthStateEmitter } from '@/utils/ui/oauth/flow'
 
-import { AuthorizationServiceConfiguration } from '@openid/appauth'
-import { EventBus } from '@/utils/main/ipc/constants'
-import { FetchWrapper } from './generics/fetchWrapper'
-import { GenericProvider } from '@/utils/ui/providers/generics/genericProvider'
-import { ProviderScopes } from '@/utils/commonConstants'
-import { bus } from '@/mainWindow/main'
-import { convertProxy } from '../common'
 import { once } from 'events'
+import { bus } from '@/mainWindow/main'
 import { parseISO8601Duration } from '@/utils/common'
+import { ProviderScopes } from '@/utils/commonConstants'
+import { EventBus } from '@/utils/main/ipc/constants'
+import { GenericProvider } from '@/utils/ui/providers/generics/genericProvider'
+import { AuthorizationServiceConfiguration } from '@openid/appauth'
 import qs from 'qs'
 import { toRaw } from 'vue'
+import { convertProxy } from '../common'
+import { FetchWrapper } from './generics/fetchWrapper'
 
 const BASE_URL = 'https://youtube.googleapis.com/youtube/v3/'
 

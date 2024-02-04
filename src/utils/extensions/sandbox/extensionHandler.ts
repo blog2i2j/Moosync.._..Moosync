@@ -7,12 +7,12 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { AbstractExtensionFinder, ExtensionFinder } from './extensionFinder'
 import { AbstractExtensionManager, ExtensionManager } from '@/utils/extensions/sandbox/extensionManager'
+import { AbstractExtensionFinder, ExtensionFinder } from './extensionFinder'
 
-import { providerFetchRequests } from '../constants'
 import { getVersion, sanitizeAlbums, sanitizeArtists, sanitizePlaylist, sanitizeSong } from '@/utils/common'
 import { ProviderScopes } from '@/utils/commonConstants'
+import { providerFetchRequests } from '../constants'
 
 type CombinedSongsType = SongsReturnType | PlaylistAndSongsReturnType | RecommendationsReturnType
 
@@ -257,7 +257,6 @@ export class ExtensionHandler {
 
       if (resp && !this.isForwardRequest(resp)) {
         if (event.type === 'requestedPlaylists') {
-          // rome-ignore lint/complexity/noExtraSemicolon: False-positive
           ;(resp as PlaylistReturnType).playlists = sanitizePlaylist(
             packageName,
             false,
@@ -266,7 +265,6 @@ export class ExtensionHandler {
         }
 
         if (EventType === 'requestedPlaylistFromURL') {
-          // rome-ignore lint/complexity/noExtraSemicolon: False-positive
           ;(resp as PlaylistAndSongsReturnType).playlist = sanitizePlaylist(
             packageName,
             false,
@@ -279,17 +277,14 @@ export class ExtensionHandler {
         }
 
         if (EventType === 'requestedPlaylistSongs' || EventType === 'requestedRecommendations') {
-          // rome-ignore lint/complexity/noExtraSemicolon: False-positive
           ;(resp as CombinedSongsType).songs = sanitizeSong(packageName, ...(resp as CombinedSongsType).songs)
         }
 
         if (EventType === 'requestedSongFromURL' || EventType === 'requestedSongFromId') {
-          // rome-ignore lint/complexity/noExtraSemicolon: False-positive
           ;(resp as SongReturnType).song = sanitizeSong(packageName, (resp as SongReturnType).song)[0]
         }
 
         if (EventType === 'requestedSearchResult') {
-          // rome-ignore lint/complexity/noExtraSemicolon: False-positive
           ;(resp as SearchReturnType).songs = sanitizeSong(packageName, ...(resp as SearchReturnType).songs)
           ;(resp as SearchReturnType).playlists = sanitizePlaylist(
             packageName,
@@ -301,12 +296,10 @@ export class ExtensionHandler {
         }
 
         if (EventType === 'requestedArtistSongs') {
-          // rome-ignore lint/complexity/noExtraSemicolon: False-positive
           ;(resp as SongsReturnType).songs = sanitizeSong(packageName, ...(resp as SongsReturnType).songs)
         }
 
         if (EventType === 'requestedAlbumSongs') {
-          // rome-ignore lint/complexity/noExtraSemicolon: False-positive
           ;(resp as SongsReturnType).songs = sanitizeSong(packageName, ...(resp as SongsReturnType).songs)
         }
       }

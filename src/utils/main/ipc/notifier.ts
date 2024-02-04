@@ -9,8 +9,8 @@
 
 import { IpcEvents, NotifierEvents } from './constants'
 
-import { WindowHandler } from '../windowManager'
 import { watch } from 'fs/promises'
+import { WindowHandler } from '../windowManager'
 
 export class NotifierChannel implements IpcChannelInterface {
   name = IpcEvents.NOTIFIER

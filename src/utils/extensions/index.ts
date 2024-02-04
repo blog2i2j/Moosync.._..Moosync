@@ -8,24 +8,24 @@
  */
 
 import { ChildProcess, Serializable, fork } from 'child_process'
-import { app, ipcMain, shell } from 'electron'
-import { extensionUIRequestsKeys, mainRequests, providerFetchRequests } from '@/utils/extensions/constants'
 import { getVersion, sanitizeSong } from '@/utils/common'
+import { extensionUIRequestsKeys, mainRequests, providerFetchRequests } from '@/utils/extensions/constants'
+import { app, ipcMain, shell } from 'electron'
 import { loadSelectivePreference, saveSelectivePreference } from '../main/db/preferences'
 
-import { BrowserWindow } from 'electron'
-import { ExtensionHostEvents } from '@/utils/main/ipc/constants'
-import { LogLevelDesc } from 'loglevel'
-import { WindowHandler } from '../main/windowManager'
-import { async } from 'node-stream-zip'
 import { promises as fsP } from 'fs'
-import { getSongDB } from '@/utils/main/db/index'
-import { getStoreChannel } from '../main/ipc'
-import { oauthHandler } from '@/utils/main/oauth/handler'
 import path from 'path'
-import { playerControlRequests } from './constants'
 import { sanitizePlaylist } from '@/utils/common'
+import { getSongDB } from '@/utils/main/db/index'
+import { ExtensionHostEvents } from '@/utils/main/ipc/constants'
+import { oauthHandler } from '@/utils/main/oauth/handler'
+import { BrowserWindow } from 'electron'
+import { LogLevelDesc } from 'loglevel'
+import { async } from 'node-stream-zip'
 import { v4 } from 'uuid'
+import { getStoreChannel } from '../main/ipc'
+import { WindowHandler } from '../main/windowManager'
+import { playerControlRequests } from './constants'
 
 export const defaultExtensionPath = path.join(app.getPath('appData'), app.getName(), 'extensions')
 const defaultLogPath = path.join(app.getPath('logs'))
@@ -250,7 +250,6 @@ class ExtensionRequestHandler {
 
   public mainWindowCreated() {
     for (const f of this.mainWindowCallsQueue) {
-      // rome-ignore lint/complexity/noExtraSemicolon: False-positive linting
       ;(f.func as (...args: Serializable[]) => void)(...f.args)
     }
   }
@@ -316,7 +315,6 @@ class ExtensionRequestHandler {
       if (Array.isArray(message.data)) {
         for (const s of message.data) {
           if (s) {
-            // rome-ignore lint/complexity/noExtraSemicolon: False-positive
             ;(resp.data as Song[]).push(...(await getSongDB().store(...sanitizeSong(message.extensionName, s))))
           }
         }

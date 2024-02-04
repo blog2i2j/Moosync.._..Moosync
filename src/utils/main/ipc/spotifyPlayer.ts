@@ -7,16 +7,16 @@
  *  See LICENSE in the project root for license information.
  */
 
+import { ChildProcess, fork } from 'child_process'
+import EventEmitter from 'events'
+import path from 'path'
+import { app } from 'electron'
+import { ConstructorConfig, PlayerEvent } from 'librespot-node'
+import { PlayerEventTypes } from 'librespot-node'
+import { v1 } from 'uuid'
 import { loadSelectiveArrayPreference } from '../db/preferences'
 import { librespotLogger } from '../logger'
 import { IpcEvents, SpotifyEvents } from './constants'
-import { ChildProcess, fork } from 'child_process'
-import { app } from 'electron'
-import EventEmitter from 'events'
-import { ConstructorConfig, PlayerEvent } from 'librespot-node'
-import { PlayerEventTypes } from 'librespot-node'
-import path from 'path'
-import { v1 } from 'uuid'
 
 const defaultLogPath = path.join(app.getPath('logs'))
 
@@ -119,7 +119,7 @@ export class SpotifyPlayerChannel implements IpcChannelInterface {
           this.playerProcess?.off('message', listener)
 
           // TODO: Handle this better
-          if (message?.args?.['auth']?.['password']) message.args['auth']['password'] = '***'
+          if (message?.args.auth.password) message.args.auth.password = '***'
           console.error('Failed to resolve message for message', message, 'tries', retries)
           if (retries > 2) {
             resolve(new Error('Failed to resolve message'))
@@ -133,7 +133,7 @@ export class SpotifyPlayerChannel implements IpcChannelInterface {
 
         try {
           const logObject = JSON.parse(JSON.stringify({ data: message, channel: id }))
-          if (logObject?.data?.args?.['auth']?.['password']) logObject.data.args['auth']['password'] = '***'
+          if (logObject?.data?.args.auth.password) logObject.data.args.auth.password = '***'
 
           console.debug('sending message to spotify process', JSON.stringify(logObject))
           this.playerProcess?.send({ data: message, channel: id })

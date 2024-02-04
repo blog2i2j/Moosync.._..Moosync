@@ -7,15 +7,15 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { IpcEvents, PlaylistEvents } from './constants'
 import { loadPreferences } from '@/utils/main/db/preferences'
+import { IpcEvents, PlaylistEvents } from './constants'
 
-import { _windowHandler } from '../windowManager'
-import { getSongDB } from '@/utils/main/db'
 import fs from 'fs'
-import { writeFile } from 'fs/promises'
 import path from 'path'
+import { getSongDB } from '@/utils/main/db'
+import { writeFile } from 'fs/promises'
 import { v4 } from 'uuid'
+import { _windowHandler } from '../windowManager'
 
 export class PlaylistsChannel implements IpcChannelInterface {
   name = IpcEvents.PLAYLIST

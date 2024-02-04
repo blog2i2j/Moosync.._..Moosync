@@ -7,8 +7,8 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { FragmentReceiver, FragmentSender } from './dataFragmenter'
 import { ManagerOptions, Socket, io } from 'socket.io-client'
+import { FragmentReceiver, FragmentSender } from './dataFragmenter'
 
 import { PeerMode } from '@/mainWindow/store/syncState'
 import { RepeatState } from '@/utils/commonConstants'

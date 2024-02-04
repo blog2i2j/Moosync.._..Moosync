@@ -7,13 +7,13 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { Component, Vue } from 'vue-facing-decorator'
 import { RepeatState, VolumePersistMode } from '@/utils/commonConstants'
+import { Component, Vue } from 'vue-facing-decorator'
 
-import { PeerMode } from '@/mainWindow/store/syncState'
-import { Player } from '../players/player'
-import { toast } from 'vue3-toastify'
 import { vxm } from '@/mainWindow/store'
+import { PeerMode } from '@/mainWindow/store/syncState'
+import { toast } from 'vue3-toastify'
+import { Player } from '../players/player'
 
 const maxp = 100
 

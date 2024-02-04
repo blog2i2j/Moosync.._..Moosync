@@ -43,9 +43,24 @@ wget ${FLATPAK_DOWNLOAD} -O flatpak_download_tmp
 CHECKSUM_FLATPAK=$(sha256sum flatpak_download_tmp | cut -d' ' -f1)
 rm -f flatpak_download_tmp
 echo $CHECKSUM_FLATPAK
+
+CURR_DIR=$PWD
+cd ../node_modules/librespot-node/native
+cargo generate-lockfile
+cd $CURR_DIR
+
+cd ../node_modules/scanner-native
+cargo generate-lockfile
+cd $CURR_DIR
+
+cd ../node_modules/rodio-audio-backend
+cargo generate-lockfile
+cd $CURR_DIR
+
 ./venv/bin/python flatpak-node-generator.py yarn --electron-node-headers ../yarn.lock
 ./venv/bin/python flatpak-cargo-generator.py ../node_modules/librespot-node/native/Cargo.lock -o generated-sources-cargo.json
 ./venv/bin/python flatpak-cargo-generator.py ../node_modules/scanner-native/Cargo.lock -o generated-sources-cargo-scanner.json
+./venv/bin/python flatpak-cargo-generator.py ../node_modules/scanner-native/Cargo.lock -o generated-sources-rodio.json
 
 sed -i "\@${FLATPAK_PARTIAL_DOWNLOAD}.*@{n;s@.*@        sha256: ${CHECKSUM_FLATPAK}@}" app.moosync.moosync.yml
 git add -A

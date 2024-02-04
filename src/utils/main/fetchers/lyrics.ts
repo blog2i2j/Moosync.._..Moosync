@@ -1,10 +1,10 @@
-import { loadSelectiveArrayPreference } from '../db/preferences'
-import { getSpotifyPlayerChannel } from '../ipc'
-import { CacheHandler } from './cacheFile'
+import path from 'path'
 import { getSongDB } from '@/utils/main/db/index'
 import { app } from 'electron'
 import { access, readFile } from 'fs/promises'
-import path from 'path'
+import { loadSelectiveArrayPreference } from '../db/preferences'
+import { getSpotifyPlayerChannel } from '../ipc'
+import { CacheHandler } from './cacheFile'
 
 interface AZSuggestions {
   term?: string

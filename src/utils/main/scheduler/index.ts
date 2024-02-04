@@ -9,8 +9,8 @@
 
 import { AsyncTask, SimpleIntervalJob, ToadScheduler } from 'toad-scheduler'
 
-import { loadSelectivePreference } from '../db/preferences'
 import { getScannerChannel, getUpdateChannel } from '@/utils/main/ipc'
+import { loadSelectivePreference } from '../db/preferences'
 
 const SCAN_TASK_ID = 'scan-task'
 const UPDATE_TASK_ID = 'update-task'

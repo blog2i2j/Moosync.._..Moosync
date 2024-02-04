@@ -7,9 +7,7 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { enableStartup } from '../autoLaunch'
-import { getExtensionHostChannel, getPreferenceChannel, getScannerChannel } from '../ipc'
-import { setLogLevel } from '../logger/utils'
+import path from 'path'
 import { isEmpty } from '@/utils/common'
 import { defaultKeybinds } from '@/utils/commonConstants'
 import { setMinimizeToTray } from '@/utils/main/windowManager'
@@ -17,7 +15,9 @@ import { app } from 'electron'
 import Store from 'electron-store'
 import { watch } from 'fs/promises'
 import log from 'loglevel'
-import path from 'path'
+import { enableStartup } from '../autoLaunch'
+import { getExtensionHostChannel, getPreferenceChannel, getScannerChannel } from '../ipc'
+import { setLogLevel } from '../logger/utils'
 
 const getDefaultPreferences = () => {
   const musicPath = getDefaultMusicPaths()

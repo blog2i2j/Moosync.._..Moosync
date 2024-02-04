@@ -10,15 +10,15 @@
 import { AuthFlow, AuthStateEmitter } from '@/utils/ui/oauth/flow'
 import { GenericProvider } from '@/utils/ui/providers/generics/genericProvider'
 
-import { FetchWrapper } from './generics/fetchWrapper'
+import { once } from 'events'
 import { bus } from '@/mainWindow/main'
 import { vxm } from '@/mainWindow/store'
 import { ProviderScopes } from '@/utils/commonConstants'
 import { EventBus } from '@/utils/main/ipc/constants'
 import { AuthorizationServiceConfiguration } from '@openid/appauth'
-import { once } from 'events'
 import { TokenScope } from 'librespot-node'
 import qs from 'qs'
+import { FetchWrapper } from './generics/fetchWrapper'
 
 /**
  * Spotify API base URL

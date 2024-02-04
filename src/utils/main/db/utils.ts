@@ -7,14 +7,14 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { app } from 'electron'
 import path from 'path'
+import { app } from 'electron'
 
-import { loadSelectivePreference } from './preferences'
+import { access, rename } from 'fs/promises'
 import { Worker, spawn } from 'threads'
 import { WorkerModule } from 'threads/dist/types/worker'
-import { access, rename } from 'fs/promises'
 import { _windowHandler } from '../windowManager'
+import { loadSelectivePreference } from './preferences'
 
 export class DBWorkerWrapper {
   private worker: Unpromise<ReturnType<typeof spawn<WorkerModule<string>>>> | undefined

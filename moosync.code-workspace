@@ -118,17 +118,20 @@
       "ytsr",
       "Zbps"
     ],
-    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "quickfix.biome": "explicit",
+      "source.organizeImports.biome": "explicit"
+    },
     "editor.formatOnPaste": true,
     "typescript.tsdk": "node_modules/typescript/lib",
     "[vue]": {
       "editor.defaultFormatter": "Vue.volar"
     },
     "[typescript]": {
-      "editor.defaultFormatter": "rome.rome"
+      "editor.defaultFormatter": "biomejs.biome"
     },
     "[javascript]": {
-      "editor.defaultFormatter": "rome.rome"
+      "editor.defaultFormatter": "biomejs.biome"
     },
     "search.exclude": {
       "**/node_modules": false,

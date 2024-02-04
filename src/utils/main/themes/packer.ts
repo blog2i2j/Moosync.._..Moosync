@@ -1,9 +1,9 @@
+import { promises as fsP } from 'fs'
+import path from 'path'
+import { isThemeDetails } from '@/utils/common'
 import AdmZip from 'adm-zip'
 import { app } from 'electron'
-import { promises as fsP } from 'fs'
-import { isThemeDetails } from '@/utils/common'
 import { loadTheme } from './preferences'
-import path from 'path'
 
 export class ThemePacker {
   public async packTheme(themeId: string) {

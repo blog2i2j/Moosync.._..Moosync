@@ -1,9 +1,9 @@
+import { createHash } from 'crypto'
+import path from 'path'
+import { app } from 'electron'
+import { setTimeout } from 'timers/promises'
 import { getSongDB } from '../db'
 import { CacheHandler } from './cacheFile'
-import { createHash } from 'crypto'
-import { app } from 'electron'
-import path from 'path'
-import { setTimeout } from 'timers/promises'
 
 const musicBrainzHeaders = {
   'User-Agent': `moosync/${process.env.MOOSYNC_VERSION.toString()} (ovenoboyo@gmail.com)`,

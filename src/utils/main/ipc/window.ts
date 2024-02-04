@@ -9,12 +9,12 @@
 
 import { IpcEvents, WindowEvents } from './constants'
 
+import path from 'path'
+import { downloadFile } from '@/utils/main/mainUtils'
+import { app, shell } from 'electron'
 import { mainWindowHasMounted } from '../../../background'
 import { oauthHandler } from '../oauth/handler'
 import { WindowHandler, _windowHandler } from '../windowManager'
-import { downloadFile } from '@/utils/main/mainUtils'
-import { app, shell } from 'electron'
-import path from 'path'
 
 export class BrowserWindowChannel implements IpcChannelInterface {
   name = IpcEvents.BROWSER_WINDOWS

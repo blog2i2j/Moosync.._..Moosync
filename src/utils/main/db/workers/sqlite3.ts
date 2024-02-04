@@ -1,13 +1,13 @@
 import { expose } from 'threads/worker'
 
-import { isAlbum, isArtist, isEmpty, sanitizeArtistName } from '@/utils/common'
 import { promises as fsP } from 'fs'
+import { isAlbum, isArtist, isEmpty, sanitizeArtistName } from '@/utils/common'
 import { v4 } from 'uuid'
 
-import { DBUtils } from './utils'
+import path from 'path'
 import { downloadFile } from '@/utils/main/mainUtils'
 import { access, mkdir } from 'fs/promises'
-import path from 'path'
+import { DBUtils } from './utils'
 
 let dbInstance: DBWrapper | undefined = undefined
 
@@ -623,7 +623,7 @@ class DBWrapper extends DBUtils {
 
     if (extension) {
       if (toUpdateInfo.extensions && info) {
-        toUpdateInfo['extensions'][extension] = info as Record<string, string>
+        toUpdateInfo.extensions[extension] = info as Record<string, string>
       }
     } else {
       toUpdateInfo = { ...toUpdateInfo, ...info }
@@ -752,7 +752,7 @@ class DBWrapper extends DBUtils {
 
     if (extension) {
       if (toUpdateInfo.extensions && info) {
-        toUpdateInfo['extensions'][extension] = info as Record<string, string>
+        toUpdateInfo.extensions[extension] = info as Record<string, string>
       }
     } else {
       toUpdateInfo = { ...toUpdateInfo, ...info }

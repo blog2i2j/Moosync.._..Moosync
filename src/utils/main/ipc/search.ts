@@ -7,15 +7,15 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { IpcEvents, SearchEvents } from './constants'
 import { getDisabledPaths } from '@/utils/main/db/preferences'
+import { IpcEvents, SearchEvents } from './constants'
 
+import { getSongDB } from '@/utils/main/db'
 import { loadSelectivePreference } from '../db/preferences'
 import { InvidiousRequester } from '../fetchers/invidious'
 import { LastFMScraper } from '../fetchers/lastfm'
 import { LyricsFetcher } from '../fetchers/lyrics'
 import { YTScraper } from '../fetchers/searchYT'
-import { getSongDB } from '@/utils/main/db'
 
 export class SearchChannel implements IpcChannelInterface {
   name = IpcEvents.SEARCH

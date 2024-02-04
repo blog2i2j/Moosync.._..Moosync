@@ -9,10 +9,10 @@
 
 import { Component, Vue } from 'vue-facing-decorator'
 
-import { GenericProvider } from '../providers/generics/genericProvider'
-import { ProviderScopes } from '@/utils/commonConstants'
-import { isEmpty } from '@/utils/common'
 import { vxm } from '@/mainWindow/store'
+import { isEmpty } from '@/utils/common'
+import { ProviderScopes } from '@/utils/commonConstants'
+import { GenericProvider } from '../providers/generics/genericProvider'
 
 @Component
 export default class ProviderMixin extends Vue {

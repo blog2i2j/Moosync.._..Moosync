@@ -1,4 +1,3 @@
-import { GenericProvider } from './generics/genericProvider'
 import { bus } from '@/mainWindow/main'
 import { vxm } from '@/mainWindow/store'
 /* eslint-disable @typescript-eslint/ban-types */
@@ -6,6 +5,7 @@ import { vxm } from '@/mainWindow/store'
 import { ProviderScopes } from '@/utils/commonConstants'
 import { EventBus } from '@/utils/main/ipc/constants'
 import 'reflect-metadata'
+import { GenericProvider } from './generics/genericProvider'
 
 type KeysMatching<T, V> = { [K in keyof T]-?: T[K] extends V ? K : never }[keyof T]
 

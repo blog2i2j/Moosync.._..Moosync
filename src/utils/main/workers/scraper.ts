@@ -10,14 +10,14 @@
 import { Observable, SubscriptionObserver } from 'observable-fns'
 import { expose } from 'threads/worker'
 
-import { prefixLogger } from '../logger/utils'
+import { createHash } from 'crypto'
+import fs from 'fs'
 import { sanitizeArtistName } from '@/utils/common'
 import axios, { AxiosError } from 'axios'
 import rateLimit from 'axios-rate-limit'
 import axiosRetry from 'axios-retry'
-import { createHash } from 'crypto'
-import fs from 'fs'
 import { getLogger, levels } from 'loglevel'
+import { prefixLogger } from '../logger/utils'
 
 const logger = getLogger('ScrapeWorker')
 logger.setLevel(process.env.DEBUG_LOGGING ? levels.DEBUG : levels.INFO)

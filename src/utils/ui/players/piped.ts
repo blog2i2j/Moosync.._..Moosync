@@ -1,6 +1,6 @@
-import { LocalPlayer } from './local'
-import { vxm } from '@/mainWindow/store'
 import EventEmitter from 'events'
+import { vxm } from '@/mainWindow/store'
+import { LocalPlayer } from './local'
 
 export class PipedPlayer extends LocalPlayer {
   private customLoadEventEmitter = new EventEmitter()

@@ -9,10 +9,10 @@
 
 import { IpcEvents, SongEvents } from './constants'
 
-import { getSongDB } from '../db'
-import { app } from 'electron'
 import fs from 'fs'
 import path from 'path'
+import { app } from 'electron'
+import { getSongDB } from '../db'
 
 export class SongsChannel implements IpcChannelInterface {
   name = IpcEvents.SONG

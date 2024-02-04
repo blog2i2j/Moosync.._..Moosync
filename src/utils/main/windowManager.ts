@@ -8,6 +8,7 @@
  */
 
 import {
+  net,
   BrowserWindow,
   Menu,
   ThumbarButton,
@@ -15,26 +16,25 @@ import {
   app,
   dialog,
   nativeImage,
-  net,
   protocol,
   session,
   shell,
   webFrameMain,
 } from 'electron'
-import { ButtonEnum, PlayerButtons } from 'media-controller'
-import { SongEvents, WindowEvents } from './ipc/constants'
 import { access, readFile } from 'fs/promises'
-import { getMprisChannel, getRodioChannel, getSpotifyPlayerChannel } from './ipc/index'
+import { ButtonEnum, PlayerButtons } from 'media-controller'
 import { getWindowSize, loadPreferences, setWindowSize } from './db/preferences'
+import { SongEvents, WindowEvents } from './ipc/constants'
+import { getMprisChannel, getRodioChannel, getSpotifyPlayerChannel } from './ipc/index'
 
-import { $t } from './i18nLoader'
-import { Readable } from 'stream'
-import { getActiveTheme } from './themes/preferences'
-import { getExtensionHostChannel } from './ipc'
-import { getSongDB } from './db/index'
-import { logger } from './logger'
-import { nativeTheme } from 'electron'
 import path from 'path'
+import { Readable } from 'stream'
+import { nativeTheme } from 'electron'
+import { getSongDB } from './db/index'
+import { $t } from './i18nLoader'
+import { getExtensionHostChannel } from './ipc'
+import { logger } from './logger'
+import { getActiveTheme } from './themes/preferences'
 
 export class WindowHandler {
   private static mainWindow: number

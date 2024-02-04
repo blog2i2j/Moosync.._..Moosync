@@ -9,13 +9,13 @@
 
 import { Component, mixins } from 'vue-facing-decorator'
 
-import ImgLoader from '@/utils/ui/mixins/ImageLoader'
-import ModelHelper from '@/utils/ui/mixins/ModelHelper'
-import { PeerMode } from '@/mainWindow/store/syncState'
-import { RepeatState } from '@/utils/commonConstants'
-import { SyncHolder } from '../sync/syncHandler'
 import { bus } from '@/mainWindow/main'
 import { vxm } from '@/mainWindow/store'
+import { PeerMode } from '@/mainWindow/store/syncState'
+import { RepeatState } from '@/utils/commonConstants'
+import ImgLoader from '@/utils/ui/mixins/ImageLoader'
+import ModelHelper from '@/utils/ui/mixins/ModelHelper'
+import { SyncHolder } from '../sync/syncHandler'
 
 @Component
 export default class SyncMixin extends mixins(ModelHelper, ImgLoader) {

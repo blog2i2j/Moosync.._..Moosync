@@ -7,9 +7,9 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { WindowHandler } from '../windowManager'
 import { getExtensionHostChannel } from '@/utils/main/ipc'
 import { v1 } from 'uuid'
+import { WindowHandler } from '../windowManager'
 
 type callbackRegistryItem = { path: string } & (
   | {

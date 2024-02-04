@@ -7,7 +7,7 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { BrowserWindowChannel } from './window'
+import { ipcMain } from 'electron'
 import { ExtensionHostChannel } from './extensionHost'
 import { LoggerChannel } from './logger'
 import { MprisChannel } from './mpris'
@@ -21,7 +21,7 @@ import { SongsChannel } from './songs'
 import { SpotifyPlayerChannel } from './spotifyPlayer'
 import { StoreChannel } from './store'
 import { UpdateChannel } from './update'
-import { ipcMain } from 'electron'
+import { BrowserWindowChannel } from './window'
 
 let scannerChannel: ScannerChannel | undefined = undefined
 let updateChannel: UpdateChannel | undefined = undefined

@@ -7,19 +7,19 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { IpcEvents, ScannerEvents } from './constants'
 import { IpcMainEvent, app } from 'electron'
 import type { Playlist as ScanPlaylist, Song as ScanSong, SongWithLen } from 'scanner-native'
 import { getCombinedMusicPaths, loadPreferences, loadSelectivePreference } from '../db/preferences'
+import { IpcEvents, ScannerEvents } from './constants'
 
-import { MetadataFetcher } from '../fetchers/metadata'
-import { WindowHandler } from '../windowManager'
 import fs from 'fs'
-import { getSongDB } from '@/utils/main/db/index'
 import os from 'os'
 import path from 'path'
-import { setupScanTask } from '../scheduler'
+import { getSongDB } from '@/utils/main/db/index'
 import { v4 } from 'uuid'
+import { MetadataFetcher } from '../fetchers/metadata'
+import { setupScanTask } from '../scheduler'
+import { WindowHandler } from '../windowManager'
 
 enum ScanStatus {
   UNDEFINED = 0,

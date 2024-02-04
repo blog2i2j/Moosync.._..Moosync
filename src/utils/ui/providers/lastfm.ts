@@ -7,12 +7,12 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { FetchWrapper } from './generics/fetchWrapper'
 import { bus } from '@/mainWindow/main'
 import { ProviderScopes } from '@/utils/commonConstants'
 import { EventBus } from '@/utils/main/ipc/constants'
 import { GenericProvider } from '@/utils/ui/providers/generics/genericProvider'
 import { md5 } from 'hash-wasm'
+import { FetchWrapper } from './generics/fetchWrapper'
 
 const AUTH_BASE_URL = 'https://www.last.fm/api/'
 const API_BASE_URL = 'https://ws.audioscrobbler.com/2.0'

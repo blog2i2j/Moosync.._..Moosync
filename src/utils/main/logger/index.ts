@@ -1,6 +1,6 @@
-import { cleanLogs, prefixLogger } from './utils'
 import { app } from 'electron'
 import log from 'loglevel'
+import { cleanLogs, prefixLogger } from './utils'
 
 cleanLogs(app.getPath('logs'))
 

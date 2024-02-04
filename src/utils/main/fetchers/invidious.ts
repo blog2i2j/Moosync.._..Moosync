@@ -1,7 +1,7 @@
+import path from 'path'
+import { app } from 'electron'
 import { loadSelectivePreference } from '../db/preferences'
 import { CacheHandler } from './cacheFile'
-import { app } from 'electron'
-import path from 'path'
 
 export class InvidiousRequester extends CacheHandler {
   constructor() {
@@ -59,7 +59,7 @@ export class InvidiousRequester extends CacheHandler {
   private request(parsed: URL, authorization?: string, invalidateCache = false) {
     const headers: { [key: string]: string } = { 'Content-Type': 'application/json' }
     if (authorization) {
-      headers['Authorization'] = `Bearer ${authorization}`
+      headers.Authorization = `Bearer ${authorization}`
     }
     return this.get<unknown>(parsed.toString(), headers, undefined, true, invalidateCache)
   }

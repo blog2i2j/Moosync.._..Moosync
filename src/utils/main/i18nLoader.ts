@@ -1,5 +1,5 @@
-import { loadSelectivePreference } from './db/preferences'
 import { messages } from '../ui/i18n'
+import { loadSelectivePreference } from './db/preferences'
 
 export function $t(key: string): string {
   const langs = loadSelectivePreference<Checkbox[]>('system_language')

@@ -19,8 +19,8 @@ import {
   QueryStringUtils,
 } from '@openid/appauth'
 
-import { WebCrypto } from './crypto_utils'
 import EventEmitter from 'events'
+import { WebCrypto } from './crypto_utils'
 
 class ServerEventsEmitter extends EventEmitter {
   static ON_AUTHORIZATION_RESPONSE = 'authorization_response'

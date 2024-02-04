@@ -1,8 +1,8 @@
 import { exec } from 'child_process'
+import path from 'path'
 import { app, nativeTheme } from 'electron'
 import { access, readFile } from 'fs/promises'
 import ini from 'ini'
-import path from 'path'
 
 enum DesktopEnvironments {
   PLASMA = 'plasma',
@@ -115,7 +115,7 @@ export class SystemThemeHandler {
   }
 
   private getDesktopEnvironment() {
-    return process.env['DESKTOP_SESSION'] as DesktopEnvironments
+    return process.env.DESKTOP_SESSION as DesktopEnvironments
   }
 
   private async getKDEConfigUtil() {
@@ -187,8 +187,8 @@ export class SystemThemeHandler {
     const data = ini.parse(await readFile(file, 'utf-8')) as KdeGlobals
 
     let colorsData: KdeGlobals | undefined
-    if (data?.['General']?.['ColorScheme']) {
-      const themeName = data?.['General']?.['ColorScheme']
+    if (data.General?.ColorScheme) {
+      const themeName = data.General.ColorScheme
       const colorsFile = await this.findColorSchemes(themeName)
       if (colorsFile) {
         colorsData = ini.parse(await readFile(colorsFile, 'utf-8')) as KdeGlobals
@@ -205,14 +205,14 @@ export class SystemThemeHandler {
       const complementary = colorsData?.['Colors:Complementary']
 
       const theme = {
-        primary: rgbToHex(view?.['BackgroundNormal']) ?? defaultTheme.primary,
-        secondary: rgbToHex(view?.['BackgroundAlternate']) ?? defaultTheme.secondary,
-        tertiary: rgbToHex(complementary?.['BackgroundNormal']) ?? defaultTheme.tertiary,
-        textPrimary: rgbToHex(view?.['ForegroundNormal']) ?? defaultTheme.textPrimary,
-        textSecondary: rgbToHex(view?.['ForegroundInactive']) ?? defaultTheme.textSecondary,
-        textInverse: rgbToHex(view?.['ForegroundNormal'], true) ?? defaultTheme.textInverse,
-        accent: rgbToHex(selection?.['BackgroundNormal']) ?? defaultTheme.accent,
-        divider: rgbToHex(view?.['DecorationFocus']) ?? defaultTheme.divider,
+        primary: rgbToHex(view.BackgroundNormal) ?? defaultTheme.primary,
+        secondary: rgbToHex(view.BackgroundAlternate) ?? defaultTheme.secondary,
+        tertiary: rgbToHex(complementary.BackgroundNormal) ?? defaultTheme.tertiary,
+        textPrimary: rgbToHex(view.ForegroundNormal) ?? defaultTheme.textPrimary,
+        textSecondary: rgbToHex(view.ForegroundInactive) ?? defaultTheme.textSecondary,
+        textInverse: rgbToHex(view.ForegroundNormal, true) ?? defaultTheme.textInverse,
+        accent: rgbToHex(selection.BackgroundNormal) ?? defaultTheme.accent,
+        divider: rgbToHex(view.DecorationFocus) ?? defaultTheme.divider,
       }
 
       return {

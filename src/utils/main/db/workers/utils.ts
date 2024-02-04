@@ -2,9 +2,9 @@ import DB, { BetterSqlite3Helper } from 'better-sqlite3-helper'
 import log, { getLogger, levels } from 'loglevel'
 
 import { isEmpty } from '@/utils/common'
-import { migrations } from '../migrations'
-import { prefixLogger } from '../../logger/utils'
 import { v1 } from 'uuid'
+import { prefixLogger } from '../../logger/utils'
+import { migrations } from '../migrations'
 
 export class DBUtils {
   protected db: BetterSqlite3Helper.DBInstance

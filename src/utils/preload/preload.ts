@@ -7,8 +7,6 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { ButtonEnum, PlayerButtons } from 'media-controller'
-import { ConstructorConfig, PlayerEvent, PlayerEventTypes, TokenScope } from 'librespot-node'
 import {
   ExtensionHostEvents,
   IpcEvents,
@@ -26,11 +24,13 @@ import {
   WindowEvents,
 } from '@/utils/main/ipc/constants'
 import { contextBridge, ipcRenderer, webFrame } from 'electron'
+import { ConstructorConfig, PlayerEvent, PlayerEventTypes, TokenScope } from 'librespot-node'
+import { ButtonEnum, PlayerButtons } from 'media-controller'
 
 import { IpcRendererHolder } from '@/utils/preload/ipc/index'
 import { LogLevelDesc } from 'loglevel'
-import { SpotifyEvents } from '../main/ipc/constants'
 import ytpl from 'ytpl'
+import { SpotifyEvents } from '../main/ipc/constants'
 
 const ipcRendererHolder = new IpcRendererHolder(ipcRenderer)
 

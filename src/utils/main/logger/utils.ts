@@ -10,8 +10,8 @@
 import { Console } from 'console'
 import { WriteStream, createWriteStream, readdir, unlink } from 'fs'
 
-import log from 'loglevel'
 import path from 'path'
+import log from 'loglevel'
 import stripAnsi from 'strip-ansi'
 
 let filePath: string

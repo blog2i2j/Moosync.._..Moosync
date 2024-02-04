@@ -7,12 +7,12 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { LocalPlayer } from './local'
-import { YTPlayerWrapper } from './wrapper/ytPlayer'
 import { vxm } from '@/mainWindow/store'
 import localforage from 'localforage'
 import { Segment, SponsorBlock } from 'sponsorblock-api'
 import { v4 } from 'uuid'
+import { LocalPlayer } from './local'
+import { YTPlayerWrapper } from './wrapper/ytPlayer'
 
 type YouTubePlayerQuality = 'small' | 'medium' | 'large' | 'hd720' | 'hd1080' | 'highres' | 'default'
 

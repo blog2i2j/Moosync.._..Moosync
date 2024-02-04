@@ -7,8 +7,8 @@
  *  See LICENSE in the project root for license information.
  */
 
-import { Component } from 'vue-facing-decorator'
 import { ThemeStore } from '@/mainWindow/store/themes'
+import { Component } from 'vue-facing-decorator'
 import { Vue } from 'vue-facing-decorator'
 
 type StyleElement = {

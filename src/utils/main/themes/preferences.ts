@@ -1,10 +1,10 @@
 import { isEmpty, isThemeDetails } from '../../common'
 import { loadSelectivePreference, saveSelectivePreference, store } from '../db/preferences'
 
-import { SystemThemeHandler } from './system'
-import { app } from 'electron'
 import { promises as fsP } from 'fs'
 import path from 'path'
+import { app } from 'electron'
+import { SystemThemeHandler } from './system'
 
 /**
  * Saves theme under key "themes"

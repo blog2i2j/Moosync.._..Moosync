@@ -1,6 +1,6 @@
+import EventEmitter from 'events'
 import { vxm } from '../../../mainWindow/store/index'
 import { LocalPlayer } from './local'
-import EventEmitter from 'events'
 
 export class InvidiousPlayer extends LocalPlayer {
   private customLoadEventEmitter = new EventEmitter()

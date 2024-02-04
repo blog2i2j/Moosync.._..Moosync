@@ -1,6 +1,6 @@
-import { FetchCacheHandler } from './cacheHandler'
-import { isEmpty } from '@/utils/common'
 import { URLSearchParams } from 'url'
+import { isEmpty } from '@/utils/common'
+import { FetchCacheHandler } from './cacheHandler'
 
 interface StoredResponse {
   ok: boolean

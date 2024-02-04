@@ -9,11 +9,11 @@
 
 import { HotkeyEvents, RepeatState, defaultKeybinds } from '@/utils/commonConstants'
 
-import { Component } from 'vue-facing-decorator'
-import PlayerControls from '@/utils/ui/mixins/PlayerControls'
 import { bus } from '@/mainWindow/main'
-import { mixins } from 'vue-facing-decorator'
 import { vxm } from '@/mainWindow/store'
+import PlayerControls from '@/utils/ui/mixins/PlayerControls'
+import { Component } from 'vue-facing-decorator'
+import { mixins } from 'vue-facing-decorator'
 
 @Component
 export default class KeyHandlerMixin extends mixins(PlayerControls) {

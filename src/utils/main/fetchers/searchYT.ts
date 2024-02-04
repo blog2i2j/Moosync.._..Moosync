@@ -9,13 +9,13 @@
 
 import * as ytMusic from 'node-youtube-music'
 
-import { CacheHandler } from './cacheFile'
-import { app } from 'electron'
-import { escapeRegExp } from '@/utils/common'
 import path from 'path'
+import { escapeRegExp } from '@/utils/common'
+import { app } from 'electron'
 import ytdl from 'ytdl-core'
 import ytpl from 'ytpl'
 import ytsr from 'ytsr'
+import { CacheHandler } from './cacheFile'
 
 interface YTMusicWMatchIndex extends Song {
   matchIndex: number
@@ -210,7 +210,7 @@ export class YTScraper extends CacheHandler {
     const split = dur.split(':')
     let ret = 0
     for (let i = split.length - 1; i >= 0; i--) {
-      ret += parseInt(split[i]) * Math.pow(60, split.length - i - 1)
+      ret += parseInt(split[i]) * 60 ** (split.length - i - 1)
     }
     return ret
   }
