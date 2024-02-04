@@ -155,6 +155,10 @@ export default class PlayerControls extends Vue {
   private oldVolume = 50
 
   get volume() {
+    if (vxm.player.volume === 0) {
+      return 0
+    }
+
     const maxv = Math.log(this.clamp)
     const scale = maxv / maxp
 

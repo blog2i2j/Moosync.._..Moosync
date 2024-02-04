@@ -62,7 +62,7 @@ export class RodioPlayer extends Player {
 
   set volume(volume: number) {
     this._volume = volume
-    window.RodioUtils.setVolume(volume / 100)
+    window.RodioUtils.setVolume(volume)
   }
   protected listenOnEnded(callback: () => void): void {
     this.callbacks[RodioEvents.ON_ENDED] = callback

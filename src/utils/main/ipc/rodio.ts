@@ -9,6 +9,7 @@
 
 import { IpcEvents, RodioEvents } from './constants'
 
+import { isEmpty } from '@/utils/common'
 import { RodioBackend } from 'rodio-audio-backend'
 import { WindowHandler } from '../windowManager'
 
@@ -46,6 +47,11 @@ export class RodioChannel implements IpcChannelInterface {
 
   private async initialize(event: Electron.IpcMainEvent, request: IpcRequest) {
     console.debug('Initializing Rodio backend')
+
+    if (this.rodioInstance) {
+      await this.rodioInstance.stop()
+    }
+
     this.rodioInstance = new RodioBackend()
     this.registerListeners()
 
@@ -92,9 +98,9 @@ export class RodioChannel implements IpcChannelInterface {
   }
 
   private async setVolume(event: Electron.IpcMainEvent, request: IpcRequest<RodioRequests.Volume>) {
-    if (request.params.volume) {
+    if (!isEmpty(request.params.volume)) {
       try {
-        await this.rodioInstance?.setVolume(request.params.volume)
+        await this.rodioInstance?.setVolume(request.params.volume / 100)
       } catch (e) {
         this.emitError(e)
       }
@@ -106,7 +112,7 @@ export class RodioChannel implements IpcChannelInterface {
   private async seek(event: Electron.IpcMainEvent, request: IpcRequest<RodioRequests.Seek>) {
     if (request.params.pos) {
       try {
-        await this.rodioInstance?.seek(request.params.pos)
+        await this.rodioInstance?.seek(Number(request.params.pos.toFixed(0)))
       } catch (e) {
         this.emitError(e)
       }

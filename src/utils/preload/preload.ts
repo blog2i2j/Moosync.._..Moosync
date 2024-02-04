@@ -821,8 +821,9 @@ contextBridge.exposeInMainWorld('RodioUtils', {
   stop: () => ipcRendererHolder.send(IpcEvents.RODIO, { type: RodioEvents.STOP, params: undefined }),
   seek: (pos: number) =>
     ipcRendererHolder.send<RodioRequests.Seek>(IpcEvents.RODIO, { type: RodioEvents.SEEK, params: { pos } }),
-  setVolume: (volume: number) =>
-    ipcRendererHolder.send<RodioRequests.Volume>(IpcEvents.RODIO, { type: RodioEvents.SET_VOLUME, params: { volume } }),
+  setVolume: (volume: number) => {
+    ipcRendererHolder.send<RodioRequests.Volume>(IpcEvents.RODIO, { type: RodioEvents.SET_VOLUME, params: { volume } })
+  },
   // getCurrentTime: () => ipcRendererHolder.send(IpcEvents.RODIO, { type: RodioEvents.GET_POSITION, params: undefined }),
   // getVolume: () => ipcRendererHolder.send(IpcEvents.RODIO, { type: RodioEvents.GET_VOLUME, params: undefined }),
   listenEvents: (callback: (event: RodioEvents) => void) => ipcRendererHolder.on(IpcEvents.RODIO, callback),
