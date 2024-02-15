@@ -1,7 +1,7 @@
 {
   "sidebar": {
     "tabs": {
-      "queue": "加入播放队列",
+      "queue": "队列",
       "allSongs": "所有歌曲",
       "playlists": "播放列表",
       "albums": "专辑",
@@ -160,7 +160,7 @@
         "colors": "颜色",
         "colors_tooltip": "更改颜色以自定义界面",
         "css": "自定义 CSS",
-        "watch_css": "Watch CSS for file changes"
+        "watch_css": "监视CSS 以更改文件"
       },
       "primary": "主要",
       "secondary": "背景色",
@@ -284,7 +284,7 @@
         "az_lyrics": "使用 AZLyrics",
         "google_lyrics": "使用谷歌搜索歌词",
         "spotify_lyrics": "使用 Spotify 显示歌词 (需要 librespot)",
-        "genius_lyrics": "Use Genius"
+        "genius_lyrics": "使用 Genius"
       },
       "queueSettings": {
         "title": "队列设置",
@@ -349,16 +349,16 @@
     "prev_song": "上一曲",
     "seek_forward": "快进",
     "seek_backwards": "快退",
-    "seek_0": "Seek to 0%",
-    "seek_1": "Seek to 10%",
-    "seek_2": "Seek to 20%",
-    "seek_3": "Seek to 30%",
-    "seek_4": "Seek to 40%",
-    "seek_5": "Seek to 50%",
-    "seek_6": "Seek to 60%",
-    "seek_7": "Seek to 70%",
-    "seek_8": "Seek to 80%",
-    "seek_9": "Seek to 90%"
+    "seek_0": "寻求0%",
+    "seek_1": "寻求10%",
+    "seek_2": "寻求20%",
+    "seek_3": "寻求30%",
+    "seek_4": "寻求40%",
+    "seek_5": "寻求50%",
+    "seek_6": "寻求60%",
+    "seek_7": "寻求70%",
+    "seek_8": "寻求80%",
+    "seek_9": "寻求90%"
   },
   "tray": {
     "play": "播放",
