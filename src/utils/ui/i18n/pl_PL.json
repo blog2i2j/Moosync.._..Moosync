@@ -6,7 +6,7 @@
       "playlists": "Listy odtwarzania",
       "albums": "Albumy",
       "artists": "Artyści",
-      "genre": "Genres",
+      "genre": "Gatunki",
       "explore": "Przeglądaj",
       "paths": "Paths",
       "themes": "Themes",
@@ -284,7 +284,7 @@
         "az_lyrics": "Użyj AZLyrics",
         "google_lyrics": "Użyj tekstów wyszukiwania Google",
         "spotify_lyrics": "Use Spotify for lyrics (Requires librespot)",
-        "genius_lyrics": "Use Genius"
+        "genius_lyrics": "Używaj Genius"
       },
       "queueSettings": {
         "title": "Ustawienia kolejki",
@@ -298,9 +298,9 @@
         }
       },
       "volumePersistMode": {
-        "title": "Volume behavior",
-        "tooltip": "Change the way volume slider behaves",
-        "noPersist": "Normal behavior",
+        "title": "Zachowana dźwięku",
+        "tooltip": "Zmień sposób, w jaki zachowuje się suwak głośności",
+        "noPersist": "Normalnie",
         "persistSeparateVolumes": "Remember separate volume for each provider",
         "persistClampVolume": "Manually adjust volume range for each provider"
       }
