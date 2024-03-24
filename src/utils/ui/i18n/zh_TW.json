@@ -63,143 +63,143 @@
   "contextMenu": {
     "sort_by": "排序方式",
     "sort": {
-      "title": "Title",
-      "album": "Album (Track No.)",
-      "artist": "Artist",
-      "genre": "Genre",
-      "date_added": "Date added",
-      "provider": "Provider",
-      "playCount": "Play count"
+      "title": "標題",
+      "album": "專輯 (曲目編號)",
+      "artist": "歌手",
+      "genre": "類型",
+      "date_added": "加入日期",
+      "provider": "提供者",
+      "playCount": "播放次數"
     },
     "playlist": {
-      "new": "New Playlist",
-      "addFromURL": "Import from URL",
-      "remove": "Remove playlist",
-      "export": "Export playlist",
-      "add": "Add To Playlist",
-      "save": "Add To Library"
+      "new": "新增播放清單",
+      "addFromURL": "從網址匯入",
+      "remove": "移除播放清單",
+      "export": "匯出播放清單",
+      "add": "新增至播放清單",
+      "save": "加入至音樂庫"
     },
     "song": {
-      "addFromURL": "Add from URL",
-      "playNow": "Play Now",
-      "playNext": "Play Next",
-      "clearAndPlay": "Clear queue and play",
-      "addToQueue": "Add To Queue",
-      "moveToTop": "Move to top",
-      "moveToBottom": "Move to bottom",
-      "moveManually": "Move manually",
-      "manualIndex": "Set index of song",
-      "remove": "Remove from Library",
-      "add": "Add Song to Library | Add Songs to Library",
-      "removeFromPlaylist": "Remove from playlist",
-      "hideFromLibrary": "Hide from library",
-      "showInLibrary": "Show in library",
-      "showHidden": "Show hidden songs",
-      "hideHidden": "Hide hidden songs",
-      "openInBrowser": "Open in browser",
-      "gotoAlbum": "Goto album ({title})",
-      "gotoArtists": "Goto artists"
+      "addFromURL": "從網址新增",
+      "playNow": "立即播放",
+      "playNext": "播放下一首",
+      "clearAndPlay": "清除佇列後播放",
+      "addToQueue": "新增至佇列",
+      "moveToTop": "移到最上面",
+      "moveToBottom": "移到底端",
+      "moveManually": "自訂曲目編號",
+      "manualIndex": "設定編號",
+      "remove": "從音樂庫刪除",
+      "add": "加入音樂庫 | 加入音樂庫",
+      "removeFromPlaylist": "從播放清單移除",
+      "hideFromLibrary": "從音樂庫隱藏",
+      "showInLibrary": "在音樂庫顯示",
+      "showHidden": "顯示隱藏的歌曲",
+      "hideHidden": "隱藏歌曲",
+      "openInBrowser": "在瀏覽器開啟",
+      "gotoAlbum": "前往專輯 ({title})",
+      "gotoArtists": "前往歌手"
     },
     "artist": {
-      "remove": "Remove artist"
+      "remove": "刪除歌手"
     },
     "album": {
-      "remove": "Remove album"
+      "remove": "刪除專輯"
     },
-    "moreInfo": "More Info",
-    "incorrectPlayback": "Incorrect playback?"
+    "moreInfo": "更多資訊",
+    "incorrectPlayback": "無法正常播放?"
   },
   "explore": {
-    "you_listened_to": "You've listened to",
-    "of_music": "of music",
-    "played_for": "Played for",
-    "hot_from": "Hot from"
+    "you_listened_to": "你正在收聽",
+    "of_music": "的音樂",
+    "played_for": "播放",
+    "hot_from": "熱門"
   },
   "providers": {
-    "youtube": "Youtube",
+    "youtube": "YouTube",
     "spotify": "Spotify",
     "invidious": "Invidious",
     "lastfm": "LastFM"
   },
   "accounts": {
-    "connect": "Connect",
-    "sign_out": "Sign out"
+    "connect": "連線",
+    "sign_out": "登出"
   },
   "settings": {
     "paths": {
-      "songDirectories": "Song Directories",
-      "songDirectories_tooltip": "Directories where all your local music is stored",
-      "songDirectories_exclude": "Blacklisted Directories",
-      "songDirectories_exclude_tooltip": "Songs in these directories would not be scanned",
-      "addFolder": "Add Folder...",
-      "remove": "Remove",
-      "artworkPath": "Downloaded Artwork Path",
-      "artworkPath_tooltip": "Directory where downloaded artworks are stored",
-      "thumbnailPath": "Downloaded Thumbnail Path",
-      "thumbnailPath_tooltip": "Directory where generated thumbnails are stored",
+      "songDirectories": "歌曲目錄",
+      "songDirectories_tooltip": "本機音樂的儲存目錄",
+      "songDirectories_exclude": "黑名單目錄",
+      "songDirectories_exclude_tooltip": "目錄內的歌曲不會被掃描",
+      "addFolder": "加入資料夾",
+      "remove": "刪除",
+      "artworkPath": "音樂下載的路徑",
+      "artworkPath_tooltip": "下載音樂的儲存目錄",
+      "thumbnailPath": "縮圖下載的路徑",
+      "thumbnailPath_tooltip": "下載縮圖的儲存目錄",
       "splitter": "Artist name split pattern",
       "splitter_tooltip": "Regex to split artist names. Leave empty to disable splitting.",
       "scan_interval": "Scan interval",
       "scan_interval_tooltip": "Interval in minutes to trigger a scan task. Set to -1 to disable automatic scanning",
       "scan_threads": "Scan CPU threads",
-      "scan_threads_tooltip": "Number of threads to use when scanning for local music"
+      "scan_threads_tooltip": "掃描本機音樂目錄的CPU執行緒數目"
     },
     "themes": {
-      "songView": "Songs View",
-      "songView_tooltip": "Customize song list appearance",
-      "songView_classic": "Classic",
-      "songView_compact": "Compact",
-      "themes": "Themes",
-      "themes_tooltip": "Customize colors",
-      "themes_default": "Default",
-      "createTheme": "New theme",
-      "importTheme": "Import theme",
+      "songView": "歌曲顯示",
+      "songView_tooltip": "自訂歌曲顯示外觀",
+      "songView_classic": "經典",
+      "songView_compact": "精簡",
+      "themes": "佈景主題",
+      "themes_tooltip": "自訂顏色",
+      "themes_default": "預設",
+      "createTheme": "新增佈景",
+      "importTheme": "匯入佈景",
       "newTheme": {
-        "name": "Theme Name",
-        "author": "Author",
-        "colors": "Colors",
-        "colors_tooltip": "Change the colors to customise UI",
-        "css": "Custom CSS",
-        "watch_css": "Watch CSS for file changes"
+        "name": "佈景主題名稱",
+        "author": "作者",
+        "colors": "顏色",
+        "colors_tooltip": "變更操作介面的顏色",
+        "css": "自訂 CSS",
+        "watch_css": "監視 CSS 檔案變動"
       },
-      "primary": "Primary",
-      "secondary": "Secondary",
-      "tertiary": "Tertiary",
+      "primary": "主要",
+      "secondary": "次要",
+      "tertiary": "第三級",
       "textPrimary": "Text Primary",
       "textSecondary": "Text Secondary",
       "textInverse": "Text Inverse",
-      "accent": "Accent",
-      "divider": "Divider",
-      "import_button": "Import"
+      "accent": "色調",
+      "divider": "分隔線",
+      "import_button": "匯入"
     },
     "extensions": {
-      "extensions": "Extensions",
-      "extensions_tooltip": "List of all installed extensions",
-      "discover": "Discover",
-      "install": "Install from file",
-      "remove": "Remove"
+      "extensions": "擴充功能",
+      "extensions_tooltip": "已安裝的擴充功能列表",
+      "discover": "探索",
+      "install": "從檔案安裝",
+      "remove": "刪除"
     },
     "system": {
       "systemSettings": {
-        "title": "System Settings",
-        "systemStartup": "Start app on system startup",
-        "minimizeTray": "Minimize to tray on close",
-        "hardwareAcceleration": "Use GPU hardware acceleration",
-        "watchFileChanges": "Watch music directories for changes",
-        "enableJukeboxMode": "Enable toggle for Jukebox mode",
-        "lastLoadedPlaybackState": "Load last playback state on startup"
+        "title": "系統設定",
+        "systemStartup": "系統重啟時自動開啟",
+        "minimizeTray": "關閉時最小化",
+        "hardwareAcceleration": "使用 GPU 硬體加速",
+        "watchFileChanges": "監視目錄是否有新歌曲",
+        "enableJukeboxMode": "啟用切換 Jukebox 模式",
+        "lastLoadedPlaybackState": "啟動時回復之前的播放狀態"
       },
-      "systemSettings_tooltip": "Settings which are related to your system",
+      "systemSettings_tooltip": "系統有關的設定",
       "audioSettings": {
-        "title": "Audio Settings",
-        "gaplessPlayback": "Use gapless playback for wherever possible",
+        "title": "音訊設定",
+        "gaplessPlayback": "盡可能使用無縫播放",
         "sponsorBlock": "Use SponsorBlock to automatically skip to highlighted part of Youtube song"
       },
-      "audioSettings_tooltip": "Settings which are related audio playback",
+      "audioSettings_tooltip": "播放音訊相關的設定",
       "gapless_skip": "Skip song before end (seconds)",
       "invidiousUrlUnsupported": "This url does not support Invidious API",
       "invidious_tooltip": "Invidious instance to use instead of youtube",
-      "restartApp": "Restart Moosync",
+      "restartApp": "重啟 Moosync",
       "zoom": "Zoom Factor (Beta)",
       "zoom_tooltip": "Zoom of windows in percentage. This may break the UI.",
       "spotify": {
@@ -263,12 +263,12 @@
           "useEmbeds": "Use Youtube embeds for playing audio from Youtube"
         }
       },
-      "language": "Language",
-      "language_tooltip": "Change the language of the interface",
-      "clearPreferences": "Reset to default",
-      "clear_preferences_title": "Reset to default?",
-      "clear_preferences": "Are you sure you want to reset everything to default? The app will restart after you reset.",
-      "clear_preferences_button": "Confirm",
+      "language": "語言",
+      "language_tooltip": "設定介面的語言。",
+      "clearPreferences": "重設為預設植",
+      "clear_preferences_title": "重設為預設植?",
+      "clear_preferences": "確定要重置所有設定為預設值? 重置完成後將自動重啟",
+      "clear_preferences_button": "確認",
       "jukebox": {
         "pin": "Jukebox mode pin",
         "pin_tooltip": "This pin will be required to exit Jukebox Mode. Should be numeric.",
@@ -287,9 +287,9 @@
         "genius_lyrics": "Use Genius"
       },
       "queueSettings": {
-        "title": "Queue Settings",
-        "tooltip": "Options to tweak the behavior of song queue",
-        "clearQueue": "Clear queue before adding playing a playlist"
+        "title": "佇列設定",
+        "tooltip": "音樂佇列的微調項目",
+        "clearQueue": "加入播放清單前清空佇列"
       },
       "scrobble": {
         "provider_toggle": {
@@ -306,30 +306,30 @@
       }
     },
     "logs": {
-      "logSettings": "Log Settings",
-      "level": "Level",
-      "process": "Process",
-      "filterMessage": "Filter Message",
+      "logSettings": "日誌設定",
+      "level": "等級",
+      "process": "程序",
+      "filterMessage": "過濾訊息",
       "levels": {
-        "all": "All",
-        "debug": "Debug",
-        "info": "Info",
-        "warn": "Warn",
-        "error": "Error"
+        "all": "所有",
+        "debug": "偵錯",
+        "info": "資訊",
+        "warn": "警告",
+        "error": "錯誤"
       },
-      "debug_logging": "Enable debug logging",
+      "debug_logging": "啟用除錯日誌",
       "table": {
-        "time": "Time",
-        "level": "Level",
-        "process": "Process",
-        "message": "Message"
+        "time": "時間",
+        "level": "等級",
+        "process": "程序",
+        "message": "訊息"
       }
     }
   },
   "hotkeys": {
-    "play": "Play Song",
-    "pause": "Pause song",
-    "play_toggle": "Toggle play",
+    "play": "播放歌曲",
+    "pause": "暫停播放",
+    "play_toggle": "播放切換",
     "mute_active": "Mute",
     "mute_inactive": "Unmute",
     "mute_toggle": " Toggle mute",
@@ -361,18 +361,18 @@
     "seek_9": "Seek to 90%"
   },
   "tray": {
-    "play": "Play",
-    "pause": "Pause",
-    "next": "Next",
-    "prev": "Prev",
-    "repeat": "Repeat",
-    "no_repeat": "No repeat",
-    "shuffle": "Shuffle",
-    "show_app": "Show app",
-    "quit": "Quit"
+    "play": "播放",
+    "pause": "暫停",
+    "next": "下一首",
+    "prev": "上一首",
+    "repeat": "重複",
+    "no_repeat": "不重複",
+    "shuffle": "隨機播放",
+    "show_app": "顯示應用程式",
+    "quit": "離開"
   },
   "toasts": {
     "queued": "Queued {count} song | Queued {count} songs",
-    "shuffled": "Shuffled"
+    "shuffled": "隨機播放的"
   }
 }
