@@ -307,7 +307,7 @@
     },
     "logs": {
       "logSettings": "日誌設定",
-      "level": "等級",
+      "level": "層級",
       "process": "程序",
       "filterMessage": "過濾訊息",
       "levels": {
@@ -320,7 +320,7 @@
       "debug_logging": "啟用除錯日誌",
       "table": {
         "time": "時間",
-        "level": "等級",
+        "level": "層級",
         "process": "程序",
         "message": "訊息"
       }
