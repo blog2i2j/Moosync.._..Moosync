@@ -12,7 +12,7 @@
     <b-row no-gutters>
       <PreferenceHeader
         :title="$t('settings.extensions.extensions')"
-        tooltip="$t('settings.extensions.extensions_tooltip')"
+        :tooltip="$t('settings.extensions.extensions_tooltip')"
       />
       <b-col cols="auto" align-self="center" class="new-directories ml-auto d-flex">
         <div class="d-flex" @click="openDiscoverModal">
