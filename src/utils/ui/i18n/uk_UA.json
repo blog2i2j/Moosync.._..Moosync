@@ -6,14 +6,14 @@
       "playlists": "Плейлісти",
       "albums": "Альбоми",
       "artists": "Виконавці",
-      "genre": "Genres",
+      "genre": "Жанри",
       "explore": "Досліджуйте",
-      "paths": "Paths",
-      "themes": "Themes",
-      "extensions": "Extensions",
-      "system": "System",
-      "logs": "Logs",
-      "keybinds": "Keybinds"
+      "paths": "Шляхи",
+      "themes": "Теми",
+      "extensions": "Розширення",
+      "system": "Система",
+      "logs": "Логи",
+      "keybinds": "Гарячі клавіші"
     }
   },
   "topbar": {
@@ -24,13 +24,13 @@
     "playlists": "Плейлісти",
     "albums": "Альбоми",
     "artists": "Виконавці",
-    "genres": "Genres",
+    "genres": "Жанри",
     "explore": "Досліджуйте"
   },
   "playlists": {
-    "local": "Local",
+    "local": "Локальні",
     "new_playlist": {
-      "create": "Create",
+      "create": "Створити",
       "description_placeholder": "Description..."
     },
     "url": {
