@@ -11,7 +11,7 @@
       "paths": "Шляхи",
       "themes": "Теми",
       "extensions": "Розширення",
-      "system": "Система",
+      "system": "Системні",
       "logs": "Логи",
       "keybinds": "Гарячі клавіші"
     }
@@ -31,10 +31,10 @@
     "local": "Локальні",
     "new_playlist": {
       "create": "Створити",
-      "description_placeholder": "Description..."
+      "description_placeholder": "Опис..."
     },
     "url": {
-      "input_hint": "Enter URL Here.. (Youtube or Spotify)"
+      "input_hint": "Впишіть посилання тут... (Youtube або Spotify)"
     }
   },
   "songView": {
@@ -52,19 +52,19 @@
     "addToQueue": "Додати {title} до черги",
     "addToLibrary": "Додати {title} до бібліотеки",
     "playRandom": "Грати 100 випадкових пісень",
-    "fetchAll": "Fetch all songs",
-    "close": "Close",
-    "add": "Add",
-    "save": "Save",
-    "cancel": "Cancel"
+    "fetchAll": "Отримати всі пісні",
+    "close": "Закрити",
+    "add": "Додати",
+    "save": "Зберегти",
+    "cancel": "Скасувати"
   },
   "loading": "Завантажується...",
-  "now_playing": "Now playing",
+  "now_playing": "Зараз відтворюється",
   "contextMenu": {
-    "sort_by": "Sort by",
+    "sort_by": "Сортувати за",
     "sort": {
       "title": "Найменування",
-      "album": "Album (Track No.)",
+      "album": "Альбомом (По номеру пісні)",
       "artist": "Художник",
       "genre": "Жанр",
       "date_added": "Дата додавання",
@@ -96,24 +96,24 @@
       "showInLibrary": "Показувати в бібліотеці",
       "showHidden": "Показувати приховані пісні",
       "hideHidden": "Сховати приховані пісні",
-      "openInBrowser": "Open in browser",
-      "gotoAlbum": "Goto album ({title})",
-      "gotoArtists": "Goto artists"
+      "openInBrowser": "Відкрити в браузері",
+      "gotoAlbum": "Перейти до альбому ({title})",
+      "gotoArtists": "Перейти до виконувачів"
     },
     "artist": {
-      "remove": "Remove artist"
+      "remove": "Видалити виконавця"
     },
     "album": {
-      "remove": "Remove album"
+      "remove": "Видалити альбом"
     },
     "moreInfo": "Більше інформації",
-    "incorrectPlayback": "Incorrect playback?"
+    "incorrectPlayback": "Неправильне відтворення?"
   },
   "explore": {
-    "you_listened_to": "You've listened to",
-    "of_music": "of music",
-    "played_for": "Played for",
-    "hot_from": "Hot from"
+    "you_listened_to": "Ви слухали",
+    "of_music": "музики",
+    "played_for": "Грало",
+    "hot_from": "Популярне з"
   },
   "providers": {
     "youtube": "Ютубе",
@@ -122,8 +122,8 @@
     "lastfm": "LastFM"
   },
   "accounts": {
-    "connect": "Connect",
-    "sign_out": "Sign out"
+    "connect": "Підключити",
+    "sign_out": "Вийти"
   },
   "settings": {
     "paths": {
@@ -139,10 +139,10 @@
       "thumbnailPath_tooltip": "Каталог, де зберігаються створені мініатюри",
       "splitter": "Шаблон назви виконавця розділення",
       "splitter_tooltip": "Регулярний вираз для розділення імен виконавців. Залиште порожнім, щоб вимкнути розділення.",
-      "scan_interval": "Scan interval",
-      "scan_interval_tooltip": "Interval in minutes to trigger a scan task. Set to -1 to disable automatic scanning",
-      "scan_threads": "Scan CPU threads",
-      "scan_threads_tooltip": "Number of threads to use when scanning for local music"
+      "scan_interval": "Інтервал сканування",
+      "scan_interval_tooltip": "Інтервал у хвилинах для запуску завдання сканування. Впишіть -1 для того щоб вимкнути автоматичне сканування",
+      "scan_threads": "Кількість потоків ЦП",
+      "scan_threads_tooltip": "Кількість потоків до використання під час сканування локальної музики"
     },
     "themes": {
       "songView": "Перегляд пісень",
@@ -159,8 +159,8 @@
         "author": "Автор",
         "colors": "Кольори",
         "colors_tooltip": "Зміна кольору інтерфейсу користувача",
-        "css": "Custom CSS",
-        "watch_css": "Watch CSS for file changes"
+        "css": "Власний CSS",
+        "watch_css": "Дивитися CSS для змін файлів"
       },
       "primary": "Первинний",
       "secondary": "Вторинна",
@@ -187,7 +187,7 @@
         "hardwareAcceleration": "Використовувати апаратне прискорення ГП",
         "watchFileChanges": "Дивитися музичні каталоги для змін",
         "enableJukeboxMode": "Увімкнути перемикач для режиму музичних автоматів",
-        "lastLoadedPlaybackState": "Load last playback state on startup"
+        "lastLoadedPlaybackState": "Повернути останній стан відтворення при запуску"
       },
       "systemSettings_tooltip": "Параметри, які пов'язані з вашою системою",
       "audioSettings": {
@@ -196,7 +196,7 @@
         "sponsorBlock": "Використовуйте SponsorBlock для автоматичного переходу до виділеної частини Youtube пісні"
       },
       "audioSettings_tooltip": "Налаштування, пов'язані відтворення звуку",
-      "gapless_skip": "Skip song before end (seconds)",
+      "gapless_skip": "Пропускати пісню до кінця (секунди)",
       "invidiousUrlUnsupported": "Ця URL-адреса не підтримує Invidious API",
       "invidious_tooltip": "Дурний екземпляр для використання замість youtube",
       "restartApp": "Перезапустити Moosync",
@@ -233,8 +233,8 @@
         "client_secret_tooltip": "Секретний ключ Youtube клієнт необхідний для входу в Youtube. Натисніть, щоб дізнатися більше"
       },
       "lastfm": {
-        "client_id": "LastFM Api Key",
-        "client_secret": "LastFM Client Secret"
+        "client_id": "Ключ API LastFM",
+        "client_secret": "Секретний ключ клієнта LastFM"
       },
       "youtubeAlternative": {
         "title": "Альтернативні послуги Youtube",
@@ -272,18 +272,18 @@
       "jukebox": {
         "pin": "Звук при роботі з музикою",
         "pin_tooltip": "Tis pin буде необхідний для виходу з режиму Jukebox. Має бути числовим.",
-        "optionalFields": "Button visibility",
-        "optionalFields_tooltip": "Toggle optional buttons to show in Jukebox mode",
-        "optional_skip": "Track Skip buttons",
-        "optional_shuffle": "Shuffle button",
-        "optional_repeat": "Repeat button"
+        "optionalFields": "Видимість кнопки",
+        "optionalFields_tooltip": "Перемикнути видимість додаткових кнопок в режимі Jukebox",
+        "optional_skip": "Кнопки пропуску пісні",
+        "optional_shuffle": "Кнопка перемішування",
+        "optional_repeat": "Кнопка повтору"
       },
       "lyrics": {
         "title": "Постачальники текстів",
         "tooltip": "Виберіть, які тексти пісень використовують для пошуку текстів пісень",
         "az_lyrics": "Використовувати AZLyrics",
         "google_lyrics": "Використовувати пошукові тексти в Google",
-        "spotify_lyrics": "Use Spotify for lyrics (Requires librespot)",
+        "spotify_lyrics": "Використовувати Spotify для текстів пісень (потрібний librespot)",
         "genius_lyrics": "Use Genius"
       },
       "queueSettings": {
@@ -363,16 +363,16 @@
   "tray": {
     "play": "Play",
     "pause": "Pause",
-    "next": "Next",
-    "prev": "Prev",
-    "repeat": "Repeat",
-    "no_repeat": "No repeat",
-    "shuffle": "Shuffle",
-    "show_app": "Show app",
-    "quit": "Quit"
+    "next": "Наступний",
+    "prev": "Попередній",
+    "repeat": "Повторювати",
+    "no_repeat": "Не повторювати",
+    "shuffle": "Перемішати",
+    "show_app": "Показати додаток",
+    "quit": "Вийти"
   },
   "toasts": {
-    "queued": "Queued {count} song | Queued {count} songs",
-    "shuffled": "Shuffled"
+    "queued": "У черзі {count} пісня | У черзі {count} пісень",
+    "shuffled": "Перемішане"
   }
 }
