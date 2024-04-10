@@ -284,7 +284,7 @@
         "az_lyrics": "Використовувати AZLyrics",
         "google_lyrics": "Використовувати пошукові тексти в Google",
         "spotify_lyrics": "Використовувати Spotify для текстів пісень (потрібний librespot)",
-        "genius_lyrics": "Use Genius"
+        "genius_lyrics": "Використовувати Genius"
       },
       "queueSettings": {
         "title": "Налаштування черги",
@@ -298,9 +298,9 @@
         }
       },
       "volumePersistMode": {
-        "title": "Volume behavior",
-        "tooltip": "Change the way volume slider behaves",
-        "noPersist": "Normal behavior",
+        "title": "Регуляція гучності",
+        "tooltip": "Змінити поведінку повзунка гучності",
+        "noPersist": "Нормальна поведінка",
         "persistSeparateVolumes": "Remember separate volume for each provider",
         "persistClampVolume": "Manually adjust volume range for each provider"
       }
@@ -311,32 +311,32 @@
       "process": "Процес",
       "filterMessage": "Фільтрувати повідомлення",
       "levels": {
-        "all": "All",
-        "debug": "Debug",
-        "info": "Info",
-        "warn": "Warn",
-        "error": "Error"
+        "all": "Усі",
+        "debug": "Налагодження",
+        "info": "Інформація",
+        "warn": "Попередження",
+        "error": "Помилки"
       },
-      "debug_logging": "Enable debug logging",
+      "debug_logging": "Увімкнути журнал налагодження",
       "table": {
-        "time": "Time",
-        "level": "Level",
-        "process": "Process",
-        "message": "Message"
+        "time": "Час",
+        "level": "Рівень",
+        "process": "Процес",
+        "message": "Текст повідомлення"
       }
     }
   },
   "hotkeys": {
-    "play": "Play Song",
-    "pause": "Pause song",
-    "play_toggle": "Toggle play",
-    "mute_active": "Mute",
-    "mute_inactive": "Unmute",
-    "mute_toggle": " Toggle mute",
-    "volume_inc": "Increase volume",
-    "volume_dec": "Decrease volume",
-    "repeat_active": "Repeat song",
-    "repeat_inactive": "Disable repeat",
+    "play": "Відтворити пісню",
+    "pause": "Призупинити пісню",
+    "play_toggle": "Перемикнути відтворення",
+    "mute_active": "Заглушити",
+    "mute_inactive": "Увімкнути звук",
+    "mute_toggle": " Перемикнути заглушення",
+    "volume_inc": "Збільшити гучність",
+    "volume_dec": "Зменшити гучність",
+    "repeat_active": "Повторити пісню",
+    "repeat_inactive": "Вимкнути повторення",
     "repeat_toggle": "Toggle repeat",
     "queue_open": "Open song queue",
     "queue_close": "Close song queue",
