@@ -18,7 +18,7 @@
   },
   "topbar": {
     "searchPlaceholder": "Пошук...",
-    "noResultsFound": "Нічого не знайдено"
+    "noResultsFound": "Немає результатів"
   },
   "pages": {
     "playlists": "Плейлісти",
@@ -48,7 +48,7 @@
     }
   },
   "buttons": {
-    "playSingle": "Грати в {title}",
+    "playSingle": "Грати {title}",
     "addToQueue": "Додати {title} до черги",
     "addToLibrary": "Додати {title} до бібліотеки",
     "playRandom": "Грати 100 випадкових пісень",
@@ -63,11 +63,11 @@
   "contextMenu": {
     "sort_by": "Сортувати за",
     "sort": {
-      "title": "Найменування",
+      "title": "Назва",
       "album": "Альбомом (По номеру пісні)",
-      "artist": "Художник",
+      "artist": "Виконавець",
       "genre": "Жанр",
-      "date_added": "Дата додавання",
+      "date_added": "Додано",
       "provider": "Постачальник",
       "playCount": "Кількість відтворень"
     },
@@ -301,8 +301,8 @@
         "title": "Регуляція гучності",
         "tooltip": "Змінити поведінку повзунка гучності",
         "noPersist": "Нормальна поведінка",
-        "persistSeparateVolumes": "Remember separate volume for each provider",
-        "persistClampVolume": "Manually adjust volume range for each provider"
+        "persistSeparateVolumes": "Запам'ятати роздільну гучність для кожного постачальника",
+        "persistClampVolume": "Вручну задати діапазон гучності для кожного постачальника"
       }
     },
     "logs": {
@@ -337,32 +337,32 @@
     "volume_dec": "Зменшити гучність",
     "repeat_active": "Повторити пісню",
     "repeat_inactive": "Вимкнути повторення",
-    "repeat_toggle": "Toggle repeat",
-    "queue_open": "Open song queue",
-    "queue_close": "Close song queue",
-    "queue_toggle": "Toggle song queue",
-    "reload_page": "Reload page",
-    "devtools": "Toggle dev-tools",
-    "help": "Open help",
-    "fullscreen": "Fullscreen",
-    "next_song": "Skip song",
-    "prev_song": "Prev song",
-    "seek_forward": "Seek 5s forward",
-    "seek_backwards": "Seek 5s backwards",
-    "seek_0": "Seek to 0%",
-    "seek_1": "Seek to 10%",
-    "seek_2": "Seek to 20%",
-    "seek_3": "Seek to 30%",
-    "seek_4": "Seek to 40%",
-    "seek_5": "Seek to 50%",
-    "seek_6": "Seek to 60%",
-    "seek_7": "Seek to 70%",
-    "seek_8": "Seek to 80%",
-    "seek_9": "Seek to 90%"
+    "repeat_toggle": "Перемикнути повторення",
+    "queue_open": "Відкрити чергу пісень",
+    "queue_close": "Закрити чергу пісень",
+    "queue_toggle": "Перемикнути чергу пісень",
+    "reload_page": "Оновити сторінку",
+    "devtools": "Перемикнути інструменти розробника",
+    "help": "Відкрити довідку",
+    "fullscreen": "На весь екран",
+    "next_song": "Пропустити пісню",
+    "prev_song": "Попередня пісня",
+    "seek_forward": "5 секунд вперед",
+    "seek_backwards": "5 секунд назад",
+    "seek_0": "Перейти до 0%",
+    "seek_1": "Перейти до 10%",
+    "seek_2": "Перейти до 20%",
+    "seek_3": "Перейти до 30%",
+    "seek_4": "Перейти до 40%",
+    "seek_5": "Перейти до 50%",
+    "seek_6": "Перейти до 60%",
+    "seek_7": "Перейти до 70%",
+    "seek_8": "Перейти до 80%",
+    "seek_9": "Перейти до 90%"
   },
   "tray": {
-    "play": "Play",
-    "pause": "Pause",
+    "play": "Відтворити",
+    "pause": "Пауза",
     "next": "Наступний",
     "prev": "Попередній",
     "repeat": "Повторювати",
