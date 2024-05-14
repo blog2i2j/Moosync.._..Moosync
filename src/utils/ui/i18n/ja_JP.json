@@ -160,7 +160,7 @@
         "colors": "色",
         "colors_tooltip": "UIをカスタマイズするために色を変更します",
         "css": "カスタムCSS",
-        "watch_css": "Watch CSS for file changes"
+        "watch_css": "ファイルを変更するためにCSSを表示"
       },
       "primary": "第一配色",
       "secondary": "第二配色",
