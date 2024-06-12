@@ -8,12 +8,12 @@
       "artists": "Artyści",
       "genre": "Gatunki",
       "explore": "Przeglądaj",
-      "paths": "Paths",
-      "themes": "Themes",
-      "extensions": "Extensions",
+      "paths": "Ścieżki",
+      "themes": "Motywy",
+      "extensions": "Rozszerzebua",
       "system": "System",
-      "logs": "Logs",
-      "keybinds": "Keybinds"
+      "logs": "Logi",
+      "keybinds": "Skróty klawiszowe"
     }
   },
   "topbar": {
@@ -24,17 +24,17 @@
     "playlists": "Listy odtwarzania",
     "albums": "Albumy",
     "artists": "Artyści",
-    "genres": "Genres",
+    "genres": "Gatunki",
     "explore": "Przeglądaj"
   },
   "playlists": {
     "local": "Local",
     "new_playlist": {
-      "create": "Create",
-      "description_placeholder": "Description..."
+      "create": "Utwórz",
+      "description_placeholder": "Opis..."
     },
     "url": {
-      "input_hint": "Enter URL Here.. (Youtube or Spotify)"
+      "input_hint": "Wpisz tu adres URL (Youtube lub Spotify)"
     }
   },
   "songView": {
@@ -53,15 +53,15 @@
     "addToLibrary": "Dodaj {title} do biblioteki",
     "playRandom": "Odtwórz 100 losowych utworów",
     "fetchAll": "Fetch all songs",
-    "close": "Close",
-    "add": "Add",
-    "save": "Save",
-    "cancel": "Cancel"
+    "close": "Zamknij",
+    "add": "Dodaj",
+    "save": "Zapisz",
+    "cancel": "Anuluj"
   },
   "loading": "Ładowanie...",
-  "now_playing": "Now playing",
+  "now_playing": "Teraz odtwarzane",
   "contextMenu": {
-    "sort_by": "Sort by",
+    "sort_by": "Sortuj według",
     "sort": {
       "title": "Rozporządzenie Rady (EWG) nr 2658/87 z dnia 23 lipca 1987 r. w sprawie nomenklatury taryfowej i statystycznej oraz w sprawie Wspólnej Taryfy Celnej (Dz.U. L 256 z 7.9.1987, s. 1).",
       "album": "Album (Track No.)",
@@ -96,22 +96,22 @@
       "showInLibrary": "Pokaż w bibliotece",
       "showHidden": "Pokaż ukryte utwory",
       "hideHidden": "Ukryj ukryte utwory",
-      "openInBrowser": "Open in browser",
-      "gotoAlbum": "Goto album ({title})",
+      "openInBrowser": "Otwórz w przeglądarce",
+      "gotoAlbum": "Idź do albumu ({title})",
       "gotoArtists": "Goto artists"
     },
     "artist": {
-      "remove": "Remove artist"
+      "remove": "Usuń artystę"
     },
     "album": {
-      "remove": "Remove album"
+      "remove": "Usuń album"
     },
     "moreInfo": "Więcej informacji",
     "incorrectPlayback": "Incorrect playback?"
   },
   "explore": {
-    "you_listened_to": "You've listened to",
-    "of_music": "of music",
+    "you_listened_to": "Słuchałeś",
+    "of_music": "muzyki",
     "played_for": "Played for",
     "hot_from": "Hot from"
   },
@@ -122,8 +122,8 @@
     "lastfm": "LastFM"
   },
   "accounts": {
-    "connect": "Connect",
-    "sign_out": "Sign out"
+    "connect": "Połącz",
+    "sign_out": "Wyloguj"
   },
   "settings": {
     "paths": {
@@ -159,7 +159,7 @@
         "author": "Autor",
         "colors": "Kolory",
         "colors_tooltip": "Zmień kolory, aby dostosować interfejs",
-        "css": "Custom CSS",
+        "css": "Własny CSS",
         "watch_css": "Watch CSS for file changes"
       },
       "primary": "Podstawowy",
@@ -187,7 +187,7 @@
         "hardwareAcceleration": "Użyj akceleracji sprzętowej GPU",
         "watchFileChanges": "Obejrzyj katalogi muzyczne dla zmian",
         "enableJukeboxMode": "Włącz przełączanie w trybie Jukebox",
-        "lastLoadedPlaybackState": "Load last playback state on startup"
+        "lastLoadedPlaybackState": "Załaduj ostatni stan odtwarzania przy starcie"
       },
       "systemSettings_tooltip": "Ustawienia powiązane z Twoim systemem",
       "audioSettings": {
@@ -233,8 +233,8 @@
         "client_secret_tooltip": "Klient YouTube musi się zalogować do Youtube. Kliknij, aby dowiedzieć się więcej"
       },
       "lastfm": {
-        "client_id": "LastFM Api Key",
-        "client_secret": "LastFM Client Secret"
+        "client_id": "Klucz API LastFM",
+        "client_secret": "Sekret klienta LastFM"
       },
       "youtubeAlternative": {
         "title": "Alternatywne usługi YouTube",
@@ -251,7 +251,7 @@
           "password_tooltip": "Twoje hasło w wybranej instancji"
         },
         "invidious": {
-          "url": "Invidious Instance",
+          "url": "Instancja Invidious",
           "url_tooltip": "Adres URL invidious instance do użycia",
           "options": "Zaawansowane opcje owadów",
           "options_tooltip": "Opcje do kontrolowania niesamowitego odtwarzania",
@@ -272,7 +272,7 @@
       "jukebox": {
         "pin": "Przypinka trybu Jukebox",
         "pin_tooltip": "Przypinek Tis będzie wymagany, aby wyjść z trybu Jukebox. Powinno być numeryczny.",
-        "optionalFields": "Button visibility",
+        "optionalFields": "Widoczność przycisków",
         "optionalFields_tooltip": "Toggle optional buttons to show in Jukebox mode",
         "optional_skip": "Track Skip buttons",
         "optional_shuffle": "Shuffle button",
@@ -283,7 +283,7 @@
         "tooltip": "Wybierz dostawców tekstów piosenek do wyszukiwania tekstów",
         "az_lyrics": "Użyj AZLyrics",
         "google_lyrics": "Użyj tekstów wyszukiwania Google",
-        "spotify_lyrics": "Use Spotify for lyrics (Requires librespot)",
+        "spotify_lyrics": "Użyj Spotify dla tekstów (wymaga librespot)",
         "genius_lyrics": "Używaj Genius"
       },
       "queueSettings": {
@@ -347,32 +347,32 @@
     "fullscreen": "Fullscreen",
     "next_song": "Skip song",
     "prev_song": "Prev song",
-    "seek_forward": "Seek 5s forward",
-    "seek_backwards": "Seek 5s backwards",
-    "seek_0": "Seek to 0%",
-    "seek_1": "Seek to 10%",
-    "seek_2": "Seek to 20%",
-    "seek_3": "Seek to 30%",
-    "seek_4": "Seek to 40%",
-    "seek_5": "Seek to 50%",
-    "seek_6": "Seek to 60%",
-    "seek_7": "Seek to 70%",
-    "seek_8": "Seek to 80%",
-    "seek_9": "Seek to 90%"
+    "seek_forward": "Przewiń 5s do przodu",
+    "seek_backwards": "Przewiń 5s do tyłu",
+    "seek_0": "Przewiń do 0%",
+    "seek_1": "Przewiń do 10%",
+    "seek_2": "Przewiń do 20%",
+    "seek_3": "Przewiń do 30%",
+    "seek_4": "Przewiń do 40%",
+    "seek_5": "Przewiń do 50%",
+    "seek_6": "Przewiń do 60%",
+    "seek_7": "Przewiń do 70%",
+    "seek_8": "Przewiń do 80%",
+    "seek_9": "Przewiń do 90%"
   },
   "tray": {
-    "play": "Play",
-    "pause": "Pause",
-    "next": "Next",
-    "prev": "Prev",
-    "repeat": "Repeat",
-    "no_repeat": "No repeat",
-    "shuffle": "Shuffle",
-    "show_app": "Show app",
-    "quit": "Quit"
+    "play": "Odtwórz",
+    "pause": "Wstrzymaj",
+    "next": "Następny",
+    "prev": "Poprzedni",
+    "repeat": "Powtórz",
+    "no_repeat": "Nie powtarzaj",
+    "shuffle": "Losowo",
+    "show_app": "Pokaż aplikację",
+    "quit": "Zakończ"
   },
   "toasts": {
-    "queued": "Queued {count} song | Queued {count} songs",
+    "queued": "Utwór {count} w kolejce | {count} utworów w kolejce",
     "shuffled": "Shuffled"
   }
 }
