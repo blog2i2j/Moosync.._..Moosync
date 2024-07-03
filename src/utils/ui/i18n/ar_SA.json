@@ -281,7 +281,7 @@
       "lyrics": {
         "title": "موفري الكلمات",
         "tooltip": "حدد موفري كلمات الأغاني الذين يمكن استخدامهم للبحث عن كلمات الأغاني",
-        "az_lyrics": "استخدام كلمات الاغنية",
+        "az_lyrics": "استخدام كلمات AZLyrics",
         "google_lyrics": "استخدام كلمات البحث في جوجل",
         "spotify_lyrics": "استخدام Spotify لكلمات (يتطلب librespot)",
         "genius_lyrics": "Use Genius"
@@ -347,8 +347,8 @@
     "fullscreen": "ملء الشاشة",
     "next_song": "تخطي الأغنية",
     "prev_song": "الأغنية السابقة",
-    "seek_forward": "التقدم للأمام 5s",
-    "seek_backwards": "Seek 5s backwards",
+    "seek_forward": "التقدم 5s للأمام",
+    "seek_backwards": "التراجع 5s للخلف",
     "seek_0": "Seek to 0%",
     "seek_1": "Seek to 10%",
     "seek_2": "Seek to 20%",
@@ -361,15 +361,15 @@
     "seek_9": "Seek to 90%"
   },
   "tray": {
-    "play": "Play",
-    "pause": "Pause",
-    "next": "Next",
-    "prev": "Prev",
-    "repeat": "Repeat",
-    "no_repeat": "No repeat",
-    "shuffle": "Shuffle",
-    "show_app": "Show app",
-    "quit": "Quit"
+    "play": "تشغيل",
+    "pause": "إيقاف مؤقت",
+    "next": "التالي",
+    "prev": "السابق",
+    "repeat": "تكرار",
+    "no_repeat": "لا تكرار",
+    "shuffle": "خلْط",
+    "show_app": "إظهار التطبيق",
+    "quit": "خروج"
   },
   "toasts": {
     "queued": "Queued {count} song | Queued {count} songs",
