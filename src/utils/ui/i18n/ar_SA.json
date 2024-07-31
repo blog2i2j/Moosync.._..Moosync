@@ -6,13 +6,13 @@
       "playlists": "قوائم التشغيل",
       "albums": "ألبومات",
       "artists": "الفنانون",
-      "genre": "Genres",
+      "genre": "الأنواع",
       "explore": "استكشف",
-      "paths": "Paths",
-      "themes": "Themes",
-      "extensions": "Extensions",
-      "system": "System",
-      "logs": "Logs",
+      "paths": "المسارات",
+      "themes": "الثيمات",
+      "extensions": "الإضافات",
+      "system": "نظام",
+      "logs": "سجلات",
       "keybinds": "Keybinds"
     }
   },
@@ -24,17 +24,17 @@
     "playlists": "قوائم التشغيل",
     "albums": "ألبومات",
     "artists": "الفنانون",
-    "genres": "Genres",
+    "genres": "الأنواع",
     "explore": "استكشف"
   },
   "playlists": {
-    "local": "Local",
+    "local": "محليه",
     "new_playlist": {
-      "create": "Create",
-      "description_placeholder": "Description..."
+      "create": "إنشاء",
+      "description_placeholder": "الوصف..."
     },
     "url": {
-      "input_hint": "Enter URL Here.. (Youtube or Spotify)"
+      "input_hint": "أدخل عنوان URL هنا.. (YouTube أو Spotify)"
     }
   },
   "songView": {
@@ -53,15 +53,15 @@
     "addToLibrary": "إضافة {title} إلى المكتبة",
     "playRandom": "تشغيل 100 أغنية عشوائية",
     "fetchAll": "Fetch all songs",
-    "close": "Close",
-    "add": "Add",
-    "save": "Save",
-    "cancel": "Cancel"
+    "close": "إغلاق",
+    "add": "إضافة",
+    "save": "حفظ",
+    "cancel": "إلغاء"
   },
   "loading": "تحميل...",
-  "now_playing": "Now playing",
+  "now_playing": "مشغل الآن",
   "contextMenu": {
-    "sort_by": "Sort by",
+    "sort_by": "فرز حسب",
     "sort": {
       "title": "العنوان",
       "album": "Album (Track No.)",
@@ -96,22 +96,22 @@
       "showInLibrary": "إظهار في المكتبة",
       "showHidden": "إظهار الأغاني المخفية",
       "hideHidden": "إخفاء الأغاني المخفية",
-      "openInBrowser": "Open in browser",
+      "openInBrowser": "فتح في المتصفح",
       "gotoAlbum": "Goto album ({title})",
       "gotoArtists": "Goto artists"
     },
     "artist": {
-      "remove": "Remove artist"
+      "remove": "إزالة الفنان"
     },
     "album": {
-      "remove": "Remove album"
+      "remove": "إزالة الألبوم"
     },
     "moreInfo": "المزيد من المعلومات",
-    "incorrectPlayback": "Incorrect playback?"
+    "incorrectPlayback": "تشغيل غير صحيح؟"
   },
   "explore": {
-    "you_listened_to": "You've listened to",
-    "of_music": "of music",
+    "you_listened_to": "لقد استمعت إلى",
+    "of_music": "من الموسيقى",
     "played_for": "Played for",
     "hot_from": "Hot from"
   },
@@ -122,8 +122,8 @@
     "lastfm": "LastFM"
   },
   "accounts": {
-    "connect": "Connect",
-    "sign_out": "Sign out"
+    "connect": "اتصال",
+    "sign_out": "تسجيل الخروج"
   },
   "settings": {
     "paths": {
@@ -276,14 +276,14 @@
         "optionalFields_tooltip": "Toggle optional buttons to show in Jukebox mode",
         "optional_skip": "Track Skip buttons",
         "optional_shuffle": "Shuffle button",
-        "optional_repeat": "Repeat button"
+        "optional_repeat": "زر التكرار"
       },
       "lyrics": {
         "title": "موفري الكلمات",
         "tooltip": "حدد موفري كلمات الأغاني الذين يمكن استخدامهم للبحث عن كلمات الأغاني",
-        "az_lyrics": "استخدام كلمات الاغنية",
+        "az_lyrics": "استخدام كلمات AZLyrics",
         "google_lyrics": "استخدام كلمات البحث في جوجل",
-        "spotify_lyrics": "Use Spotify for lyrics (Requires librespot)",
+        "spotify_lyrics": "استخدام Spotify لكلمات (يتطلب librespot)",
         "genius_lyrics": "Use Genius"
       },
       "queueSettings": {
@@ -341,14 +341,14 @@
     "queue_open": "Open song queue",
     "queue_close": "Close song queue",
     "queue_toggle": "Toggle song queue",
-    "reload_page": "Reload page",
+    "reload_page": "إعادة تحميل الصفحة",
     "devtools": "Toggle dev-tools",
-    "help": "Open help",
-    "fullscreen": "Fullscreen",
-    "next_song": "Skip song",
-    "prev_song": "Prev song",
-    "seek_forward": "Seek 5s forward",
-    "seek_backwards": "Seek 5s backwards",
+    "help": "افتح مساعدة",
+    "fullscreen": "ملء الشاشة",
+    "next_song": "تخطي الأغنية",
+    "prev_song": "الأغنية السابقة",
+    "seek_forward": "التقدم 5s للأمام",
+    "seek_backwards": "التراجع 5s للخلف",
     "seek_0": "Seek to 0%",
     "seek_1": "Seek to 10%",
     "seek_2": "Seek to 20%",
@@ -361,15 +361,15 @@
     "seek_9": "Seek to 90%"
   },
   "tray": {
-    "play": "Play",
-    "pause": "Pause",
-    "next": "Next",
-    "prev": "Prev",
-    "repeat": "Repeat",
-    "no_repeat": "No repeat",
-    "shuffle": "Shuffle",
-    "show_app": "Show app",
-    "quit": "Quit"
+    "play": "تشغيل",
+    "pause": "إيقاف مؤقت",
+    "next": "التالي",
+    "prev": "السابق",
+    "repeat": "تكرار",
+    "no_repeat": "لا تكرار",
+    "shuffle": "خلْط",
+    "show_app": "إظهار التطبيق",
+    "quit": "خروج"
   },
   "toasts": {
     "queued": "Queued {count} song | Queued {count} songs",
